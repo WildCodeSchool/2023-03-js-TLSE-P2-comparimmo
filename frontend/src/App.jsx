@@ -1,5 +1,11 @@
-import "./App.css";
+import "./assets/styles/index.scss";
+import Footer from "./components/Footer/Footer";
 
-function App() {}
-
+function App() {
+  return (
+    <div className="App">
+      <Footer />
+    </div>
+  );
+}
 export default App;

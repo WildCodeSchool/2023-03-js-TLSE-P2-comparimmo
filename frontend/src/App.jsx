@@ -1,3 +1,4 @@
+import React from "react";
 import "./assets/styles/index.scss";
 import Footer from "./components/Footer/Footer";
 

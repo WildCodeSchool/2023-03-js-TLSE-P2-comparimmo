@@ -13,8 +13,6 @@ import axios from "axios";
 
 export default function Carousel() {
   let cityPopulation = 0;
-  // const allData = [];
-  // let datas = [];
   const cities = [
     {
       id: 1,
@@ -141,7 +139,7 @@ export default function Carousel() {
     useEffect(() => {
       const promises = inseeDVFToSearch.map((el) => {
         return axios.get(
-          `https://apidf-preprod.cerema.fr/dvf_opendata/mutations?code_insee=${el}&codtypbien=121&page_size=50`
+          `https://apidf-preprod.cerema.fr/dvf_opendata/mutations?code_insee=${el}&codtypbien=121&page_size=500`
         );
       });
 
@@ -180,7 +178,7 @@ export default function Carousel() {
     useEffect(() => {
       const promises = inseeDVFToSearch.map((el) => {
         return axios.get(
-          `https://apidf-preprod.cerema.fr/dvf_opendata/mutations?code_insee=${el}&codtypbien=111&page_size=50`
+          `https://apidf-preprod.cerema.fr/dvf_opendata/mutations?code_insee=${el}&codtypbien=111&page_size=500`
         );
       });
 

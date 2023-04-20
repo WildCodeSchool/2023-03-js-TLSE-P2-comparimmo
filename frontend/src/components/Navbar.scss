@@ -1,0 +1,190 @@
+body {
+  margin: 0;
+  padding: 0;
+  section.navbar {
+    background-color: #25205C;
+    display: flex;
+    justify-content: space-between;
+    font-family: raleway;
+    font-size: 1.5rem;
+
+    img.logo-mobile {
+      display: block;
+      width: 60px;
+      height: 65px;
+      padding: 10px 20px;
+    }
+    img.logo-desktop {
+      display:none;
+    }
+    div {
+      div#nav_links {
+        background-color: #25205C;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 80px;
+        right: 0px;
+        ul {
+          list-style: none;
+          width: 100%;
+          margin: 0;
+          padding: 0;
+          // link fait référence à un a dans le navigateur 
+          a {
+            text-align: center;
+            text-decoration: none;
+            color: white;
+          }
+          li {
+            white-space : nowrap;
+            padding: 20px 30px;
+          }
+        }
+      }
+      .burger_close {
+        width: 0vw;
+        overflow: hidden;
+        transition: width 1s ease;
+      }
+      .burger_open {
+        width: 50vw;
+        transition: width 1s ease;
+      }
+
+      span#burger_icon {
+        display: inline-block;
+        span {
+          width: 30px;
+          height: 2px;
+          margin-bottom: 10px;
+          position: relative;
+          top: 25px;
+          right: 20px;
+          transition: transform 0.5s;
+        }
+        span:nth-child(1), span:nth-child(5) {
+          transform-origin: right center;
+        }
+        span:nth-child(3), span:nth-child(4) {
+          transform-origin: left center;
+        }
+      }
+      span.no_animation span:nth-child(1),span.no_animation span:nth-child(5) {
+        background-color: orange;
+        display: none;
+      }
+      span.no_animation span:nth-child(3) {
+        background-color: orange;
+        display: block;
+      }
+      span.no_animation span:nth-child(2), span.no_animation span:nth-child(4) {
+        background-color: white;
+        display: block;
+      }
+      span.animationOpen span:nth-child(1) {
+        transform: translate(-15px, 12px) rotate(+45deg) scale(0.7, 1);
+        background-color: orange;
+        display: block;
+        z-index: 3;
+      }
+      span.animationOpen span:nth-child(2) {
+        transform: scaleX(0);
+      }
+      span.animationOpen span:nth-child(3) {
+        transform: translate(15px, 0px) rotate(45deg) scale(0.7, 1);
+        background: white;
+        display: block;
+      }
+      span.animationOpen span:nth-child(4) {
+        transform: translate(15px, -12px) rotate(135deg) scale(0.7, 1);
+        background: white;
+        display: block;
+      }      
+      span.animationOpen span:nth-child(5) {
+        transform: translate(-15px, -24px) rotate(135deg) scale(0.7, 1);
+        background: orange;
+        display: block;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 769px) {
+  body {
+    section.navbar {
+      background-color: #25205C;
+      display: flex;
+      justify-content: space-between;
+      font-family: raleway;
+      font-size: 1.5rem;
+      padding: 0 2rem;
+
+      img.logo-mobile {
+        display:none;
+      }
+
+      img.logo-desktop {
+        display:block;
+        width: 150px;
+        height: 100px;
+        padding: 15px 10px;
+      }
+      
+      div {
+        display: flex;
+        align-items: center;
+        div#nav_links {
+          position: initial;
+          width: auto;
+          height: 12vh;
+
+          ul {
+            list-style: none;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            padding: 2rem 3rem 2rem 2rem;
+            margin: 0;
+
+            li {
+              padding: 10px;
+              box-sizing: border-box;
+              border: solid white;
+              border-radius: 10px;
+              background-color: white;
+              width: 120px;
+              height: 50px;
+              text-align: center;
+            }
+
+            // link fait référence à un a dans le navigateur 
+            a {
+              text-align: center;
+              text-decoration: none;
+              color: black;
+            }
+
+            a.active{
+              li {
+                border-bottom: 8px solid orange;
+                text-decoration-color: orange;
+                box-sizing: border-box;
+              }
+            }
+
+            li:hover {
+              border-bottom: 8px solid rgba(255, 166, 0, 0.6);
+              text-decoration-color: rgba(255, 166, 0, 0.6);
+            }
+          }
+        }
+        span#burger_icon {
+          display: none;
+        }
+      }
+    }
+  }
+}

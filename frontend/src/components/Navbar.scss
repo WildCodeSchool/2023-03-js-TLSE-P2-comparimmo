@@ -1,111 +1,131 @@
 body {
   margin: 0;
   padding: 0;
+
   section.navbar {
-    background-color: #25205C;
+    background-color: var(--main-blue);
     display: flex;
     justify-content: space-between;
-    font-family: raleway;
-    font-size: 1.5rem;
+    align-items: center;
+    font-family: var(--font-family);
+    font-size: 1rem;
 
     img.logo-mobile {
       display: block;
       width: 60px;
       height: 65px;
-      padding: 10px 20px;
+      padding: 7px 7px;
     }
+
     img.logo-desktop {
-      display:none;
+      display: none;
     }
+
     div {
       div#nav_links {
-        background-color: #25205C;
+        background-color: var(--main-blue);
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         position: absolute;
-        top: 80px;
+        top: 60px;
         right: 0px;
+
         ul {
           list-style: none;
           width: 100%;
           margin: 0;
           padding: 0;
+
           // link fait référence à un a dans le navigateur 
           a {
             text-align: center;
             text-decoration: none;
-            color: white;
-          }
-          li {
-            white-space : nowrap;
-            padding: 20px 30px;
+            color: var(--white);
+
+            li {
+              white-space : nowrap;
+              padding: 20px 30px;
+            }
           }
         }
       }
+
       .burger_close {
         width: 0vw;
         overflow: hidden;
         transition: width 1s ease;
       }
+
       .burger_open {
-        width: 50vw;
+        width: 40vw;
         transition: width 1s ease;
       }
 
       span#burger_icon {
         display: inline-block;
+
         span {
           width: 30px;
           height: 2px;
           margin-bottom: 10px;
           position: relative;
-          top: 25px;
+          top: 5px;
           right: 20px;
           transition: transform 0.5s;
         }
+
         span:nth-child(1), span:nth-child(5) {
           transform-origin: right center;
         }
+
         span:nth-child(3), span:nth-child(4) {
           transform-origin: left center;
         }
       }
+
       span.no_animation span:nth-child(1),span.no_animation span:nth-child(5) {
-        background-color: orange;
+        background-color: var(--orange);
         display: none;
       }
+
       span.no_animation span:nth-child(3) {
-        background-color: orange;
+        background-color: var(--orange);
         display: block;
       }
+
       span.no_animation span:nth-child(2), span.no_animation span:nth-child(4) {
-        background-color: white;
+        background-color: var(--white);
         display: block;
       }
+
       span.animationOpen span:nth-child(1) {
-        transform: translate(-15px, 12px) rotate(+45deg) scale(0.7, 1);
-        background-color: orange;
+        transform: translate(-15px, 17px) rotate(+45deg) scale(0.7, 1);
+        background-color: var(--orange);
         display: block;
         z-index: 3;
       }
+
       span.animationOpen span:nth-child(2) {
         transform: scaleX(0);
       }
+
       span.animationOpen span:nth-child(3) {
-        transform: translate(15px, 0px) rotate(45deg) scale(0.7, 1);
-        background: white;
+        transform: translate(15px, 5px) rotate(45deg) scale(0.7, 1);
+        background: var(--white);
         display: block;
       }
+      
       span.animationOpen span:nth-child(4) {
-        transform: translate(15px, -12px) rotate(135deg) scale(0.7, 1);
-        background: white;
+        transform: translate(15px, -7px) rotate(135deg) scale(0.7, 1);
+        background: var(--white);
         display: block;
-      }      
+      }
+
       span.animationOpen span:nth-child(5) {
-        transform: translate(-15px, -24px) rotate(135deg) scale(0.7, 1);
-        background: orange;
+        transform: translate(-15px, -19px) rotate(135deg) scale(0.7, 1);
+        background: var(--orange);
         display: block;
       }
     }
@@ -114,12 +134,8 @@ body {
 
 @media screen and (min-width: 769px) {
   body {
+
     section.navbar {
-      background-color: #25205C;
-      display: flex;
-      justify-content: space-between;
-      font-family: raleway;
-      font-size: 1.5rem;
       padding: 0 2rem;
 
       img.logo-mobile {
@@ -136,51 +152,54 @@ body {
       div {
         display: flex;
         align-items: center;
+
         div#nav_links {
           position: initial;
-          width: auto;
+          width: 25vw;
           height: 12vh;
 
           ul {
-            list-style: none;
-            width: 100%;
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             padding: 2rem 3rem 2rem 2rem;
-            margin: 0;
 
-            li {
-              padding: 10px;
-              box-sizing: border-box;
-              border: solid white;
-              border-radius: 10px;
-              background-color: white;
-              width: 120px;
-              height: 50px;
-              text-align: center;
-            }
-
+            
             // link fait référence à un a dans le navigateur 
             a {
-              text-align: center;
               text-decoration: none;
               color: black;
+              height: 100%;
+
+              li {
+                padding: 12px;
+                box-sizing: border-box;
+                border: solid var(--white);
+                border-radius: 10px;
+                background-color: var(--white);
+                width: 120px;
+                height: 100%;
+
+                p {
+                  margin-top: 5px;
+                }
+              }
+              
+              li:hover {
+                border-bottom: 8px solid rgba(255, 166, 0, 0.6);
+                text-decoration-color: rgba(255, 166, 0, 0.6);
+              }
             }
 
             a.active{
               li {
-                border-bottom: 8px solid orange;
-                text-decoration-color: orange;
+                border-bottom: 8px solid var(--orange);
+                text-decoration-color: var(--orange);
                 box-sizing: border-box;
-              }
-            }
-
-            li:hover {
-              border-bottom: 8px solid rgba(255, 166, 0, 0.6);
-              text-decoration-color: rgba(255, 166, 0, 0.6);
+                }
             }
           }
         }
+        
         span#burger_icon {
           display: none;
         }

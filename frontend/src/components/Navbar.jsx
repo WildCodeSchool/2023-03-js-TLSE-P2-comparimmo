@@ -36,10 +36,14 @@ function Navbar() {
         >
           <ul>
             <NavLink exact to="/" activeClassName="active">
-              <li>Home</li>
+              <li>
+                <p>Home</p>
+              </li>
             </NavLink>
             <NavLink to="/about" activeClassName="active">
-              <li>About Us</li>
+              <li>
+                <p>About Us</p>
+              </li>
             </NavLink>
           </ul>
         </div>

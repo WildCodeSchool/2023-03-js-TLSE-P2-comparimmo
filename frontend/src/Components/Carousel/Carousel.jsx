@@ -7,65 +7,28 @@ import flat from "@assets/img/flat.png";
 // eslint-disable-next-line import/no-unresolved
 import pop from "@assets/img/pop.png";
 // eslint-disable-next-line import/no-unresolved
-import "@splidejs/react-splide/css";
+import "@splidejs/react-splide/css/skyblue";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import axios from "axios";
+import "./carousel.scss";
 
 export default function Carousel() {
   let cityPopulation = 0;
   const cities = [
     {
       id: 1,
-      cityName: "Paris",
-      insee: "75056",
-      inseeDVF: [
-        "75101",
-        "75102",
-        "75103",
-        "75104",
-        "75105",
-        "75106",
-        "75107",
-        "75108",
-        "75109",
-        "75110",
-        "75111",
-        "75112",
-        "75113",
-        "75114",
-        "75115",
-        "75116",
-        "75117",
-        "75118",
-        "75119",
-        "75120",
-      ],
+      cityName: "Nice",
+      insee: "06088",
+      inseeDVF: ["06088"],
       housePriceM2: 0,
       flatPriceM2: 0,
       population: 0,
     },
     {
       id: 2,
-      cityName: "Marseille",
-      insee: "13055",
-      inseeDVF: [
-        "13201",
-        "13202",
-        "13203",
-        "13204",
-        "13205",
-        "13206",
-        "13207",
-        "13208",
-        "13209",
-        "13210",
-        "13211",
-        "13212",
-        "13213",
-        "13214",
-        "13215",
-        "13216",
-      ],
+      cityName: "Toulouse",
+      insee: "31555",
+      inseeDVF: ["31555"],
       housePriceM2: 0,
       flatPriceM2: 0,
       population: 0,
@@ -91,18 +54,56 @@ export default function Carousel() {
     },
     {
       id: 4,
-      cityName: "Toulouse",
-      insee: "31555",
-      inseeDVF: ["31555"],
+      cityName: "Marseille",
+      insee: "13055",
+      inseeDVF: [
+        "13201",
+        "13202",
+        "13203",
+        "13204",
+        "13205",
+        "13206",
+        "13207",
+        "13208",
+        "13209",
+        "13210",
+        "13211",
+        "13212",
+        "13213",
+        "13214",
+        "13215",
+        "13216",
+      ],
       housePriceM2: 0,
       flatPriceM2: 0,
       population: 0,
     },
     {
       id: 5,
-      cityName: "Nice",
-      insee: "06088",
-      inseeDVF: ["06088"],
+      cityName: "Paris",
+      insee: "75056",
+      inseeDVF: [
+        "75101",
+        "75102",
+        "75103",
+        "75104",
+        "75105",
+        "75106",
+        "75107",
+        "75108",
+        "75109",
+        "75110",
+        "75111",
+        "75112",
+        "75113",
+        "75114",
+        "75115",
+        "75116",
+        "75117",
+        "75118",
+        "75119",
+        "75120",
+      ],
       housePriceM2: 0,
       flatPriceM2: 0,
       population: 0,
@@ -228,18 +229,34 @@ export default function Carousel() {
 
   return (
     <div className="carousel">
-      <Splide options={optionSplide}>
+      <Splide className="carouselContainer" options={optionSplide}>
         {cities.map((el) => {
           return (
-            <SplideSlide key={el.id}>
+            <SplideSlide
+              className="carouselSplide"
+              key={el.id}
+              data-splide-interval="3000"
+            >
+              <h2 className="cityCarousel">{el.cityName}</h2>
               <div className="cityList">
-                <h2>{el.cityName}</h2>
-                <img src={house} alt="Icon of a house" />
-                <h3>{el.housePriceM2} €/m²</h3>
-                <img src={flat} alt="Icon of an appartment" />
-                <h3>{el.flatPriceM2} €/m²</h3>
-                <img src={pop} alt="Icon for population section" />
-                <h3>{el.population} habitants</h3>
+                <div className="iconAndText">
+                  <img src={house} alt="Icon of a house" />
+                  <h3 className="dataCarousel">
+                    {el.housePriceM2.toLocaleString("fr-FR")} €/m²
+                  </h3>
+                </div>
+                <div className="iconAndText">
+                  <img src={flat} alt="Icon of an appartment" />
+                  <h3 className="dataCarousel">
+                    {el.flatPriceM2.toLocaleString("fr-FR")} €/m²
+                  </h3>
+                </div>
+                <div className="iconAndText">
+                  <img src={pop} alt="Icon for population section" />
+                  <h3 className="dataCarousel">
+                    {el.population.toLocaleString("fr-FR")} habitants
+                  </h3>
+                </div>
               </div>
             </SplideSlide>
           );

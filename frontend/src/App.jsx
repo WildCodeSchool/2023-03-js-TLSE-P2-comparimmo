@@ -1,7 +1,7 @@
 import React from "react";
 import "./assets/styles/index.scss";
 import Footer from "./components/Footer/Footer";
-import Carousel from "./components/Carousel";
+import Carousel from "./components/Carousel/Carousel";
 
 function App() {
   return (

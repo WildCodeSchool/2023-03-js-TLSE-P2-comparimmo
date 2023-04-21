@@ -1,0 +1,21 @@
+.map {
+  height: 92vh;
+  width: 100vw;
+
+  display: flex;
+  align-items: center;
+}
+
+// .mapContent {
+//   display: flex;
+//   width: 100vw;
+//   height: 85vh;
+//   align-items: center;
+//   margin-top: 7vh;
+// }
+
+.tab {
+  width: 50vw;
+  height: 82vh;
+  background: var(--light-gray);
+}

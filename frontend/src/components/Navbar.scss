@@ -9,7 +9,7 @@ body {
     align-items: center;
     font-family: var(--font-family);
     font-size: 1rem;
-    height: 7vh;
+    height: 50px;
 
     img.logo-mobile {
       display: block;
@@ -141,6 +141,7 @@ body {
   body {
     section.navbar {
       padding: 0 2rem;
+      min-height: 75px ;
       height: 10vh;
 
       img.logo-mobile {

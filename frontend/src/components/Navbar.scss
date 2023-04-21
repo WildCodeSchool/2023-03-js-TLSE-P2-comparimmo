@@ -38,14 +38,14 @@ body {
           margin: 0;
           padding: 0;
 
-          // link fait référence à un a dans le navigateur 
+          // link fait référence à un a dans le navigateur
           a {
             text-align: center;
             text-decoration: none;
             color: var(--white);
 
             li {
-              white-space : nowrap;
+              white-space: nowrap;
               padding: 20px 30px;
             }
           }
@@ -76,16 +76,19 @@ body {
           transition: transform 0.5s;
         }
 
-        span:nth-child(1), span:nth-child(5) {
+        span:nth-child(1),
+        span:nth-child(5) {
           transform-origin: right center;
         }
 
-        span:nth-child(3), span:nth-child(4) {
+        span:nth-child(3),
+        span:nth-child(4) {
           transform-origin: left center;
         }
       }
 
-      span.no_animation span:nth-child(1),span.no_animation span:nth-child(5) {
+      span.no_animation span:nth-child(1),
+      span.no_animation span:nth-child(5) {
         background-color: var(--orange);
         display: none;
       }
@@ -95,7 +98,8 @@ body {
         display: block;
       }
 
-      span.no_animation span:nth-child(2), span.no_animation span:nth-child(4) {
+      span.no_animation span:nth-child(2),
+      span.no_animation span:nth-child(4) {
         background-color: var(--white);
         display: block;
       }
@@ -116,7 +120,7 @@ body {
         background: var(--white);
         display: block;
       }
-      
+
       span.animationOpen span:nth-child(4) {
         transform: translate(15px, -7px) rotate(135deg) scale(0.7, 1);
         background: var(--white);
@@ -134,21 +138,20 @@ body {
 
 @media screen and (min-width: 769px) {
   body {
-
     section.navbar {
       padding: 0 2rem;
 
       img.logo-mobile {
-        display:none;
+        display: none;
       }
 
       img.logo-desktop {
-        display:block;
+        display: block;
         width: 150px;
         height: 100px;
         padding: 15px 10px;
       }
-      
+
       div {
         display: flex;
         align-items: center;
@@ -163,8 +166,7 @@ body {
             justify-content: space-between;
             padding: 2rem 3rem 2rem 2rem;
 
-            
-            // link fait référence à un a dans le navigateur 
+            // link fait référence à un a dans le navigateur
             a {
               text-decoration: none;
               color: black;
@@ -183,23 +185,23 @@ body {
                   margin-top: 5px;
                 }
               }
-              
+
               li:hover {
                 border-bottom: 8px solid rgba(255, 166, 0, 0.6);
                 text-decoration-color: rgba(255, 166, 0, 0.6);
               }
             }
 
-            a.active{
+            a.active {
               li {
                 border-bottom: 8px solid var(--orange);
                 text-decoration-color: var(--orange);
                 box-sizing: border-box;
-                }
+              }
             }
           }
         }
-        
+
         span#burger_icon {
           display: none;
         }

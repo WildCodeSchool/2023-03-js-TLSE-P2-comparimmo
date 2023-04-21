@@ -1,5 +1,8 @@
 import "./App.css";
+import DataDvf from "./components/DataDvf";
 
-function App() {}
+function App() {
+  return <DataDvf />;
+}
 
 export default App;

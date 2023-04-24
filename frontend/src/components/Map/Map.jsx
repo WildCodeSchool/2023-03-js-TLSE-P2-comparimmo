@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+// import PropTypes from "prop-types";
 import { MapContainer, TileLayer, Popup, Polygon } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import axios from "axios";
@@ -8,10 +9,11 @@ export default function Map() {
   const [polygons, setPolygons] = useState([]);
   const [libtypbien, setLibtypbien] = useState([]);
   const [valeurfonc, setValeurfonc] = useState([]);
-  const [datemut, setDatemut] = useState([]);
-  const [sbati, setSbati] = useState([]);
+  const [datemut, setDatemut] = useState("");
+  const [sbati, setSbati] = useState("");
   const [idmutations, setIdmutations] = useState([]);
   const [codeInsee, setCodeInsee] = useState("31555");
+  const [sterr, setSterr] = useState([]);
 
   /* changement code insee bouton */
   const handleCodeInseeChange = (event) => {
@@ -28,12 +30,12 @@ export default function Map() {
       )
       .then((response) => {
         const filteredFeatures = response.data.features.filter(
-          (feature) => feature.geometry
+          (feature) => feature.geometry !== null
         );
 
         // inversement des coordonées geographiques //
-        // eslint-disable-next-line no-shadow
-        const polygons = filteredFeatures.map((feature) => {
+
+        const flatPolygons = filteredFeatures.map((feature) => {
           const flatArray = feature.geometry.coordinates.flat();
           flatArray.forEach((a) => a.forEach((b) => b.reverse()));
           return flatArray;
@@ -41,7 +43,7 @@ export default function Map() {
 
         const { features } = response.data;
 
-        setPolygons(polygons);
+        setPolygons(flatPolygons);
         setLibtypbien(features.map((feature) => feature.properties.libtypbien));
         setValeurfonc(features.map((feature) => feature.properties.valeurfonc));
         setDatemut(features.map((feature) => feature.properties.datemut));
@@ -49,6 +51,7 @@ export default function Map() {
         setIdmutations(
           features.map((feature) => feature.properties.idmutation)
         );
+        setSterr(features.map((feature) => feature.properties.sterr));
       })
       .catch((error) => {
         console.error(error);
@@ -112,9 +115,18 @@ export default function Map() {
               )}
               {sbati[index] ? (
                 <p>
-                  <strong>Surface du bâti:</strong>
+                  <strong>Surface :</strong>
                   <br />
                   {sbati[index]} m²
+                </p>
+              ) : (
+                ""
+              )}
+              {sterr[index] > 0 ? (
+                <p>
+                  <strong>Surface du terrain:</strong>
+                  <br />
+                  {sterr[index]} m²
                 </p>
               ) : (
                 ""
@@ -135,3 +147,23 @@ export default function Map() {
     </div>
   );
 }
+
+// Map.propTypes = {
+//   sbati: PropTypes.string,
+//   datemut: PropTypes.string,
+//   libtypbien: PropTypes.string,
+//   idmutations: PropTypes.string,
+//   polygons: PropTypes.string,
+//   codeInsee: PropTypes.string,
+//   sterr: PropTypes.string,
+// };
+
+// Map.defaultProps = {
+//   sbati: "",
+//   datemut: "",
+//   codeInsee: "31555",
+//   libtypbien: [],
+//   idmutations: [],
+//   polygons: [],
+//   sterr: [],
+// };

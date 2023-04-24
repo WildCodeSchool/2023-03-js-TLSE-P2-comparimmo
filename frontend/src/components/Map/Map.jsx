@@ -1,4 +1,3 @@
-/* eslint-disable no-shadow */
 import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Popup, Polygon } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
@@ -14,6 +13,7 @@ export default function Map() {
   const [idmutations, setIdmutations] = useState([]);
   const [codeInsee, setCodeInsee] = useState("31555");
 
+  /* changement code insee bouton */
   const handleCodeInseeChange = (event) => {
     setCodeInsee(event.target.value);
   };
@@ -31,6 +31,8 @@ export default function Map() {
           (feature) => feature.geometry
         );
 
+        // inversement des coordonées geographiques //
+        // eslint-disable-next-line no-shadow
         const polygons = filteredFeatures.map((feature) => {
           const flatArray = feature.geometry.coordinates.flat();
           flatArray.forEach((a) => a.forEach((b) => b.reverse()));
@@ -56,10 +58,17 @@ export default function Map() {
   return (
     <div className={`${styles.mapContent}  `}>
       <form onSubmit={handleSubmit}>
-        <label>pw</label>
+        <label>
+          Code INSEE :
+          <input
+            type="text"
+            value={codeInsee}
+            onChange={handleCodeInseeChange}
+          />
+        </label>
         <button type="submit">Changer</button>
       </form>
-
+      {/* contenu de la carte */}
       <MapContainer
         className={`${styles.map}`}
         center={[43.6, 1.433333]}
@@ -70,7 +79,7 @@ export default function Map() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution="COMPAR'IMMO"
         />
-
+        {/* affichage du contenu des objets sur la carte  */}
         {polygons.map((polygon, index) => (
           <Polygon key={idmutations[index]} positions={polygon}>
             <Popup>

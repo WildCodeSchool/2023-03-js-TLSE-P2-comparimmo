@@ -13,6 +13,7 @@ import "./carousel.scss";
 
 export default function Carousel() {
   let cityPopulation = 0;
+  // add in an utils.js file
   const cities = [
     {
       id: 1,
@@ -109,6 +110,8 @@ export default function Carousel() {
     },
   ];
 
+  // add a comment to explain each function
+  // const getDatasForEachCommune
   const dataCommune = (inseeToSearch) => {
     const [commune, setCommune] = useState();
     const [isLoaded, setIsLoaded] = useState(false);
@@ -132,11 +135,15 @@ export default function Carousel() {
     return cityPopulation;
   };
 
+  // const getDatasForFlatsInEachCities
   const dataFlat = (inseeDVFToSearch) => {
     const [isLoaded, setIsLoaded] = useState(false);
+    // tabValues isn't clear
     const [tabValues, setTabValues] = useState([]);
 
     useEffect(() => {
+      // inseeDVFT instead of el
+      // promisesForEachCity
       const promises = inseeDVFToSearch.map((el) => {
         return axios.get(
           `https://apidf-preprod.cerema.fr/dvf_opendata/mutations?code_insee=${el}&codtypbien=121&page_size=500`
@@ -145,6 +152,7 @@ export default function Carousel() {
 
       Promise.all(promises)
         .then((results) => {
+          // dataFromPromeses ?
           const allData = results.map((res) => res.data.results);
           setTabValues(allData);
           setIsLoaded(true);
@@ -156,10 +164,14 @@ export default function Carousel() {
 
     let meanPriceM2 = 0;
     if (isLoaded) {
+      // datas isn't clear
       const datas = tabValues.flat();
+      // no need to create this variable
       const lenDatas = datas.length;
+      // sumPriceM2 (cf. meanPriceM2)
       let sumPricem2 = 0;
       for (let i = 0; i < datas.length; i += 1) {
+        // propertyValue
         const foncValue = parseInt(datas[i].valeurfonc, 10);
         const surfaceValue = parseInt(datas[i].sbati, 10);
         if (foncValue && surfaceValue) {
@@ -171,6 +183,7 @@ export default function Carousel() {
     return meanPriceM2;
   };
 
+  // const getDatasForHousesInEachCities
   const dataHouse = (inseeDVFToSearch) => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [tabValues, setTabValues] = useState([]);
@@ -211,6 +224,7 @@ export default function Carousel() {
   };
 
   for (let i = 0; i < cities.length; i += 1) {
+    // no need to declare el and elDVF
     const el = cities[i].insee;
     const elDVF = cities[i].inseeDVF;
     cities[i].population = dataCommune(el);
@@ -229,6 +243,9 @@ export default function Carousel() {
   return (
     <div className="carousel">
       <Splide className="carouselContainer" options={optionSplide}>
+        {
+          // el is not clear
+        }
         {cities.map((el) => {
           return (
             <SplideSlide

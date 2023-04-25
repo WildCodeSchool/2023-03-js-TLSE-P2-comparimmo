@@ -15,7 +15,7 @@
     "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.10.0",
     "@vitejs/plugin-react": "^3.0.1",
-    "vite": "^4.0.4"
+    "vite": "^4.0.4",
     "sass": "^1.62.0"
   },
   "devDependencies": {

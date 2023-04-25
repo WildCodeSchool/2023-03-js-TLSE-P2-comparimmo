@@ -1,12 +1,26 @@
 .carousel {
-  position: sticky;
-  bottom: 10;
-
+  width: 100%;
 }
+
 .carouselContainer {
   background-color: var(--light-gray);
-  width: 100vw;
+  height: 100%;
+  width: 100%;
 }
+
+.carouselSplide {
+  height: 100%;
+}
+
+.cityCarousel {
+  font-size: 2rem;
+  font-weight: 600;
+  font-family: var(--font-family);
+  text-align: center;
+  color: var(--main-blue);
+  margin-top: 15px;
+}
+
 .cityList {
   display: flex;
   flex-direction: row;
@@ -29,15 +43,6 @@
   height: 100%;
 }
 
-.cityCarousel {
-  font-size: 2rem;
-  font-weight: 600;
-  font-family: var(--font-family);
-  text-align: center;
-  color: var(--main-blue);
-  margin-top: 15px;
-}
-
 .dataCarousel {
   font-size: 1rem;
   color: var(--main-blue);
@@ -53,15 +58,17 @@
   background: var(--orange);
 }
 @media screen and (min-width: 768px) {
+  .carousel {
+    height: auto;
+    width: 40vw;
+  }
+
   .carouselContainer {
     min-height: 80vh;
     height: 100%;
     background-color: var(--light-gray);
-    width: 100%;
-    max-width: 500px;
-  }
-  .carousel {
     width: 40vw;
+    max-width: 500px;
   }
 
   .cityList {

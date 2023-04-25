@@ -222,7 +222,7 @@ export default function Carousel() {
   const optionSplide = {
     type: "loop",
     gap: "1rem",
-    autoplay: false,
+    autoplay: true,
     pauseOnHover: true,
     resetProgress: false,
   };

@@ -7,15 +7,16 @@
     "fix": "prettier --write . && eslint --fix --ext .jsx ."
   },
   "dependencies": {
-    "leaflet": "^1.9.3",
     "@splidejs/react-splide": "^0.7.12",
+    "@vitejs/plugin-react": "^3.0.1",
+    "axios": "^1.3.6",
+    "leaflet": "^1.9.3",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.10.0",
     "sass": "^1.62.0",
-    "@vitejs/plugin-react": "^3.0.1",
     "vite": "^4.0.4"
   },
   "devDependencies": {

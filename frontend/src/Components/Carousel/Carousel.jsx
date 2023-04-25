@@ -8,7 +8,6 @@ import flat from "@assets/img/flat.png";
 import pop from "@assets/img/pop.png";
 // eslint-disable-next-line import/no-unresolved
 import "@splidejs/react-splide/css/skyblue";
-// eslint-disable-next-line import/no-extraneous-dependencies
 import axios from "axios";
 import "./carousel.scss";
 

@@ -1,4 +1,13 @@
+.homeContent {
+  display: flex;
+}
+
+@media screen and (max-width: 769px) {
+  .homeContent {
+    flex-direction: column;
+  }
+}
 .filterButtonsPosition {
-  display:flex;
-  gap:5px;  
+  display: flex;
+  gap: 5px;
 }

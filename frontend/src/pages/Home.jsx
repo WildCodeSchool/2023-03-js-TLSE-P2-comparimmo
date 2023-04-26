@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 // eslint-disable-next-line import/no-unresolved
 import Carousel from "@components/Carousel/Carousel";
-import FilterButton from "../components/FilterButton/FilterButton";
+// eslint-disable-next-line import/no-unresolved
+import Map from "@components/Map/Map";
+import "../assets/styles/index.scss";
 import "./Home.scss";
+import FilterButton from "../components/FilterButton/FilterButton";
 
 function Home() {
   const [propertyType, setPropertyType] = useState([21, 111, 121]);
   return (
-    <div>
+    <div className="homeContent">
       <section>
         <Carousel />
+        <Map />
       </section>
       <div className="filterButtonsPosition">
         <FilterButton

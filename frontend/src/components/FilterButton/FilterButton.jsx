@@ -2,36 +2,45 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import style from "./filterButton.scss";
 
-function FilterButton({ text, codeBien }) {
-  const [propertyType, setPropertyType] = useState([111, 121, 21]);
-  const [isSelected, setIsSelected] = useState(true);
-  const handleClick = () => {
-    console.info(isSelected);
-    setIsSelected(!isSelected);
-    console.info(isSelected);
-    if (isSelected) {
-      setPropertyType(propertyType.push(codeBien));
+function FilterButton({
+  text,
+  codeBien,
+  selected,
+  propertyType,
+  setPropertyType,
+}) {
+  const [isSelected, setIsSelected] = useState(selected);
+
+  // updateFilter with the setter on propertyType if the button is selected or unselected
+  const updateFilter = (selection) => {
+    if (selection) {
+      propertyType.splice(propertyType.indexOf(codeBien), 1);
+      setPropertyType([...propertyType]);
     } else {
-      setPropertyType(propertyType.splice(propertyType.indexOf(codeBien, 1)));
+      propertyType.push(codeBien);
+      setPropertyType([...propertyType]);
     }
-    console.info(codeBien, propertyType, isSelected);
+  };
+
+  // change the selection state of the filter button and call the updateFilter function to upadte the property type array
+  const handleClick = () => {
+    setIsSelected(!isSelected);
+    updateFilter(isSelected);
   };
 
   return (
     <div className={`${style.filterButton}`}>
-      {isSelected ? (
-        <button type="button" className="buttonSelected" onClick={handleClick}>
-          {text}
-        </button>
-      ) : (
-        <button
-          type="button"
-          className="buttonNotSelected"
-          onClick={handleClick}
-        >
-          {text}
-        </button>
-      )}
+      <button
+        type="button"
+        className={
+          isSelected
+            ? "filterButtons buttonSelected"
+            : "filterButtons buttonNotSelected"
+        }
+        onClick={handleClick}
+      >
+        {text}
+      </button>
     </div>
   );
 }
@@ -39,10 +48,16 @@ function FilterButton({ text, codeBien }) {
 FilterButton.propTypes = {
   text: PropTypes.string,
   codeBien: PropTypes.number,
+  selected: PropTypes.bool,
+  propertyType: PropTypes.arrayOf(PropTypes.number),
+  setPropertyType: PropTypes.func,
 };
 FilterButton.defaultProps = {
   text: "",
   codeBien: 0,
+  selected: true,
+  propertyType: [],
+  setPropertyType: () => {},
 };
 
 export default FilterButton;

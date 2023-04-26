@@ -139,10 +139,7 @@ export default function Map() {
                 <p>
                   <strong>Prix au m²:</strong>
                   <br />
-                  {(estateValue[index] / surfaceArea[index]).toFixed(
-                    0
-                  )}{" "}
-                  €/m²
+                  {(estateValue[index] / surfaceArea[index]).toFixed(0)} €/m²
                 </p>
               ) : (
                 ""

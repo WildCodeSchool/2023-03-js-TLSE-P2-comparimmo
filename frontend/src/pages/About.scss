@@ -1,0 +1,89 @@
+.aboutContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  margin: 1rem;
+
+  .homeButton {
+    margin: 1rem;
+
+    button {
+      padding: 12px;
+      font-size: 1rem;
+      color: white;
+      border-radius: 10px;
+      background-color: var(--main-blue);
+      width: 120px;
+      height: 100%;
+    }
+  }
+
+  h2 {
+    margin: 10px;
+  }
+
+  img {
+    height: 25px;
+    width: 25px;
+  }
+
+  .aboutComparimmo {
+    margin: 1rem;
+  }
+
+  .aboutAPi {
+    margin: 2rem 1rem;
+
+    li {
+      margin: 10px;
+      list-style: circle;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--main-blue);
+    }
+  }
+
+  .aboutDev {
+    margin: 2rem 1rem;
+
+    .aboutContent .aboutDev img {
+      height: 25px;
+      width: 25px;
+    }
+
+    .dev {
+      display: flex;
+      flex-direction: column;
+      margin: 1rem;
+      align-items: center;
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+    }
+
+    img {
+      height: 100px;
+      width: 100px;
+    }
+  }
+
+  .teamDev {
+    display: flex;
+    img {
+      height: 25px;
+      width: 25px;
+    }
+  }
+
+  @media screen and (min-width: 769px) {
+    section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}

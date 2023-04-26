@@ -1,7 +1,12 @@
 .map {
   height: 75vh;
-  width: 100vw;
-
+  width: 50vw;
   display: flex;
-  align-items: center;
+  justify-content: flex-end;
+}
+
+@media screen and (max-width: 769px) {
+  .map {
+    width: 100vw;
+  }
 }

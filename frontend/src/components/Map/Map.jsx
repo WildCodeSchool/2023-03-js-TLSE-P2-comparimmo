@@ -112,7 +112,7 @@ export default function Map() {
                 <p>
                   <strong>Valeur foncière:</strong>
                   <br />
-                  {Number(estateValue[index]).toLocaleString("fr-FR")} €
+                  {estateValue[index].toLocaleString("fr-FR")} €
                 </p>
               ) : (
                 ""
@@ -139,7 +139,7 @@ export default function Map() {
                 <p>
                   <strong>Prix au m²:</strong>
                   <br />
-                  {Number(estateValue[index] / surfaceArea[index]).toFixed(
+                  {(estateValue[index] / surfaceArea[index]).toFixed(
                     0
                   )}{" "}
                   €/m²

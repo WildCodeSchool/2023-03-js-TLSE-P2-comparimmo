@@ -1,32 +1,22 @@
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import { MapContainer, TileLayer, Popup, Polygon } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import axios from "axios";
 import styles from "./Map.module.scss";
 
-export default function Map({
-  sbati,
-  datemut,
-  libtypbien,
-  idmutations,
-  polygons,
-  sterr,
-  valeurfonc,
-  codeInsee,
-}) {
-  const [polygonsState, setPolygonsState] = useState(polygons || "");
-  const [libtypbienState, setLibtypbienState] = useState(libtypbien || []);
-  const [valeurfoncState, setValeurfoncState] = useState(valeurfonc || "");
-  const [datemutState, setDatemutState] = useState(datemut || "");
-  const [sbatiState, setSbatiState] = useState(sbati || "");
-  const [idmutationsState, setIdmutationsState] = useState(idmutations || "");
-  const [codeInseeState, setCodeInseeState] = useState(codeInsee || "");
-  const [sterrState, setSterrState] = useState(sterr || "");
+export default function Map() {
+  const [polygonGps, setPolygonGps] = useState([]);
+  const [typeOfEstate, setTypeOfEstate] = useState([]);
+  const [estateValue, setEstateValue] = useState([]);
+  const [dateMutation, setDateMutation] = useState([]);
+  const [surfaceArea, setSurfaceArea] = useState([]);
+  const [idMutations, setIdMutations] = useState([]);
+  const [codeInsee, setCodeInsee] = useState("31555");
+  const [landArea, setlandArea] = useState([]);
 
   /* change code insee button */
   const handleCodeInseeChange = (event) => {
-    setCodeInseeState(event.target.value);
+    setCodeInsee(event.target.value);
   };
 
   const handleSubmit = (event) => {
@@ -37,7 +27,7 @@ export default function Map({
   useEffect(() => {
     axios
       .get(
-        `https://apidf-preprod.cerema.fr/dvf_opendata/geomutations/?code_insee=${codeInseeState}&page_size=500&codtypbien=121,111`
+        `https://apidf-preprod.cerema.fr/dvf_opendata/geomutations/?code_insee=${codeInsee}&page_size=500&codtypbien=121,111`
       )
       .then((response) => {
         const filteredFeatures = response.data.features.filter(
@@ -54,24 +44,24 @@ export default function Map({
 
         const { features } = response.data;
 
-        setPolygonsState(flatPolygons);
-        setLibtypbienState(
+        setPolygonGps(flatPolygons);
+        setTypeOfEstate(
           features.map((feature) => feature.properties.libtypbien)
         );
-        setValeurfoncState(
+        setEstateValue(
           features.map((feature) => feature.properties.valeurfonc)
         );
-        setDatemutState(features.map((feature) => feature.properties.datemut));
-        setSbatiState(features.map((feature) => feature.properties.sbati));
-        setIdmutationsState(
+        setDateMutation(features.map((feature) => feature.properties.datemut));
+        setSurfaceArea(features.map((feature) => feature.properties.sbati));
+        setIdMutations(
           features.map((feature) => feature.properties.idmutation)
         );
-        setSterrState(features.map((feature) => feature.properties.sterr));
+        setlandArea(features.map((feature) => feature.properties.sterr));
       })
       .catch((error) => {
         console.error(error);
       });
-  }, [codeInseeState]);
+  }, [codeInsee]);
   return (
     <div className={`${styles.mapContent}  `}>
       <form onSubmit={handleSubmit}>
@@ -79,7 +69,7 @@ export default function Map({
           Code INSEE :
           <input
             type="text"
-            value={codeInseeState}
+            value={codeInsee}
             onChange={handleCodeInseeChange}
           />
         </label>
@@ -97,59 +87,59 @@ export default function Map({
           attribution="COMPAR'IMMO"
         />
         {/* display of object content on the map: object position and characteristics */}
-        {polygonsState.map((polygon, index) => (
-          <Polygon key={idmutationsState[index]} positions={polygon}>
+        {polygonGps.map((polygon, index) => (
+          <Polygon key={idMutations[index]} positions={polygon}>
             <Popup>
-              {datemutState[index] ? (
+              {dateMutation[index] ? (
                 <p>
                   <strong>Date de mutation:</strong>
                   <br />
-                  {new Date(datemutState[index]).toLocaleDateString("fr-FR")}
+                  {new Date(dateMutation[index]).toLocaleDateString("fr-FR")}
                 </p>
               ) : (
                 ""
               )}
-              {libtypbienState[index] ? (
+              {typeOfEstate[index] ? (
                 <p>
                   <strong>Type de bien:</strong>
                   <br />
-                  {libtypbienState[index].toLocaleLowerCase()}
+                  {typeOfEstate[index].toLocaleLowerCase()}
                 </p>
               ) : (
                 ""
               )}
-              {valeurfoncState[index] ? (
+              {estateValue[index] ? (
                 <p>
                   <strong>Valeur foncière:</strong>
                   <br />
-                  {Number(valeurfoncState[index]).toLocaleString("fr-FR")} €
+                  {Number(estateValue[index]).toLocaleString("fr-FR")} €
                 </p>
               ) : (
                 ""
               )}
-              {sbatiState[index] ? (
+              {surfaceArea[index] ? (
                 <p>
                   <strong>Surface :</strong>
                   <br />
-                  {sbatiState[index]} m²
+                  {surfaceArea[index]} m²
                 </p>
               ) : (
                 ""
               )}
-              {sterrState[index] > 0 ? (
+              {landArea[index] > 0 ? (
                 <p>
                   <strong>Surface du terrain:</strong>
                   <br />
-                  {sterrState[index]} m²
+                  {landArea[index]} m²
                 </p>
               ) : (
                 ""
               )}
-              {sbatiState[index] > 0 && valeurfoncState[index] > 0 ? (
+              {surfaceArea[index] > 0 && estateValue[index] > 0 ? (
                 <p>
                   <strong>Prix au m²:</strong>
                   <br />
-                  {Number(valeurfoncState[index] / sbatiState[index]).toFixed(
+                  {Number(estateValue[index] / surfaceArea[index]).toFixed(
                     0
                   )}{" "}
                   €/m²
@@ -164,25 +154,3 @@ export default function Map({
     </div>
   );
 }
-
-Map.propTypes = {
-  sbati: PropTypes.string,
-  datemut: PropTypes.string,
-  libtypbien: PropTypes.string,
-  idmutations: PropTypes.string,
-  polygons: PropTypes.string,
-  codeInsee: PropTypes.string,
-  sterr: PropTypes.string,
-  valeurfonc: PropTypes.string,
-};
-
-Map.defaultProps = {
-  sbati: "",
-  datemut: "",
-  codeInsee: "31555",
-  libtypbien: [],
-  idmutations: [],
-  polygons: [],
-  sterr: [],
-  valeurfonc: [],
-};

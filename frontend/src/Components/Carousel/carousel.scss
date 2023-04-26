@@ -1,0 +1,82 @@
+.carousel {
+  width: 100%;
+}
+
+.carouselContainer {
+  background-color: var(--light-gray);
+  height: 100%;
+  width: 100%;
+}
+
+.carouselSplide {
+  height: 100%;
+}
+
+.cityCarousel {
+  font-size: 2rem;
+  font-weight: 600;
+  font-family: var(--font-family);
+  text-align: center;
+  color: var(--main-blue);
+  margin-top: 15px;
+}
+
+.cityList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  gap: 30px;
+  padding-top: 30px;
+  margin-left: 35px;
+  margin-right: 35px;
+  margin-bottom: 35px;
+}
+
+.iconAndText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 100%;
+}
+
+.dataCarousel {
+  font-size: 1rem;
+  color: var(--main-blue);
+}
+.splide__arrow svg {
+  fill: var(--orange);
+}
+.splide__arrow:hover:not(:disabled) svg {
+  fill: var(--orange);
+}
+
+.splide__pagination__page.is-active {
+  background: var(--orange);
+}
+@media screen and (min-width: 768px) {
+  .carousel {
+    height: auto;
+    width: 40vw;
+  }
+
+  .carouselContainer {
+    min-height: 80vh;
+    height: 100%;
+    background-color: var(--light-gray);
+    width: 40vw;
+    max-width: 500px;
+  }
+
+  .cityList {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding-top: 50px;
+  }
+}

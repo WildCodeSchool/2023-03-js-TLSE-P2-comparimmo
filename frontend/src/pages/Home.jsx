@@ -1,7 +1,9 @@
 import React from "react";
+// eslint-disable-next-line import/no-unresolved
+import Carousel from "@components/Carousel/Carousel";
 
 function Home() {
-  return <h2>Home</h2>;
+  return <Carousel />;
 }
 
 export default Home;

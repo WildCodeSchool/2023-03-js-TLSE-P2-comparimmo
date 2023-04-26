@@ -15,6 +15,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
+  "root": true,
   "plugins": ["react", "import"],
   "rules": {
     "no-console": "off",

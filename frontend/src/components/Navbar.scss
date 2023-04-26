@@ -1,7 +1,4 @@
 body {
-  margin: 0;
-  padding: 0;
-
   section.navbar {
     background-color: var(--main-blue);
     display: flex;
@@ -142,6 +139,8 @@ body {
   body {
     section.navbar {
       padding: 0 2rem;
+      min-height: 75px;
+      height: 10vh;
 
       img.logo-mobile {
         display: none;
@@ -157,6 +156,7 @@ body {
       div {
         display: flex;
         align-items: center;
+        height: 100%;
 
         div#nav_links {
           position: initial;
@@ -183,6 +183,7 @@ body {
                 background-color: var(--white);
                 width: 120px;
                 height: 100%;
+                margin-right: 20px;
 
                 p {
                   margin-top: 5px;

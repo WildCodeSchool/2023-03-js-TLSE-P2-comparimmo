@@ -16,7 +16,7 @@ export default function Map({
   codeInsee,
 }) {
   const [polygonsState, setPolygonsState] = useState(polygons || "");
-  const [libtypbienState, setLibtypbienState] = useState(libtypbien || "");
+  const [libtypbienState, setLibtypbienState] = useState(libtypbien || []);
   const [valeurfoncState, setValeurfoncState] = useState(valeurfonc || "");
   const [datemutState, setDatemutState] = useState(datemut || "");
   const [sbatiState, setSbatiState] = useState(sbati || "");
@@ -83,13 +83,13 @@ export default function Map({
             onChange={handleCodeInseeChange}
           />
         </label>
-        <button type="submit">Changer</button>
+        <button type="submit">Change</button>
       </form>
       {/*  map settings */}
       <MapContainer
         className={`${styles.map}`}
         center={[43.6, 1.433333]}
-        zoom={5}
+        zoom={12}
         maxZoom={18}
       >
         <TileLayer

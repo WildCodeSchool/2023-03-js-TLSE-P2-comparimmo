@@ -17,8 +17,8 @@ function ArrayDataCitiesRandom() {
         console.error(err.message);
       });
   }, []);
-  console.info(allDataCities);
-  console.info(isLoading);
+  console.warn(allDataCities);
+  console.warn(isLoading);
 
   // This function take a random number between 0 and 34945 (number of cities in France)
   const randomCities = [];
@@ -30,9 +30,20 @@ function ArrayDataCitiesRandom() {
     return randomCities;
   }
   console.warn(getRandomNumberCities());
-  // console.log(randomCities);
+  console.warn(randomCities);
 
-  return randomCities;
+  // This function return an array of 5 random cities (name, population, code)
+  const arrayFinalDataCities = [];
+  function getArrayFinalDataCities() {
+    for (let i = 0; i < randomCities.length; i += 1) {
+      const randomCity = randomCities[i];
+      arrayFinalDataCities.push(allDataCities[randomCity]);
+    }
+    return arrayFinalDataCities;
+  }
+  console.warn(getArrayFinalDataCities());
+
+  return <p>coucou</p>;
 }
 
 export default ArrayDataCitiesRandom;

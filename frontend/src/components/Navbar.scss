@@ -1,7 +1,4 @@
 body {
-  margin: 0;
-  padding: 0;
-
   section.navbar {
     background-color: var(--main-blue);
     display: flex;
@@ -9,6 +6,7 @@ body {
     align-items: center;
     font-family: var(--font-family);
     font-size: 1rem;
+    height: 50px;
 
     img.logo-mobile {
       display: block;
@@ -24,13 +22,15 @@ body {
     div {
       div#nav_links {
         background-color: var(--main-blue);
+        opacity: 90%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         position: absolute;
-        top: 60px;
+        top: 50px;
         right: 0px;
+        z-index: 1;
 
         ul {
           list-style: none;
@@ -140,6 +140,8 @@ body {
   body {
     section.navbar {
       padding: 0 2rem;
+      min-height: 75px;
+      height: 10vh;
 
       img.logo-mobile {
         display: none;
@@ -155,16 +157,18 @@ body {
       div {
         display: flex;
         align-items: center;
+        height: 100%;
+        min-width: 300px;
 
         div#nav_links {
           position: initial;
           width: 25vw;
-          height: 12vh;
+          height: 100%;
 
           ul {
             display: flex;
-            justify-content: space-between;
-            padding: 2rem 3rem 2rem 2rem;
+            justify-content: space-around;
+            min-width: 20vh;
 
             // link fait référence à un a dans le navigateur
             a {
@@ -180,6 +184,7 @@ body {
                 background-color: var(--white);
                 width: 120px;
                 height: 100%;
+                margin-right: 20px;
 
                 p {
                   margin-top: 5px;

@@ -4,6 +4,7 @@
   align-items: center;
   height: 100%;
   margin: 1rem;
+  font-size: 1rem;
 
   .homeButton {
     margin: 1rem;
@@ -80,10 +81,5 @@
   }
 
   @media screen and (min-width: 769px) {
-    section {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
   }
 }

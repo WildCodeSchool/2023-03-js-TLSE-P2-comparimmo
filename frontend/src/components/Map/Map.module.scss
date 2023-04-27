@@ -1,0 +1,24 @@
+.map {
+  height: 80vh;
+  width: 100vw;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.mapContent {
+  height: 100%;
+  width: 100%;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+  font-size: 1rem;
+}
+
+@media screen and (min-width: 769px) {
+  .map {
+    width: 100%;
+  }
+}

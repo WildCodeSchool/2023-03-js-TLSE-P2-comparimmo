@@ -7,15 +7,19 @@
     "fix": "prettier --write . && eslint --fix --ext .jsx ."
   },
   "dependencies": {
+    "@splidejs/react-splide": "^0.7.12",
+    "@vitejs/plugin-react": "^3.0.1",
+    "axios": "^1.3.6",
     "leaflet": "^1.9.3",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-leaflet": "^4.2.1",
-    "react-router-dom": "^6.10.0"
+    "react-router-dom": "^6.10.0",
+    "sass": "^1.62.0",
+    "vite": "^4.0.4"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "^3.0.1",
     "eslint": "^8.32.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.6.0",
@@ -26,7 +30,6 @@
     "eslint-plugin-react": "^7.32.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "^8.0.3",
-    "prettier": "^2.8.3",
-    "vite": "^4.0.4"
+    "prettier": "^2.8.3"
   }
 }

@@ -1,0 +1,9 @@
+.homeContent {
+  display: flex;
+}
+
+@media screen and (max-width: 769px) {
+  .homeContent {
+    flex-direction: column;
+  }
+}

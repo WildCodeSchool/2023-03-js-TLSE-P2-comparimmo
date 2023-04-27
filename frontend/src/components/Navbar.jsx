@@ -42,7 +42,7 @@ function Navbar() {
             </NavLink>
             <NavLink to="/about" activeClassName="active">
               <li>
-                <p>A propos</p>
+                <p>A Propos</p>
               </li>
             </NavLink>
           </ul>

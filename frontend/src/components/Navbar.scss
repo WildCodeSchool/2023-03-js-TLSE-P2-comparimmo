@@ -6,7 +6,7 @@ body {
     align-items: center;
     font-family: var(--font-family);
     font-size: 1rem;
-    height: 10vh;
+    height: 50px;
 
     img.logo-mobile {
       display: block;
@@ -35,7 +35,6 @@ body {
           width: 100%;
           margin: 0;
           padding: 0;
-          gap: 20px; /**/
 
           // link fait référence à un a dans le navigateur
           a {
@@ -161,13 +160,12 @@ body {
         div#nav_links {
           position: initial;
           width: 25vw;
-          height: 10vh;
+          height: 100%;
 
           ul {
             display: flex;
-            justify-content: space-between;
-            padding: 2rem 3rem 2rem 2rem;
-            position: relative;
+            justify-content: space-around;
+            min-width: 20vh;
 
             // link fait référence à un a dans le navigateur
             a {

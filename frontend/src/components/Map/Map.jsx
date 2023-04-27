@@ -121,7 +121,7 @@ export default function Map() {
                 <p>
                   <strong>Surface :</strong>
                   <br />
-                  {surfaceArea[index]} m²
+                  {Math.round(surfaceArea[index])} m²
                 </p>
               ) : (
                 ""
@@ -130,7 +130,7 @@ export default function Map() {
                 <p>
                   <strong>Surface du terrain:</strong>
                   <br />
-                  {landArea[index]} m²
+                  {Math.round(landArea[index])} m²
                 </p>
               ) : (
                 ""

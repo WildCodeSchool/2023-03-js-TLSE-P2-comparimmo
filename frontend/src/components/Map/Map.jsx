@@ -73,7 +73,7 @@ export default function Map() {
             onChange={handleCodeInseeChange}
           />
         </label>
-        <button type="submit">Change</button>
+        <button type="submit">Changer</button>
       </form>
       {/*  map settings */}
       <MapContainer

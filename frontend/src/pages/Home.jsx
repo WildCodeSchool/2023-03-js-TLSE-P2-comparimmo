@@ -1,8 +1,8 @@
 import React from "react";
 // eslint-disable-next-line import/no-unresolved
-import Carousel from "@components/Carousel/Carousel";
+import Carousel from "../Components/Carousel/Carousel";
 // eslint-disable-next-line import/no-unresolved
-import Map from "@components/Map/Map";
+import Map from "../Components/Map/Map";
 import "../assets/styles/index.scss";
 import "./Home.scss";
 

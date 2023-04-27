@@ -2,48 +2,82 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function ArrayDataCitiesRandom() {
-  const [allDataCities, setAllDataCities] = useState([]);
+  const [allDataCitiesGeoApi, setAllDataCitiesGeoApi] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   // Fetch the API geo.api in order to return data (name, population, code) fo each city in France
+
   useEffect(() => {
     axios
       .get(`https://geo.api.gouv.fr/communes?&fields=nom,population,code`)
       .then((results) => {
-        setAllDataCities(results.data);
+        setAllDataCitiesGeoApi(results.data);
         setIsLoading(false);
       })
       .catch((err) => {
         console.error(err.message);
       });
   }, []);
-  console.warn(allDataCities);
-  console.warn(isLoading);
+  console.warn(allDataCitiesGeoApi);
 
-  // This function take a random number between 0 and 34945 (number of cities in France)
+  // This function return an array of 5 random number between 0 and number of cities in France (allDataCitiesGeoApi.lenght)
   const randomCities = [];
   function getRandomNumberCities() {
-    const numberOfCitiesFrance = allDataCities.length;
+    const numberOfCitiesFrance = allDataCitiesGeoApi.length;
     for (let i = 0; i < 5; i += 1) {
       randomCities.push(Math.floor(Math.random() * numberOfCitiesFrance));
     }
     return randomCities;
   }
+
   console.warn(getRandomNumberCities());
-  console.warn(randomCities);
 
   // This function return an array of 5 random cities (name, population, code)
-  const arrayFinalDataCities = [];
-  function getArrayFinalDataCities() {
+  function getArrayDataFiveCitiesGeoApi() {
+    const arrayDataFiveCitiesGeoApi = [];
     for (let i = 0; i < randomCities.length; i += 1) {
-      const randomCity = randomCities[i];
-      arrayFinalDataCities.push(allDataCities[randomCity]);
+      const cityData = allDataCitiesGeoApi[randomCities[i]];
+      arrayDataFiveCitiesGeoApi.push(cityData);
     }
-    return arrayFinalDataCities;
+    return arrayDataFiveCitiesGeoApi;
   }
-  console.warn(getArrayFinalDataCities());
+
+  const codeCity = [];
+  if (!isLoading) {
+    const arrayDataGeoApi = getArrayDataFiveCitiesGeoApi();
+    for (let i = 0; i < arrayDataGeoApi.length; i += 1) {
+      codeCity.push(arrayDataGeoApi[i].code);
+    }
+    console.warn(codeCity);
+  }
+
+  // This function fetch the DVF API with the code insee (arrayDataFiveCitiesGeoApi.code). Return an array of objects wich contains arrays (count)
+
+  const [dataCityApiDvf, setDataCityApiDvf] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const promisesForEachCity = codeCity.map((code) => {
+      return axios.get(
+        `https://apidf-preprod.cerema.fr/dvf_opendata/mutations?code_insee=${code}&codtypbien=121&page_size=500`
+      );
+    });
+
+    Promise.all(promisesForEachCity)
+      .then((results) => {
+        const dataFromPromises = results.map((res) => res.data);
+        setDataCityApiDvf(dataFromPromises);
+        setIsLoaded(true);
+      })
+      .catch((err) => {
+        console.error(err.message);
+      });
+  }, []);
+
+  if (isLoaded) {
+    console.warn(dataCityApiDvf);
+  }
 
   return <p>coucou</p>;
 }
-
 export default ArrayDataCitiesRandom;

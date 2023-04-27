@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { MapContainer, TileLayer, Popup, Polygon } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import axios from "axios";
 import styles from "./Map.module.scss";
 
-export default function Map() {
+export default function Map({ propertyType }) {
   const [polygonGps, setPolygonGps] = useState([]);
   const [typeOfEstate, setTypeOfEstate] = useState([]);
   const [estateValue, setEstateValue] = useState([]);
@@ -22,12 +23,13 @@ export default function Map() {
   const handleSubmit = (event) => {
     event.preventDefault();
   };
+  const filters = propertyType.toString();
 
   // Retrieving data from the API
   useEffect(() => {
     axios
       .get(
-        `https://apidf-preprod.cerema.fr/dvf_opendata/geomutations/?code_insee=${codeInsee}&page_size=500&codtypbien=121,111`
+        `https://apidf-preprod.cerema.fr/dvf_opendata/geomutations/?code_insee=${codeInsee}&page_size=500&codtypbien=${filters}`
       )
       .then((response) => {
         const filteredFeatures = response.data.features.filter(
@@ -61,7 +63,7 @@ export default function Map() {
       .catch((error) => {
         console.error(error);
       });
-  }, [codeInsee]);
+  }, [codeInsee, propertyType]);
   return (
     <div className={`${styles.mapContent}  `}>
       <form onSubmit={handleSubmit}>
@@ -117,7 +119,7 @@ export default function Map() {
               ) : (
                 ""
               )}
-              {surfaceArea[index] ? (
+              {surfaceArea[index] !== "0.00" ? (
                 <p>
                   <strong>Surface :</strong>
                   <br />
@@ -151,3 +153,10 @@ export default function Map() {
     </div>
   );
 }
+
+Map.propTypes = {
+  propertyType: PropTypes.arrayOf(PropTypes.number),
+};
+Map.defaultProps = {
+  propertyType: [],
+};

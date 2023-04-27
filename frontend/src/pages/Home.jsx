@@ -11,10 +11,8 @@ function Home() {
   const [propertyType, setPropertyType] = useState([21, 111, 121]);
   return (
     <div className="homeContent">
-      <section>
-        <Carousel />
-        <Map />
-      </section>
+      <Carousel />
+      <Map propertyType={propertyType} />
       <div className="filterButtonsPosition">
         <FilterButton
           text="Appartement"

@@ -1,3 +1,7 @@
-.pageContent {
-  height: 100vh;
+.homeContent {
+  height: calc(100vh - 105px);
+}
+
+Route {
+  height: 100%;
 }

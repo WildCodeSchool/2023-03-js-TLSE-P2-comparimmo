@@ -21,6 +21,11 @@
   margin-top: 15px;
 }
 
+.logoCarousel {
+  object-fit: contain;
+  height: 8vh;
+}
+
 .cityList {
   display: flex;
   flex-direction: row;

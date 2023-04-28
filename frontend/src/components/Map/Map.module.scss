@@ -11,7 +11,7 @@
 
 .mapContent {
   height: 100%;
-  width: 40vw;
+  width: 100vw;
   overflow: hidden;
 }
 
@@ -25,5 +25,8 @@ form {
 @media screen and (min-width: 769px) {
   .map {
     width: 100%;
+  }
+  .mapContent {
+    width: 40vw;
   }
 }

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { MapContainer, TileLayer, Popup, Polygon } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import axios from "axios";
 import styles from "./Map.module.scss";
 
-export default function Map() {
+export default function Map({ propertyType }) {
   const [polygonGps, setPolygonGps] = useState([]);
   const [typeOfEstate, setTypeOfEstate] = useState([]);
   const [estateValue, setEstateValue] = useState([]);
@@ -22,12 +23,17 @@ export default function Map() {
   const handleSubmit = (event) => {
     event.preventDefault();
   };
-
+  let filters = "";
+  if (!propertyType.length) {
+    filters = "21%2C111%2C121";
+  } else {
+    filters = propertyType.toString().split(",").join("%2C");
+  }
   // Retrieving data from the API
   useEffect(() => {
     axios
       .get(
-        `https://apidf-preprod.cerema.fr/dvf_opendata/geomutations/?code_insee=${codeInsee}&page_size=500&codtypbien=121,111`
+        `https://apidf-preprod.cerema.fr/dvf_opendata/geomutations/?code_insee=${codeInsee}&page_size=500&codtypbien=${filters}`
       )
       .then((response) => {
         const filteredFeatures = response.data.features.filter(
@@ -61,7 +67,7 @@ export default function Map() {
       .catch((error) => {
         console.error(error);
       });
-  }, [codeInsee]);
+  }, [codeInsee, propertyType]);
   return (
     <div className={`${styles.mapContent}  `}>
       <form onSubmit={handleSubmit}>
@@ -112,16 +118,16 @@ export default function Map() {
                 <p>
                   <strong>Valeur foncière:</strong>
                   <br />
-                  {estateValue[index].toLocaleString("fr-FR")} €
+                  {Math.round(estateValue[index]).toLocaleString("fr-FR")} €
                 </p>
               ) : (
                 ""
               )}
-              {surfaceArea[index] ? (
+              {surfaceArea[index] !== "0.00" ? (
                 <p>
                   <strong>Surface :</strong>
                   <br />
-                  {surfaceArea[index]} m²
+                  {Math.round(surfaceArea[index])} m²
                 </p>
               ) : (
                 ""
@@ -130,7 +136,7 @@ export default function Map() {
                 <p>
                   <strong>Surface du terrain:</strong>
                   <br />
-                  {landArea[index]} m²
+                  {Math.round(landArea[index])} m²
                 </p>
               ) : (
                 ""
@@ -151,3 +157,10 @@ export default function Map() {
     </div>
   );
 }
+
+Map.propTypes = {
+  propertyType: PropTypes.arrayOf(PropTypes.number),
+};
+Map.defaultProps = {
+  propertyType: [],
+};

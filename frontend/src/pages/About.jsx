@@ -3,7 +3,9 @@ import "../assets/styles/index.scss";
 import "./About.scss";
 // eslint-disable-next-line import/no-unresolved
 import minilogo from "@assets/img/minilogo.jpg";
+// eslint-disable-next-line import/no-unresolved
 import cedric from "@assets/img/cedric.jpg";
+// eslint-disable-next-line import/no-unresolved
 import mathieu from "@assets/img/mathieu.jpg";
 
 function About() {

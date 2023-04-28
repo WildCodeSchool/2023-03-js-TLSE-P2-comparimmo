@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-// eslint-disable-next-line import/no-unresolved
-import Carousel from "@components/Carousel/Carousel";
-// eslint-disable-next-line import/no-unresolved
-import Map from "@components/Map/Map";
+// eslint-disable-next-line import/extensions
+import Carousel from "../components/carousel/Carousel.jsx";
+// eslint-disable-next-line import/extensions
+import Map from "../components/Map/Map.jsx";
 import "../assets/styles/index.scss";
 import "./Home.scss";
 import FilterButton from "../components/FilterButton/FilterButton";

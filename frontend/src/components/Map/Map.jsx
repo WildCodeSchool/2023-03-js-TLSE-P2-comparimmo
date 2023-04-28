@@ -23,8 +23,12 @@ export default function Map({ propertyType }) {
   const handleSubmit = (event) => {
     event.preventDefault();
   };
-  const filters = propertyType.toString();
-
+  let filters = "";
+  if (!propertyType.length) {
+    filters = "21%2C111%2C121";
+  } else {
+    filters = propertyType.toString().split(",").join("%2C");
+  }
   // Retrieving data from the API
   useEffect(() => {
     axios
@@ -114,7 +118,7 @@ export default function Map({ propertyType }) {
                 <p>
                   <strong>Valeur foncière:</strong>
                   <br />
-                  {estateValue[index].toLocaleString("fr-FR")} €
+                  {Math.round(estateValue[index]).toLocaleString("fr-FR")} €
                 </p>
               ) : (
                 ""
@@ -123,7 +127,7 @@ export default function Map({ propertyType }) {
                 <p>
                   <strong>Surface :</strong>
                   <br />
-                  {surfaceArea[index]} m²
+                  {Math.round(surfaceArea[index])} m²
                 </p>
               ) : (
                 ""
@@ -132,7 +136,7 @@ export default function Map({ propertyType }) {
                 <p>
                   <strong>Surface du terrain:</strong>
                   <br />
-                  {landArea[index]} m²
+                  {Math.round(landArea[index])} m²
                 </p>
               ) : (
                 ""

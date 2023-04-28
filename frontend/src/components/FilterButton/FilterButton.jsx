@@ -20,7 +20,6 @@ function FilterButton({
       propertyType.push(codeBien);
       setPropertyType([...propertyType]);
     }
-    console.info(propertyType);
   };
 
   // change the selection state of the filter button and call the updateFilter function to upadte the property type array

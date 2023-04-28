@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Searchbar from "./components/Searchbar";
 import Home from "./pages/Home";
 import About from "./pages/About";
+import "./App.css";
 
 function App() {
   const [codeInsee, setCodeInsee] = useState("");
@@ -20,12 +21,14 @@ function App() {
             <div>Code INSEE : {codeInsee[0]}</div>
           )}
         </div>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
+        <div className="homeContent">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
+        </div>
+        <Footer />
       </div>
-      <Footer />
     </Router>
   );
 }

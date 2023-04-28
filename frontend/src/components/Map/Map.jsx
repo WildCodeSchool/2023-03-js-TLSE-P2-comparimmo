@@ -69,7 +69,7 @@ export default function Map({ propertyType }) {
       });
   }, [codeInsee, propertyType]);
   return (
-    <div className={`${styles.mapContent}  `}>
+    <div className={`${styles.mapContent}`}>
       <form onSubmit={handleSubmit}>
         <label>
           Code INSEE :

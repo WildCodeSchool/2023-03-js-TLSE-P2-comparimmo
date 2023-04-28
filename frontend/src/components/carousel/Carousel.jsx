@@ -148,19 +148,31 @@ export default function Carousel() {
               <h2 className="cityCarousel">{city.cityName}</h2>
               <div className="cityList">
                 <div className="iconAndText">
-                  <img src={house} alt="Icon of a house" />
+                  <img
+                    className="logoCarousel"
+                    src={house}
+                    alt="Icon of a house"
+                  />
                   <h3 className="dataCarousel">
                     {city.housePriceM2.toLocaleString("fr-FR")} €/m²
                   </h3>
                 </div>
                 <div className="iconAndText">
-                  <img src={flat} alt="Icon of an appartment" />
+                  <img
+                    className="logoCarousel"
+                    src={flat}
+                    alt="Icon of an appartment"
+                  />
                   <h3 className="dataCarousel">
                     {city.flatPriceM2.toLocaleString("fr-FR")} €/m²
                   </h3>
                 </div>
                 <div className="iconAndText">
-                  <img src={pop} alt="Icon for population section" />
+                  <img
+                    className="logoCarousel"
+                    src={pop}
+                    alt="Icon for population section"
+                  />
                   <h3 className="dataCarousel">
                     {city.population.toLocaleString("fr-FR")} habitants
                   </h3>

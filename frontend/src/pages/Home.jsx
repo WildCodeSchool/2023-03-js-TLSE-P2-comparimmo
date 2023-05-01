@@ -1,14 +1,15 @@
 import React from "react";
 // eslint-disable-next-line import/no-unresolved
 // import Carousel from "@components/Carousel/Carousel";
-import ArrayDataCitiesRandom from "@components/ArrayDataCitiesRandom/ArrayDataCitiesRandom";
+import ArrayDataCities from "@components/ArrayDataCities/ArrayDataCities";
+
 
 function Home() {
   // return <Carousel />;
   return (
     <div>
       <p>salut</p>
-      <ArrayDataCitiesRandom />
+      <ArrayDataCities />
     </div>
   );
 }

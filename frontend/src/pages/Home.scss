@@ -11,4 +11,7 @@
 .filterButtonsPosition {
   display: flex;
   gap: 5px;
+  position: absolute;
+  transform: translate(1600px, 12px);
+  overflow: visible;
 }

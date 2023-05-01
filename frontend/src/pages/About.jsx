@@ -7,6 +7,8 @@ import minilogo from "@assets/img/minilogo.jpg";
 import cedric from "@assets/img/cedric.jpg";
 // eslint-disable-next-line import/no-unresolved
 import mathieu from "@assets/img/mathieu.jpg";
+// eslint-disable-next-line import/no-unresolved
+import antoine from "@assets/img/antoine.jpg";
 
 function About() {
   return (
@@ -43,16 +45,30 @@ function About() {
           </p>
           <ul>
             <li>
-              <a href="https://datafoncier.cerema.fr/donnees/autres-donnees-foncieres/dvfplus-open-data">
+              <a
+                href="https://datafoncier.cerema.fr/donnees/autres-donnees-foncieres/dvfplus-open-data"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 DVF+ open-data par (CEREMA)
               </a>
             </li>
             <li>
-              <a href="https://leafletjs.com/">LEAFLET MAP</a>
+              <a
+                href="https://leafletjs.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LEAFLET MAP
+              </a>
             </li>
             <li>
               {" "}
-              <a href="https://api.gouv.fr/documentation/api-geo">
+              <a
+                href="https://api.gouv.fr/documentation/api-geo"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 API Découpage Administratif - (API Geo)
               </a>
             </li>
@@ -64,28 +80,29 @@ function About() {
             <img src={minilogo} alt="Logo Compar'Immo" />
             <h2>L'équipe de développeurs</h2>
           </div>
-          <p>L’équipe de développeur est composée de : </p>
-          <div className="dev">
-            <img src="" alt="Hugo" />
-            <h2>Hugo CARNAZZA</h2>
+          <div className="trombi">
+            <div className="dev">
+              <img src="" alt="Hugo" />
+              <h2>Hugo CARNAZZA</h2>
+            </div>
+            <div className="dev">
+              <img src={antoine} alt="Antoine" />
+              <h2>Antoine CASSAGNE</h2>
+            </div>
+            <div className="dev">
+              <img src={mathieu} alt="Mathieu" />
+              <h2>Matthieu GUINET</h2>
+            </div>
+            <div className="dev">
+              <img src={cedric} alt="Cédric" />
+              <h2>Cédric PALACIO-VIDAL</h2>
+            </div>
           </div>
-          <div className="dev">
-            <img src="" alt="Antoine" />
-            <h2>Antoine CASSAGNE</h2>
-          </div>
-          <div className="dev">
-            <img src={mathieu} alt="Mathieu" />
-            <h2>Matthieu GUINET</h2>
-          </div>
-          <div className="dev">
-            <img src={cedric} alt="Cédric" />
-            <h2>Cédric PALACIO-VIDAL</h2>
-          </div>
+          <p>
+            Ce site Web a été réalisé dans le cadre du projet 2 de la formation
+            “Développeur Web” à la Wild Code School.
+          </p>{" "}
         </div>
-        <p>
-          Ce site Web a été réalisé dans le cadre du projet 2 de la formation
-          “Développeur Web” à la Wild Code School.
-        </p>
       </section>
     </div>
   );

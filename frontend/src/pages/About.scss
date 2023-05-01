@@ -22,6 +22,12 @@
 
   h2 {
     margin: 10px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    margin: 1rem;
   }
 
   img {
@@ -62,10 +68,6 @@
       align-items: center;
     }
 
-    h2 {
-      margin-bottom: 1rem;
-    }
-
     img {
       height: 100px;
       width: 100px;
@@ -81,5 +83,44 @@
   }
 
   @media screen and (min-width: 769px) {
+    section {
+      width: 70%;
+      background: var(--white);
+      margin-bottom: 0;
+    }
+    .aboutComparimmo {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 2rem;
+    }
+
+    .aboutAPi {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      ul {
+        display: flex;
+        gap: 100px;
+        margin-top: 2rem;
+      }
+    }
+
+    .aboutDev {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 4rem;
+
+      .trombi {
+        display: flex;
+        flex-direction: row;
+      }
+    }
+
+    p {
+      justify-content: center;
+    }
   }
 }

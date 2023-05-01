@@ -12,17 +12,12 @@ export default function Map({ propertyType }) {
   const [dateMutation, setDateMutation] = useState([]);
   const [surfaceArea, setSurfaceArea] = useState([]);
   const [idMutations, setIdMutations] = useState([]);
-  const [codeInsee, setCodeInsee] = useState("31555");
   const [landArea, setlandArea] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [arrayOfInseeAddedDatas, setArrayOfInseeAddedDatas] = useState([]);
 
-  /* change code insee button */
-  const handleCodeInseeChange = (event) => {
-    setCodeInsee(event.target.value);
-  };
+  const inseeToAdd = [31445, 31555];
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-  };
   let filters = "";
   if (!propertyType.length) {
     filters = "21%2C111%2C121";
@@ -31,56 +26,66 @@ export default function Map({ propertyType }) {
   }
   // Retrieving data from the API
   useEffect(() => {
-    axios
-      .get(
-        `https://apidf-preprod.cerema.fr/dvf_opendata/geomutations/?code_insee=${codeInsee}&page_size=500&codtypbien=${filters}`
-      )
-      .then((response) => {
-        const filteredFeatures = response.data.features.filter(
-          (feature) => feature.geometry !== null
-        );
+    const promisesForEachCitiesToSearch = inseeToAdd.map((insee) => {
+      return axios.get(
+        `https://apidf-preprod.cerema.fr/dvf_opendata/geomutations/?code_insee=${insee}&page_size=500&codtypbien=${filters}`
+      );
+    });
 
-        // reverse geographic coordinates //
-
-        const flatPolygons = filteredFeatures.map((feature) => {
-          const flatArray = feature.geometry.coordinates.flat();
-          flatArray.forEach((a) => a.forEach((b) => b.reverse()));
-          return flatArray;
+    Promise.all(promisesForEachCitiesToSearch)
+      .then((results) => {
+        const dataFromPromises = results.map((res) => {
+          return res.data.features.filter(
+            (feature) => feature.geometry !== null
+          );
         });
-
-        const { features } = response.data;
-
-        setPolygonGps(flatPolygons);
-        setTypeOfEstate(
-          features.map((feature) => feature.properties.libtypbien)
-        );
-        setEstateValue(
-          features.map((feature) => feature.properties.valeurfonc)
-        );
-        setDateMutation(features.map((feature) => feature.properties.datemut));
-        setSurfaceArea(features.map((feature) => feature.properties.sbati));
-        setIdMutations(
-          features.map((feature) => feature.properties.idmutation)
-        );
-        setlandArea(features.map((feature) => feature.properties.sterr));
+        setArrayOfInseeAddedDatas(dataFromPromises);
+        setIsLoaded(true);
       })
       .catch((error) => {
         console.error(error);
       });
-  }, [codeInsee, propertyType]);
+  }, [propertyType]);
+
+  // reverse geographic coordinates //
+  useEffect(() => {
+    if (isLoaded) {
+      const flatArrayOfInseeAddedDatas = arrayOfInseeAddedDatas.flat();
+      const flatPolygons = flatArrayOfInseeAddedDatas.map((feature) => {
+        const flatArray = feature.geometry.coordinates.flat();
+        flatArray.forEach((a) => a.forEach((b) => b.reverse()));
+        return flatArray;
+      });
+
+      setPolygonGps(flatPolygons);
+      setTypeOfEstate(
+        flatArrayOfInseeAddedDatas.map(
+          (feature) => feature.properties.libtypbien
+        )
+      );
+      setEstateValue(
+        flatArrayOfInseeAddedDatas.map(
+          (feature) => feature.properties.valeurfonc
+        )
+      );
+      setDateMutation(
+        flatArrayOfInseeAddedDatas.map((feature) => feature.properties.datemut)
+      );
+      setSurfaceArea(
+        flatArrayOfInseeAddedDatas.map((feature) => feature.properties.sbati)
+      );
+      setIdMutations(
+        flatArrayOfInseeAddedDatas.map(
+          (feature) => feature.properties.idmutation
+        )
+      );
+      setlandArea(
+        flatArrayOfInseeAddedDatas.map((feature) => feature.properties.sterr)
+      );
+    }
+  }, [arrayOfInseeAddedDatas]);
   return (
     <div className={`${styles.mapContent}`}>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Code INSEE :
-          <input
-            type="text"
-            value={codeInsee}
-            onChange={handleCodeInseeChange}
-          />
-        </label>
-        <button type="submit">Change</button>
-      </form>
       {/*  map settings */}
       <MapContainer
         className={`${styles.map}`}

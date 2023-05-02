@@ -4,6 +4,7 @@ import { MapContainer, TileLayer, Popup, Polygon } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import axios from "axios";
 import styles from "./Map.module.scss";
+import { color1, color2, color3, color4, color5 } from "../../utils";
 
 export default function Map({ propertyType }) {
   const [polygonGps, setPolygonGps] = useState([]);
@@ -13,10 +14,13 @@ export default function Map({ propertyType }) {
   const [surfaceArea, setSurfaceArea] = useState([]);
   const [idMutations, setIdMutations] = useState([]);
   const [landArea, setlandArea] = useState([]);
+  const [inseeForEachPolygon, setInseeOfEachPolygon] = useState();
   const [isLoaded, setIsLoaded] = useState(false);
   const [arrayOfInseeAddedDatas, setArrayOfInseeAddedDatas] = useState([]);
+  let shapeFillColor = "";
+  let shapeStrokeColor = "";
 
-  const inseeToAdd = [31445, 31555];
+  const inseeToAdd = ["31445", "31555"];
 
   let filters = "";
   if (!propertyType.length) {
@@ -82,8 +86,65 @@ export default function Map({ propertyType }) {
       setlandArea(
         flatArrayOfInseeAddedDatas.map((feature) => feature.properties.sterr)
       );
+      setInseeOfEachPolygon(
+        flatArrayOfInseeAddedDatas.map(
+          (feature) => feature.properties.l_codinsee[0]
+        )
+      );
     }
   }, [arrayOfInseeAddedDatas]);
+
+  const handleColorShape = (index) => {
+    switch (inseeForEachPolygon[index]) {
+      case inseeToAdd[0]:
+        shapeFillColor = color1;
+        break;
+      case inseeToAdd[1]:
+        shapeFillColor = color2;
+        break;
+      case inseeToAdd[2]:
+        shapeFillColor = color3;
+        break;
+      case inseeToAdd[3]:
+        shapeFillColor = color4;
+        break;
+      case inseeToAdd[4]:
+        shapeFillColor = color5;
+        break;
+
+      default:
+        break;
+    }
+    return shapeFillColor;
+  };
+
+  const handleColorStroke = (index) => {
+    switch (inseeForEachPolygon[index]) {
+      case inseeToAdd[0]:
+        shapeStrokeColor = color1;
+        break;
+      case inseeToAdd[1]:
+        shapeStrokeColor = color2;
+        break;
+      case inseeToAdd[2]:
+        shapeStrokeColor = color3;
+        break;
+      case inseeToAdd[3]:
+        shapeStrokeColor = color4;
+        break;
+      case inseeToAdd[4]:
+        shapeStrokeColor = color5;
+        break;
+
+      default:
+        break;
+    }
+    return shapeStrokeColor;
+  };
+
+  let colorToUseToFill = "";
+  let colorToUseForStroke = "";
+
   return (
     <div className={`${styles.mapContent}`}>
       {/*  map settings */}
@@ -98,66 +159,75 @@ export default function Map({ propertyType }) {
           attribution="COMPAR'IMMO"
         />
         {/* display of object content on the map: object position and characteristics */}
-        {polygonGps.map((polygon, index) => (
-          <Polygon key={idMutations[index]} positions={polygon}>
-            <Popup>
-              {dateMutation[index] ? (
-                <p>
-                  <strong>Date de mutation:</strong>
-                  <br />
-                  {new Date(dateMutation[index]).toLocaleDateString("fr-FR")}
-                </p>
-              ) : (
-                ""
-              )}
-              {typeOfEstate[index] ? (
-                <p>
-                  <strong>Type de bien:</strong>
-                  <br />
-                  {typeOfEstate[index].toLocaleLowerCase()}
-                </p>
-              ) : (
-                ""
-              )}
-              {estateValue[index] ? (
-                <p>
-                  <strong>Valeur foncière:</strong>
-                  <br />
-                  {Math.round(estateValue[index]).toLocaleString("fr-FR")} €
-                </p>
-              ) : (
-                ""
-              )}
-              {surfaceArea[index] !== "0.00" ? (
-                <p>
-                  <strong>Surface :</strong>
-                  <br />
-                  {Math.round(surfaceArea[index])} m²
-                </p>
-              ) : (
-                ""
-              )}
-              {landArea[index] > 0 ? (
-                <p>
-                  <strong>Surface du terrain:</strong>
-                  <br />
-                  {Math.round(landArea[index])} m²
-                </p>
-              ) : (
-                ""
-              )}
-              {surfaceArea[index] > 0 && estateValue[index] > 0 ? (
-                <p>
-                  <strong>Prix au m²:</strong>
-                  <br />
-                  {(estateValue[index] / surfaceArea[index]).toFixed(0)} €/m²
-                </p>
-              ) : (
-                ""
-              )}
-            </Popup>
-          </Polygon>
-        ))}
+        {polygonGps.map((polygon, index) => {
+          colorToUseToFill = handleColorShape(index);
+          colorToUseForStroke = handleColorStroke(index);
+          return (
+            <Polygon
+              key={idMutations[index]}
+              positions={polygon}
+              fillColor={colorToUseToFill}
+              color={colorToUseForStroke}
+            >
+              <Popup>
+                {dateMutation[index] ? (
+                  <p>
+                    <strong>Date de mutation:</strong>
+                    <br />
+                    {new Date(dateMutation[index]).toLocaleDateString("fr-FR")}
+                  </p>
+                ) : (
+                  ""
+                )}
+                {typeOfEstate[index] ? (
+                  <p>
+                    <strong>Type de bien:</strong>
+                    <br />
+                    {typeOfEstate[index].toLocaleLowerCase()}
+                  </p>
+                ) : (
+                  ""
+                )}
+                {estateValue[index] ? (
+                  <p>
+                    <strong>Valeur foncière:</strong>
+                    <br />
+                    {Math.round(estateValue[index]).toLocaleString("fr-FR")} €
+                  </p>
+                ) : (
+                  ""
+                )}
+                {surfaceArea[index] !== "0.00" ? (
+                  <p>
+                    <strong>Surface :</strong>
+                    <br />
+                    {Math.round(surfaceArea[index])} m²
+                  </p>
+                ) : (
+                  ""
+                )}
+                {landArea[index] > 0 ? (
+                  <p>
+                    <strong>Surface du terrain:</strong>
+                    <br />
+                    {Math.round(landArea[index])} m²
+                  </p>
+                ) : (
+                  ""
+                )}
+                {surfaceArea[index] > 0 && estateValue[index] > 0 ? (
+                  <p>
+                    <strong>Prix au m²:</strong>
+                    <br />
+                    {(estateValue[index] / surfaceArea[index]).toFixed(0)} €/m²
+                  </p>
+                ) : (
+                  ""
+                )}
+              </Popup>
+            </Polygon>
+          );
+        })}
       </MapContainer>
     </div>
   );

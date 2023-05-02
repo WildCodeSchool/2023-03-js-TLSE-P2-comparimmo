@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import "./ArrayDataCities.scss";
+import "./arrayDataCities.scss";
 
 function ArrayDataCities() {
   const topSixToTenCities = [

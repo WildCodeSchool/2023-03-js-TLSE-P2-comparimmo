@@ -6,7 +6,7 @@ import Map from "../components/Map/Map.jsx";
 import "../assets/styles/index.scss";
 import "./Home.scss";
 import FilterButton from "../components/FilterButton/FilterButton";
-import ArrayDataCities from "../components/ArrayDataCities/ArrayDataCities";
+import ArrayDataCities from "../components/arrayDataCities/ArrayDataCities";
 
 function Home() {
   const [propertyType, setPropertyType] = useState([21, 111, 121]);

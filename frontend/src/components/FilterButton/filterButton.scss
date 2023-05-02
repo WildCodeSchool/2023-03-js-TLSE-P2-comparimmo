@@ -1,0 +1,23 @@
+.filterButtons {
+  border-radius: 5px;
+  border: 0.5px solid;
+}
+.buttonSelected {
+  background-color: var(--orange);
+  color: var(--main-blue);
+}
+
+.buttonNotSelected {
+  background-color: var(--light-grey);
+  color: var(--main-blue);
+}
+
+@media screen and (min-width: 768px) {
+  .filterButtons:hover {
+    color: var(--orange);
+    cursor: pointer;
+  }
+  .buttonSelected:hover {
+    color: var(--main-blue);
+  }
+}

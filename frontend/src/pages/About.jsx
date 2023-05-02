@@ -9,6 +9,7 @@ import cedric from "@assets/img/cedric.jpg";
 import mathieu from "@assets/img/mathieu.jpg";
 // eslint-disable-next-line import/no-unresolved
 import antoine from "@assets/img/antoine.jpg";
+// eslint-disable-next-line import/no-unresolved
 import hugo from "@assets/img/hugo.jpg";
 
 function About() {
@@ -28,12 +29,13 @@ function About() {
             foncières des maisons et appartements sur les différentes communes
             de France. Grâce à notre outil de comparaison, nous facilitons la
             recherche de lieu pour acheter dans l’immobilier ou pour prendre
-            connaissance des tendances du marché. Vous pouvez sélectionner un
-            lieu pour afficher ses informations principales, ou en sélectionner
-            plusieurs pour comparer les prix moyens au m². Grâce à notre carte
-            interractive, vous pouvez également séléctionner directement une
-            commune et regarder les dernières ventes effectuées dans la rue de
-            votre choix.
+            connaissance des tendances du marché. Vous pouvez sélectionner une
+            commune pour afficher ses informations principales, ou en
+            sélectionner plusieurs pour comparer les prix moyens au m². Grâce à
+            notre carte interractive, vous pouvez également séléctionner
+            directement une commune et regarder les dernières ventes effectuées
+            sur les appartements, maisons ou terrains dans la rue de votre
+            choix.
           </p>
         </div>
         <div className="aboutAPi">

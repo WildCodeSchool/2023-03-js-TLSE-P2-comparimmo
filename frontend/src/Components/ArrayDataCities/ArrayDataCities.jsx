@@ -156,7 +156,10 @@ function ArrayDataCities() {
 
   return (
     <table>
-      <caption>top 6 à 10 des plus grandes villes de France</caption>
+      <caption>
+        top 6 à 11 des plus grandes villes de France*
+        <p>Excepté les communes d'Alsace et Mozelle</p>
+      </caption>
       <tbody>
         <tr>
           <th scope="col">Communes</th>

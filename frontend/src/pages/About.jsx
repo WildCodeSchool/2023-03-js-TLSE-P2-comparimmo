@@ -9,6 +9,7 @@ import cedric from "@assets/img/cedric.jpg";
 import mathieu from "@assets/img/mathieu.jpg";
 // eslint-disable-next-line import/no-unresolved
 import antoine from "@assets/img/antoine.jpg";
+import hugo from "@assets/img/hugo.jpg";
 
 function About() {
   return (
@@ -25,13 +26,14 @@ function About() {
           <p>
             Bienvenue sur notre site internet dédié à la comparaison des valeurs
             foncières des maisons et appartements sur les différentes communes
-            de France. Grâce à notre outil de comparaison, vous pouvez
-            facilement trouver le prix au mètre carré dans différentes villes et
-            communes, ainsi que localiser les ventes de biens immobiliers grâce
-            à notre carte interactive. Notre objectif est de vous fournir les
-            informations les plus précises et utiles pour vous aider à prendre
-            des décisions éclairées en matière d'achat ou de vente de biens
-            immobiliers en France.
+            de France. Grâce à notre outil de comparaison, nous facilitons la
+            recherche de lieu pour acheter dans l’immobilier ou pour prendre
+            connaissance des tendances du marché. Vous pouvez sélectionner un
+            lieu pour afficher ses informations principales, ou en sélectionner
+            plusieurs pour comparer les prix moyens au m². Grâce à notre carte
+            interractive, vous pouvez également séléctionner directement une
+            commune et regarder les dernières ventes effectuées dans la rue de
+            votre choix.
           </p>
         </div>
         <div className="aboutAPi">
@@ -40,8 +42,8 @@ function About() {
             <h2> Ressources utilisées </h2>
           </div>
           <p>
-            Pour réaliser ce site internet, plusieurs sources (notamment pour
-            les données) ont été utilisées.
+            Pour réaliser ce site internet, plusieurs API ont été utilisées pour
+            récupérer les données:
           </p>
           <ul>
             <li>
@@ -50,7 +52,7 @@ function About() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                DVF+ open-data par (CEREMA)
+                DVF+ open-data par CEREMA
               </a>
             </li>
             <li>
@@ -82,7 +84,7 @@ function About() {
           </div>
           <div className="trombi">
             <div className="dev">
-              <img src="" alt="Hugo" />
+              <img src={hugo} alt="Hugo" />
               <h2>Hugo CARNAZZA</h2>
             </div>
             <div className="dev">

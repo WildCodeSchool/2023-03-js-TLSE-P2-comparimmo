@@ -16,13 +16,13 @@ export default function Carousel() {
   let cityPopulation = 0;
 
   // getPopulationForEachCity receive the INSEE code to get the population info from geo API for each city of the top 5 in the const cities
-  const getPopulationForEachCity = (insee) => {
+  const getPopulationForEachCity = (inseeToSearch) => {
     const [city, setCity] = useState();
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
       axios
-        .get(`https://geo.api.gouv.fr/communes/${insee}`)
+        .get(`https://geo.api.gouv.fr/communes/${inseeToSearch}`)
         .then((res) => {
           setCity(res.data);
           setIsLoaded(true);

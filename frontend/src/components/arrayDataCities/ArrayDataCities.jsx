@@ -1,54 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./arrayDataCities.scss";
+import { topSixToTenCities } from "../../utils";
 
+// create an array with data of 5 cities
 function ArrayDataCities() {
-  const topSixToTenCities = [
-    {
-      id: 1,
-      cityName: "Nantes",
-      insee: "44109",
-      housePriceM2: 0,
-      aptPriceM2: 0,
-      population: 0,
-    },
-    {
-      id: 2,
-      cityName: "Montpellier",
-      insee: "34172",
-      housePriceM2: 0,
-      aptPriceM2: 0,
-      population: 0,
-    },
-    {
-      id: 3,
-      cityName: "Bordeaux",
-      insee: "33063",
-      housePriceM2: 0,
-      aptPriceM2: 0,
-      population: 0,
-    },
-    {
-      id: 4,
-      cityName: "Lille",
-      insee: "59350",
-      housePriceM2: 0,
-      aptPriceM2: 0,
-      population: 0,
-    },
-    {
-      id: 5,
-      cityName: "Rennes",
-      insee: "35238",
-      housePriceM2: 0,
-      aptPriceM2: 0,
-      population: 0,
-    },
-  ];
-
   let cityPopulation = 0;
 
-  // return the population of each city for each code insee
+  // return the population of each city for each code insee (array into file "utils")
   const getDataCityGeoApi = (insee) => {
     const [DataCitiesGeoApi, setDataCitiesGeoApi] = useState("0");
     const [isLoading, setIsLoading] = useState(true);
@@ -72,12 +31,12 @@ function ArrayDataCities() {
     return cityPopulation;
   };
 
-  // This function fetch the DVF API with the code insee (arrayDataFiveCitiesGeoApi.code). Return an array of objects wich contains arrays (count)
-  let valfonc = 0;
-  let sBati = 0;
+  // This function fetch the DVF API with the code insee (arrayDataFiveCitiesGeoApi.code). Return the mean price of house for each city
+  let propertyValue = 0;
+  let builtArea = 0;
 
-  const getDataCityDvfApi = (insee) => {
-    const [dataCitiesApiDvf, setDataCitiesApiDvf] = useState([]);
+  const getDataCityDvfApiHouse = (insee) => {
+    const [dataCitiesApiDvfHouse, setDataCitiesApiDvfHouse] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
       axios
@@ -85,31 +44,32 @@ function ArrayDataCities() {
           `https://apidf-preprod.cerema.fr/dvf_opendata/mutations?code_insee=${insee}&codtypbien=111&page_size=500`
         )
         .then((results) => {
-          setDataCitiesApiDvf(results.data.results);
+          setDataCitiesApiDvfHouse(results.data.results);
           setIsLoading(false);
         })
         .catch((err) => {
           console.error(err.message);
         });
     }, []);
-    let moyOfPriceHouse = 0;
+    let meanPriceHouse = 0;
     if (!isLoading) {
       let sumOfPriceHouse = 0;
       let count = 0;
-      for (let i = 0; i < dataCitiesApiDvf.length; i += 1) {
-        valfonc = parseInt(dataCitiesApiDvf[i].valeurfonc, 10);
-        sBati = parseInt(dataCitiesApiDvf[i].sbati, 10);
-        if (valfonc && sBati) {
-          sumOfPriceHouse += valfonc / sBati;
+      for (let i = 0; i < dataCitiesApiDvfHouse.length; i += 1) {
+        propertyValue = parseInt(dataCitiesApiDvfHouse[i].valeurfonc, 10);
+        builtArea = parseInt(dataCitiesApiDvfHouse[i].sbati, 10);
+        if (propertyValue && builtArea) {
+          sumOfPriceHouse += propertyValue / builtArea;
           count += 1;
         }
       }
-      moyOfPriceHouse = Math.ceil(sumOfPriceHouse / count);
+      meanPriceHouse = Math.ceil(sumOfPriceHouse / count);
     }
-    return moyOfPriceHouse;
+    return meanPriceHouse;
   };
 
-  const getDataCityDvfApiApt = (insee) => {
+  // This function fetch the DVF API with the code insee (arrayDataFiveCitiesGeoApi.code). Return the mean price of apartment for each city
+  const getDataCityDvfApiApartment = (insee) => {
     const [dataCitiesApiDvfApt, setDataCitiesApiDvfApt] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
@@ -125,31 +85,31 @@ function ArrayDataCities() {
           console.error(err.message);
         });
     }, []);
-    let moyOfPriceApt = 0;
+    let meanPriceApartment = 0;
     if (!isLoading) {
       let sumOfPriceApt = 0;
       let count = 0;
       for (let i = 0; i < dataCitiesApiDvfApt.length; i += 1) {
-        valfonc = parseInt(dataCitiesApiDvfApt[i].valeurfonc, 10);
-        sBati = parseInt(dataCitiesApiDvfApt[i].sbati, 10);
-        if (valfonc && sBati) {
-          sumOfPriceApt += valfonc / sBati;
+        propertyValue = parseInt(dataCitiesApiDvfApt[i].valeurfonc, 10);
+        builtArea = parseInt(dataCitiesApiDvfApt[i].sbati, 10);
+        if (propertyValue && builtArea) {
+          sumOfPriceApt += propertyValue / builtArea;
           count += 1;
         }
       }
-      moyOfPriceApt = Math.ceil(sumOfPriceApt / count);
+      meanPriceApartment = Math.ceil(sumOfPriceApt / count);
     }
-    return moyOfPriceApt;
+    return meanPriceApartment;
   };
 
   for (let i = 0; i < topSixToTenCities.length; i += 1) {
     topSixToTenCities[i].population = getDataCityGeoApi(
       topSixToTenCities[i].insee
     );
-    topSixToTenCities[i].housePriceM2 = getDataCityDvfApi(
+    topSixToTenCities[i].housePriceM2 = getDataCityDvfApiHouse(
       topSixToTenCities[i].insee
     );
-    topSixToTenCities[i].aptPriceM2 = getDataCityDvfApiApt(
+    topSixToTenCities[i].aptPriceM2 = getDataCityDvfApiApartment(
       topSixToTenCities[i].insee
     );
   }
@@ -157,8 +117,8 @@ function ArrayDataCities() {
   return (
     <table>
       <caption>
-        top 6 à 11 des plus grandes villes de France*
-        <p>Excepté les communes d'Alsace et Mozelle</p>
+        Top 6 à 11 des plus grandes villes de France*
+        <p>Hors communes d'Alsace et Mozelle</p>
       </caption>
       <tbody>
         <tr>

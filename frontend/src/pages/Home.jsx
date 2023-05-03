@@ -1,14 +1,19 @@
 import React, { useState } from "react";
-// eslint-disable-next-line import/extensions
+// eslint-disable-next-line import/extensions, import/no-unresolved
 import Carousel from "../components/carousel/Carousel";
-// eslint-disable-next-line import/extensions
+// eslint-disable-next-line import/extensions, import/no-unresolved
 import Map from "../components/Map/Map";
 import "../assets/styles/index.scss";
 import "./Home.scss";
+// eslint-disable-next-line import/no-unresolved
 import FilterButton from "../components/FilterButton/FilterButton";
+// eslint-disable-next-line import/no-unresolved
 import Searchbar from "../components/Searchbar/Searchbar";
+// eslint-disable-next-line import/no-unresolved
 import ArrayDataCities from "../components/arrayDataCities/ArrayDataCities";
 import ArrayCitiesInput from "../components/arrayCitiesInput/ArrayCitiesInput";
+// eslint-disable-next-line import/no-unresolved
+import ShortIntroduction from "../components/shortIntroduction/ShortIntroduction";
 
 function Home() {
   const [propertyType, setPropertyType] = useState([21, 111, 121]);
@@ -18,6 +23,7 @@ function Home() {
   return (
     <div className="homeContent">
       <Carousel />
+      <ShortIntroduction />
       <div className="SearchBar">
         <Searchbar setCityData={setCityData} />
       </div>

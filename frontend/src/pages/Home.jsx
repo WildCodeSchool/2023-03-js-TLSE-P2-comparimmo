@@ -7,8 +7,7 @@ import "../assets/styles/index.scss";
 import "./Home.scss";
 import FilterButton from "../components/FilterButton/FilterButton";
 import ArrayDataCities from "../components/arrayDataCities/ArrayDataCities";
-// eslint-disable-next-line import/extensions
-import ShortIntroduction from "../components/shortIntroduction/ShortIntroduction.jsx";
+import ShortIntroduction from "../components/shortIntroduction/ShortIntroduction";
 
 function Home() {
   const [propertyType, setPropertyType] = useState([21, 111, 121]);

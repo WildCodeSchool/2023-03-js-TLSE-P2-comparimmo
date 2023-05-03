@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// eslint-disable-next-line import/no-unresolved
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 // eslint-disable-next-line import/no-unresolved
 import house from "@assets/img/house.png";

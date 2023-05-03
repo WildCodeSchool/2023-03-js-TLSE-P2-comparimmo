@@ -6,12 +6,43 @@ import Map from "../components/Map/Map.jsx";
 import "../assets/styles/index.scss";
 import "./Home.scss";
 import FilterButton from "../components/FilterButton/FilterButton";
+import Searchbar from "../components/Searchbar/Searchbar";
 
 function Home() {
   const [propertyType, setPropertyType] = useState([21, 111, 121]);
+  const [codeInsee, setCodeInsee] = useState([]);
+  const [coordonnées, setCoordonnées] = useState([]);
+
+  const handleAddCodeInsee = (code) => {
+    setCodeInsee((prevCodeInsee) => [...prevCodeInsee, code]); // Ajoute le code au tableau
+  };
+
+  const handleAddCoordonnées = (code) => {
+    setCoordonnées((prevCoordonnées) => [...prevCoordonnées, code]); // Ajoute les coordonnées au tableau
+  };
+
+  const handleReset = () => {
+    setCodeInsee([]);
+    setCoordonnées([]);
+  };
+
   return (
     <div className="homeContent">
       <Carousel />
+      <div className="SearchBar">
+        <Searchbar
+          addCodeInsee={handleAddCodeInsee}
+          reset={handleReset}
+          addCoordonnées={handleAddCoordonnées}
+        />
+        {/* si condition codeInsee.length est vrai le and sera lu autrement non */}
+        {codeInsee.length > 0 && (
+          <div>
+            Codes INSEE :<ul>{codeInsee}</ul>
+            <ul>{coordonnées}</ul>
+          </div>
+        )}
+      </div>
       <Map propertyType={propertyType} />
       <div className="filterButtonsPosition">
         <FilterButton

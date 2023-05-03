@@ -15,9 +15,6 @@ import hugo from "@assets/img/hugo.jpg";
 function About() {
   return (
     <div className="aboutContent">
-      <div className="homeButton">
-        <button type="button"> ABOUT US</button>
-      </div>
       <section>
         <div className="aboutComparimmo">
           <div className="d-flex">
@@ -83,22 +80,27 @@ function About() {
           <div className="teamDev">
             <img src={minilogo} alt="Logo Compar'Immo" />
             <h2>L'équipe de développeurs</h2>
+            <br />
           </div>
           <div className="trombi">
             <div className="dev">
-              <img src={hugo} alt="Hugo" />
+              <img className="photo" src={hugo} alt="Hugo" />
+              <br />
               <h2>Hugo CARNAZZA</h2>
             </div>
             <div className="dev">
-              <img src={antoine} alt="Antoine" />
+              <img className="photo" src={antoine} alt="Antoine" />
+              <br />
               <h2>Antoine CASSAGNE</h2>
             </div>
             <div className="dev">
-              <img src={mathieu} alt="Mathieu" />
+              <img className="photo" src={mathieu} alt="Mathieu" />
+              <br />
               <h2>Matthieu GUINET</h2>
             </div>
             <div className="dev">
-              <img src={cedric} alt="Cédric" />
+              <img className="photo" src={cedric} alt="Cédric" />
+              <br />
               <h2>Cédric PALACIO-VIDAL</h2>
             </div>
           </div>

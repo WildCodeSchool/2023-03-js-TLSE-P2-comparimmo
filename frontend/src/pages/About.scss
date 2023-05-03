@@ -4,35 +4,25 @@
   align-items: center;
   height: 100%;
   margin: 1rem;
+
   font-size: 1rem;
 
-  .homeButton {
-    margin: 1rem;
-
-    button {
-      padding: 12px;
-      font-size: 1rem;
-      color: white;
-      border-radius: 10px;
-      background-color: var(--main-blue);
-      width: 120px;
-      height: 100%;
-    }
-  }
-
   h2 {
-    margin: 10px;
     font-size: 1rem;
-    margin-bottom: 1rem;
+    align-self: center;
+
+    vertical-align: middle;
   }
 
   p {
     margin: 1rem;
+    line-height: 1.3;
   }
 
   img {
     height: 25px;
     width: 25px;
+    margin-right: 1rem;
   }
 
   .aboutComparimmo {
@@ -44,7 +34,8 @@
 
     li {
       margin: 10px;
-      list-style: circle;
+      list-style: square;
+      color: var(--orange);
     }
 
     a {
@@ -85,7 +76,7 @@
   @media screen and (min-width: 769px) {
     section {
       width: 80%;
-      background: var(--white);
+
       margin-bottom: 0;
     }
     .aboutComparimmo {
@@ -103,7 +94,7 @@
       ul {
         display: flex;
         gap: 100px;
-        margin-top: 2rem;
+        margin-top: 1rem;
       }
     }
 
@@ -111,7 +102,7 @@
       display: flex;
       align-items: center;
       flex-direction: column;
-      margin-top: 4rem;
+      margin-top: 2rem;
 
       .trombi {
         display: flex;
@@ -121,6 +112,17 @@
 
     p {
       justify-content: center;
+    }
+  }
+
+  .aboutDev img {
+    .photo {
+      height: 150px;
+      width: 150px;
+    }
+    h2 {
+      margin: 0;
+      align-self: center;
     }
   }
 }

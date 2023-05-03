@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 
-function Searchbar({ addCodeInsee, reset, addCoordonnées }) {
+function Searchbar({ addCodeInsee, reset, addCoordinates }) {
   const [commune, setCommune] = useState("");
   const [isLoaded, setIsLoaded] = useState(false);
   const [searchInput, setSearchInput] = useState("");
@@ -12,15 +12,15 @@ function Searchbar({ addCodeInsee, reset, addCoordonnées }) {
     setSearchInput(e.target.value);
   };
 
-  //   Récupération du code postal + mise à jour query pour récupérer le code Insee
-  const onSearchCodePostal = (nom, codePostal) => {
+  //   Update query to recove Insee Code
+  const onSearchCodePostal = (communeName, codePostal) => {
     axios
       .get(
-        `https://geo.api.gouv.fr/communes?nom=${nom}&codePostal=${codePostal}&fields=code,nom,contour,codesPostaux`
+        `https://geo.api.gouv.fr/communes?nom=${communeName}&codePostal=${codePostal}&fields=code,nom,contour,codesPostaux`
       )
       .then((res) => {
         const filteredResults = res.data.filter(
-          (result) => result.nom.length === nom.length
+          (result) => result.nom.length === communeName.length
         );
         const codesInsee = filteredResults.map((result) => result.code);
         if (codePostal.startsWith(750)) {
@@ -37,7 +37,7 @@ function Searchbar({ addCodeInsee, reset, addCoordonnées }) {
         const coordinates = res.data.map(
           (result) => result.contour.coordinates
         );
-        addCoordonnées(coordinates);
+        addCoordinates(coordinates);
       })
 
       .catch((err) => {
@@ -45,7 +45,7 @@ function Searchbar({ addCodeInsee, reset, addCoordonnées }) {
       });
   };
 
-  //  Mise à jour texte dans l'input
+  //  Update input text
   const onSearchInput = (value) => {
     setSearchInput(value);
   };
@@ -62,6 +62,7 @@ function Searchbar({ addCodeInsee, reset, addCoordonnées }) {
       });
   }, []);
 
+  //  Only number
   const regEx = /[0-9]/g;
 
   return (
@@ -76,12 +77,11 @@ function Searchbar({ addCodeInsee, reset, addCoordonnées }) {
                 onChange={handleSearch}
                 value={searchInput}
               />
-              {/* Bouton pour ajouter des communes */}
               <button
                 type="button"
                 onClick={() => {
-                  const [nom, codePostal] = searchInput.split(" - ");
-                  onSearchCodePostal(nom, codePostal);
+                  const [communeName, codePostal] = searchInput.split(" - ");
+                  onSearchCodePostal(communeName, codePostal);
                   setSearchInput("");
                 }}
               >
@@ -97,13 +97,14 @@ function Searchbar({ addCodeInsee, reset, addCoordonnées }) {
               </button>
             </div>
             <div className="dropdown">
-              {/* Permet d'afficher une prérecherche */}
+              {/* 
+Allows you to display a pre-searche */}
               {commune
                 .filter((item) => {
-                  const nameCommune = item.nom.toLowerCase();
+                  const communeName = item.nom.toLowerCase();
                   const searchInputLower = searchInput.toLowerCase();
-                  const matchName = nameCommune.startsWith(searchInputLower);
-                  // On cherche si un élément du tableaux correspond au code postal
+                  const matchName = communeName.startsWith(searchInputLower);
+                  // Search if one of element correspond to code postal
                   const matchCodePostal = item.codesPostaux.some((postal) =>
                     postal.startsWith(searchInputLower)
                   );
@@ -159,12 +160,12 @@ function Searchbar({ addCodeInsee, reset, addCoordonnées }) {
 Searchbar.propTypes = {
   addCodeInsee: PropTypes.func,
   reset: PropTypes.func,
-  addCoordonnées: PropTypes.func,
+  addCoordinates: PropTypes.func,
 };
 Searchbar.defaultProps = {
   addCodeInsee: [],
   reset: [],
-  addCoordonnées: [],
+  addCoordinates: [],
 };
 
 export default Searchbar;

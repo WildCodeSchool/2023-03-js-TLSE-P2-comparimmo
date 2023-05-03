@@ -12,19 +12,19 @@ import ArrayDataCities from "../components/arrayDataCities/ArrayDataCities";
 function Home() {
   const [propertyType, setPropertyType] = useState([21, 111, 121]);
   const [codeInsee, setCodeInsee] = useState([]);
-  const [coordonnées, setCoordonnées] = useState([]);
+  const [coordinates, setCoordinates] = useState([]);
 
   const handleAddCodeInsee = (code) => {
-    setCodeInsee((prevCodeInsee) => [...prevCodeInsee, code]); // Ajoute le code au tableau
+    setCodeInsee((prevCodeInsee) => [...prevCodeInsee, code]); // Add Insee Code to the table
   };
 
-  const handleAddCoordonnées = (code) => {
-    setCoordonnées((prevCoordonnées) => [...prevCoordonnées, code]); // Ajoute les coordonnées au tableau
+  const handleAddCoordinates = (code) => {
+    setCoordinates((prevCoordinates) => [...prevCoordinates, code]); // Add coordinates to the table
   };
 
   const handleReset = () => {
     setCodeInsee([]);
-    setCoordonnées([]);
+    setCoordinates([]);
   };
 
   return (
@@ -34,18 +34,15 @@ function Home() {
         <Searchbar
           addCodeInsee={handleAddCodeInsee}
           reset={handleReset}
-          addCoordonnées={handleAddCoordonnées}
+          addCoordinates={handleAddCoordinates}
         />
-        {/* si condition codeInsee.length est vrai le and sera lu autrement non */}
-        {codeInsee.length > 0 && (
-          <div>
-            Codes INSEE :<ul>{codeInsee}</ul>
-            <ul>{coordonnées}</ul>
-          </div>
-        )}
       </div>
-      <ArrayDataCities />
-      <Map propertyType={propertyType} />
+      <ArrayDataCities codeInsee={codeInsee} />
+      <Map
+        propertyType={propertyType}
+        codeInsee={codeInsee}
+        coordinates={coordinates}
+      />
       <div className="filterButtonsPosition">
         <FilterButton
           text="Appartement"

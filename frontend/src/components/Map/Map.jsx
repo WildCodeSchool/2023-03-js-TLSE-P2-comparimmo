@@ -6,7 +6,7 @@ import axios from "axios";
 import styles from "./Map.module.scss";
 import { color1, color2, color3, color4, color5 } from "../../utils";
 
-export default function Map({ propertyType }) {
+export default function Map({ propertyType, cityData }) {
   const [polygonGps, setPolygonGps] = useState([]);
   const [typeOfEstate, setTypeOfEstate] = useState([]);
   const [estateValue, setEstateValue] = useState([]);
@@ -20,7 +20,25 @@ export default function Map({ propertyType }) {
   let shapeFillColor = "";
   let shapeStrokeColor = "";
 
-  const inseeToAdd = ["31445", "31555"];
+  const inseeToAdd = cityData.map((el) => el.insee);
+
+  // const getCenterOfCity = (inseeToZoom) => {
+  //   const geomForCityToZoom = cityData.filter((el) => el.insee === inseeToZoom);
+  //   geomForCityToZoom.forEach((a) => a.forEach((b) => b.reverse()));
+  //   const allXValue = [];
+  //   const allYValue = [];
+  //   for (let i = 0; i < geomForCityToZoom.length; i += 1) {
+  //     allXValue.push(geomForCityToZoom[i][0]);
+  //     allYValue.push(geomForCityToZoom[i][1]);
+  //   }
+  //   const minX = Math.min(...allXValue);
+  //   const maxX = Math.max(...allXValue);
+  //   const minY = Math.min(...allYValue);
+  //   const maxY = Math.max(...allYValue);
+  //   const middleX = (maxX + minX) / 2;
+  //   const middleY = (maxY + minY) / 2;
+  //   return [middleX, middleY];
+  // };
 
   let filters = "";
   if (!propertyType.length) {
@@ -49,7 +67,7 @@ export default function Map({ propertyType }) {
       .catch((error) => {
         console.error(error);
       });
-  }, [propertyType]);
+  }, [propertyType, cityData]);
 
   // reverse geographic coordinates //
   useEffect(() => {
@@ -150,6 +168,7 @@ export default function Map({ propertyType }) {
       {/*  map settings */}
       <MapContainer
         className={`${styles.map}`}
+        // center={() => getCenterOfCity(inseeZoomCity)}
         center={[43.6, 1.433333]}
         zoom={12}
         maxZoom={18}
@@ -235,7 +254,11 @@ export default function Map({ propertyType }) {
 
 Map.propTypes = {
   propertyType: PropTypes.arrayOf(PropTypes.number),
+  // inseeZoomCity: PropTypes.string,
+  cityData: PropTypes.arrayOf(PropTypes.shape),
 };
 Map.defaultProps = {
   propertyType: [],
+  // inseeZoomCity: "",
+  cityData: [],
 };

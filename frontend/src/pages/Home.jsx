@@ -8,26 +8,29 @@ import "./Home.scss";
 import FilterButton from "../components/FilterButton/FilterButton";
 import Searchbar from "../components/Searchbar/Searchbar";
 import ArrayDataCities from "../components/arrayDataCities/ArrayDataCities";
+import ArrayCitiesInput from "../components/arrayCitiesInput/ArrayCitiesInput";
 
 function Home() {
   const [propertyType, setPropertyType] = useState([21, 111, 121]);
-  const [codeInsee, setCodeInsee] = useState([]);
-  const [coordinates, setCoordinates] = useState([]);
+  const [cityData, setCityData] = useState([]);
+  const [inseeZoomCity, setInseeZoomCity] = useState("");
 
   return (
     <div className="homeContent">
       <Carousel />
       <div className="SearchBar">
-        <Searchbar
-          setCodeInsee={setCodeInsee}
-          setCoordinates={setCoordinates}
-        />
+        <Searchbar setCityData={setCityData} />
       </div>
-      <ArrayDataCities codeInsee={codeInsee} />
+      <ArrayDataCities />
+      <ArrayCitiesInput
+        cityData={cityData}
+        inseeZoomCity={inseeZoomCity}
+        setInseeZoomCity={setInseeZoomCity}
+      />
       <Map
         propertyType={propertyType}
-        codeInsee={codeInsee}
-        coordinates={coordinates}
+        cityData={cityData}
+        inseeZoomCity={inseeZoomCity}
       />
       <div className="filterButtonsPosition">
         <FilterButton

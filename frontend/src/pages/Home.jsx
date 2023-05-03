@@ -14,27 +14,13 @@ function Home() {
   const [codeInsee, setCodeInsee] = useState([]);
   const [coordinates, setCoordinates] = useState([]);
 
-  const handleAddCodeInsee = (code) => {
-    setCodeInsee((prevCodeInsee) => [...prevCodeInsee, code]); // Add Insee Code to the table
-  };
-
-  const handleAddCoordinates = (code) => {
-    setCoordinates((prevCoordinates) => [...prevCoordinates, code]); // Add coordinates to the table
-  };
-
-  const handleReset = () => {
-    setCodeInsee([]);
-    setCoordinates([]);
-  };
-
   return (
     <div className="homeContent">
       <Carousel />
       <div className="SearchBar">
         <Searchbar
-          addCodeInsee={handleAddCodeInsee}
-          reset={handleReset}
-          addCoordinates={handleAddCoordinates}
+          setCodeInsee={setCodeInsee}
+          setCoordinates={setCoordinates}
         />
       </div>
       <ArrayDataCities codeInsee={codeInsee} />

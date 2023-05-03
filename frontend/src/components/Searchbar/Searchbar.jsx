@@ -2,11 +2,24 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 
-function Searchbar({ addCodeInsee, reset, addCoordinates }) {
+function Searchbar({ setCodeInsee, setCoordinates }) {
   const [commune, setCommune] = useState("");
   const [isLoaded, setIsLoaded] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [count, setCount] = useState(0);
+
+  const handleAddCodeInsee = (code) => {
+    setCodeInsee((prevCodeInsee) => [...prevCodeInsee, code]); // Add Insee Code to the table
+  };
+
+  const handleAddCoordinates = (code) => {
+    setCoordinates((prevCoordinates) => [...prevCoordinates, code]); // Add coordinates to the table
+  };
+
+  const handleReset = () => {
+    setCodeInsee([]);
+    setCoordinates([]);
+  };
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -25,20 +38,20 @@ function Searchbar({ addCodeInsee, reset, addCoordinates }) {
         );
         const codesInsee = filteredResults.map((result) => result.code);
         if (codePostal.startsWith(750)) {
-          addCodeInsee(parseInt(codePostal, 10) + 100);
+          handleAddCodeInsee(parseInt(codePostal, 10) + 100);
         } else if (codePostal.startsWith(130) || codePostal.startsWith(1301)) {
-          addCodeInsee(parseInt(codePostal, 10) + 200);
+          handleAddCodeInsee(parseInt(codePostal, 10) + 200);
         } else if (codePostal.startsWith(690)) {
-          addCodeInsee(parseInt(codePostal, 10) + 380);
+          handleAddCodeInsee(parseInt(codePostal, 10) + 380);
         } else if (codePostal.startsWith(75116)) {
-          addCodeInsee(parseInt(codePostal, 10));
+          handleAddCodeInsee(parseInt(codePostal, 10));
         } else {
-          codesInsee.forEach((codeInsee) => addCodeInsee(codeInsee));
+          codesInsee.forEach((codeInsee) => handleAddCodeInsee(codeInsee));
         }
         const coordinates = res.data.map(
           (result) => result.contour.coordinates
         );
-        addCoordinates(coordinates);
+        handleAddCoordinates(coordinates);
       })
 
       .catch((err) => {
@@ -94,7 +107,7 @@ function Searchbar({ addCodeInsee, reset, addCoordinates }) {
               <button
                 type="button"
                 onClick={() => {
-                  reset("");
+                  handleReset("");
                   setCount(0);
                 }}
               >
@@ -163,14 +176,12 @@ Allows you to display a pre-searche */}
 }
 
 Searchbar.propTypes = {
-  addCodeInsee: PropTypes.func,
-  reset: PropTypes.func,
-  addCoordinates: PropTypes.func,
+  setCodeInsee: PropTypes.func,
+  setCoordinates: PropTypes.func,
 };
 Searchbar.defaultProps = {
-  addCodeInsee: [],
-  reset: [],
-  addCoordinates: [],
+  setCodeInsee: () => {},
+  setCoordinates: () => {},
 };
 
 export default Searchbar;

@@ -19,8 +19,6 @@ function Home() {
     <div className="homeContent">
       <Carousel />
       <ShortIntroduction />
-      <ArrayDataCities />
-      <Map propertyType={propertyType} />
       <div className="SearchBar">
         <Searchbar
           setCodeInsee={setCodeInsee}

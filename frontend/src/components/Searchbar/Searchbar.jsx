@@ -6,6 +6,7 @@ function Searchbar({ addCodeInsee, reset, addCoordinates }) {
   const [commune, setCommune] = useState("");
   const [isLoaded, setIsLoaded] = useState(false);
   const [searchInput, setSearchInput] = useState("");
+  const [count, setCount] = useState(0);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -77,13 +78,16 @@ function Searchbar({ addCodeInsee, reset, addCoordinates }) {
                 onChange={handleSearch}
                 value={searchInput}
               />
+              {count >= 5 && <p>Maximum 5 communes</p>}
               <button
                 type="button"
                 onClick={() => {
                   const [communeName, codePostal] = searchInput.split(" - ");
                   onSearchCodePostal(communeName, codePostal);
                   setSearchInput("");
+                  setCount(count + 1);
                 }}
+                disabled={count >= 5}
               >
                 Ajouter
               </button>
@@ -91,6 +95,7 @@ function Searchbar({ addCodeInsee, reset, addCoordinates }) {
                 type="button"
                 onClick={() => {
                   reset("");
+                  setCount(0);
                 }}
               >
                 Reset

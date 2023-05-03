@@ -57,6 +57,7 @@ function Home() {
           codeInseeAdd={codeInseeAdd}
           communeSelectedAdd={communeSelectedAdd}
           setCityDataSearch={setCityDataSearch}
+          cityDataAdd={cityDataAdd}
         />
 
         {codeInseeAdd.length > 0 && (

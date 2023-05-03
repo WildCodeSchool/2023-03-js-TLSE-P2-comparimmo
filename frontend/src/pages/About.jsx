@@ -4,13 +4,13 @@ import "./About.scss";
 // eslint-disable-next-line import/no-unresolved
 import minilogo from "@assets/img/minilogo.jpg";
 // eslint-disable-next-line import/no-unresolved
-import cedric from "@assets/img/cedric.jpg";
+import cedric from "../../public/image/cedric.jpg";
 // eslint-disable-next-line import/no-unresolved
-import mathieu from "@assets/img/mathieu.jpg";
+import mathieu from "../../public/image/matthieu.jpg";
 // eslint-disable-next-line import/no-unresolved
-import antoine from "@assets/img/antoine.jpg";
+import antoine from "../../public/image/antoine.jpg";
 // eslint-disable-next-line import/no-unresolved
-import hugo from "@assets/img/hugo.jpg";
+import hugo from "../../public/image/hugo.jpg";
 
 function About() {
   return (

@@ -7,6 +7,7 @@ import "../assets/styles/index.scss";
 import "./Home.scss";
 import FilterButton from "../components/FilterButton/FilterButton";
 import Searchbar from "../components/Searchbar/Searchbar";
+import ArrayDataCities from "../components/arrayDataCities/ArrayDataCities";
 
 function Home() {
   const [propertyType, setPropertyType] = useState([21, 111, 121]);
@@ -43,6 +44,7 @@ function Home() {
           </div>
         )}
       </div>
+      <ArrayDataCities />
       <Map propertyType={propertyType} />
       <div className="filterButtonsPosition">
         <FilterButton

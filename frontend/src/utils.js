@@ -95,3 +95,46 @@ const cities = [
 ];
 
 export default cities;
+
+export const topSixToTenCities = [
+  {
+    id: 1,
+    cityName: "Nantes",
+    insee: "44109",
+    housePriceM2: 0,
+    aptPriceM2: 0,
+    population: 0,
+  },
+  {
+    id: 2,
+    cityName: "Montpellier",
+    insee: "34172",
+    housePriceM2: 0,
+    aptPriceM2: 0,
+    population: 0,
+  },
+  {
+    id: 3,
+    cityName: "Bordeaux",
+    insee: "33063",
+    housePriceM2: 0,
+    aptPriceM2: 0,
+    population: 0,
+  },
+  {
+    id: 4,
+    cityName: "Lille",
+    insee: "59350",
+    housePriceM2: 0,
+    aptPriceM2: 0,
+    population: 0,
+  },
+  {
+    id: 5,
+    cityName: "Rennes",
+    insee: "35238",
+    housePriceM2: 0,
+    aptPriceM2: 0,
+    population: 0,
+  },
+];

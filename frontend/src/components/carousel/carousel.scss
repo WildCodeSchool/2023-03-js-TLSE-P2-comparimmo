@@ -21,6 +21,11 @@
   margin-top: 15px;
 }
 
+.logoCarousel {
+  object-fit: contain;
+  height: 8vh;
+}
+
 .cityList {
   display: flex;
   flex-direction: row;
@@ -40,7 +45,6 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  height: 100%;
 }
 
 .dataCarousel {
@@ -60,15 +64,34 @@
 @media screen and (min-width: 768px) {
   .carousel {
     height: 100%;
-    width: 40vw;
+    width: 25vw;
   }
 
   .carouselContainer {
-    min-height: 80vh;
     height: 100%;
     background-color: var(--light-grey);
-    width: 40vw;
+    width: 25vw;
     max-width: 500px;
+  }
+
+  .splide__track {
+    height: 100%;
+  }
+  .splide__slide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .logoCarousel {
+    object-fit: contain;
+    height: 10vh;
+  }
+
+  .dataCarousel {
+    font-size: 2.5vh;
+  }
+  .cityCarousel {
+    font-size: 4vh;
   }
 
   .cityList {

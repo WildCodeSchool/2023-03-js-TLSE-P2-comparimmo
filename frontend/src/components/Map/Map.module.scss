@@ -1,13 +1,18 @@
 .map {
-  height: 80vh;
+  height: 100%;
   width: 100vw;
   display: flex;
   justify-content: flex-end;
 }
 
+.leaflet-container {
+  height: 100%;
+}
+
 .mapContent {
   height: 100%;
-  width: 100%;
+  width: 100vw;
+  overflow: hidden;
 }
 
 form {
@@ -20,5 +25,8 @@ form {
 @media screen and (min-width: 769px) {
   .map {
     width: 100%;
+  }
+  .mapContent {
+    width: 40vw;
   }
 }

@@ -8,6 +8,7 @@ import "./Home.scss";
 import FilterButton from "../components/FilterButton/FilterButton";
 import Searchbar from "../components/Searchbar/Searchbar";
 import ArrayDataCities from "../components/arrayDataCities/ArrayDataCities";
+import ShortIntroduction from "../components/shortIntroduction/ShortIntroduction";
 
 function Home() {
   const [propertyType, setPropertyType] = useState([21, 111, 121]);
@@ -17,6 +18,9 @@ function Home() {
   return (
     <div className="homeContent">
       <Carousel />
+      <ShortIntroduction />
+      <ArrayDataCities />
+      <Map propertyType={propertyType} />
       <div className="SearchBar">
         <Searchbar
           setCodeInsee={setCodeInsee}

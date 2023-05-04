@@ -21,7 +21,6 @@ function Home() {
 
   return (
     <div className="homeContent">
-      <Carousel />
       <ShortIntroduction />
       <div className="SearchBar">
         <Searchbar
@@ -29,7 +28,10 @@ function Home() {
           setCoordinates={setCoordinates}
         />
       </div>
-      <ArrayDataCities codeInsee={codeInsee} />
+      <Carousel />
+      <div className="arrayDefault">
+        <ArrayDataCities codeInsee={codeInsee} />
+      </div>
       <Map
         propertyType={propertyType}
         codeInsee={codeInsee}

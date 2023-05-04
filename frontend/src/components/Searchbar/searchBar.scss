@@ -1,0 +1,44 @@
+.titleSearch {
+  margin-bottom: 30px;
+  text-align: center;
+  letter-spacing: 1px;
+  font-size: 1.5rem;
+}
+
+.search-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 22px;
+}
+.searchBar {
+  height: 40px;
+  width: 300px;
+  border-radius: 10px;
+  border-color: 2px var(--main-blue);
+}
+.allSearchButton {
+  display: flex;
+  justify-content: center;
+  margin-top: 7px;
+  gap: 20px;
+}
+
+.searchButton {
+  height: auto;
+  width: 80px;
+  border-radius: 10px;
+  background-color: var(--main-blue);
+  color: var(--white);
+  padding: 5px;
+  border: 0;
+  outline: 0;
+}
+
+.dropdown {
+  font-size: 14px;
+  max-height: 100px;
+  overflow-y: scroll;
+  margin: 0px 2rem;
+  line-height: 1.5em;
+}

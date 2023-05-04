@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
+import "./searchBar.scss";
 
 function Searchbar({ setCodeInsee, setCoordinates }) {
   const [commune, setCommune] = useState("");
@@ -81,38 +82,55 @@ function Searchbar({ setCodeInsee, setCoordinates }) {
 
   return (
     <div>
+      <h2 className="titleSearch">VOTRE RECHERCHE</h2>
       {isLoaded ? (
         <div>
           <div className="search-container">
             <div className="search-inner">
               <input
+                className="searchBar"
                 type="text"
-                placeholder="Commune / Code Postal"
+                placeholder="Commune OU code postal"
                 onChange={handleSearch}
                 value={searchInput}
-              />
+              />{" "}
+              <br />
               {count >= 5 && <p>Maximum 5 communes</p>}
-              <button
-                type="button"
-                onClick={() => {
-                  const [communeName, codePostal] = searchInput.split(" - ");
-                  onSearchCodePostal(communeName, codePostal);
-                  setSearchInput("");
-                  setCount(count + 1);
-                }}
-                disabled={count >= 5}
-              >
-                Ajouter
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  handleReset("");
-                  setCount(0);
-                }}
-              >
-                Reset
-              </button>
+              <div className="allSearchButton">
+                <button
+                  className="searchButton"
+                  type="button"
+                  onClick={() => {
+                    const [communeName, codePostal] = searchInput.split(" - ");
+                    onSearchCodePostal(communeName, codePostal);
+                    setSearchInput("");
+                    setCount(count + 1);
+                  }}
+                  disabled={count >= 5}
+                >
+                  Ajouter
+                </button>
+                <button
+                  className="searchButton"
+                  type="button"
+                  onClick={() => {
+                    handleReset("");
+                    setCount(0);
+                  }}
+                >
+                  Recharger
+                </button>
+                <button
+                  className="searchButton"
+                  type="button"
+                  onClick={() => {
+                    handleReset("");
+                    setCount(0);
+                  }}
+                >
+                  Rechercher
+                </button>
+              </div>
             </div>
             <div className="dropdown">
               {/* 

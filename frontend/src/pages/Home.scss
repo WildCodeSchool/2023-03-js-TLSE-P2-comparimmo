@@ -1,14 +1,27 @@
 .homeContent {
+  height: calc(100vh - 105px);
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+}
+.arrayDefault {
+  display: none;
+}
+.filterButtonsPosition {
+  display: none;
+  gap: 5px;
 }
 
 @media screen and (min-width: 769px) {
   .homeContent {
     flex-direction: row;
   }
-}
-.filterButtonsPosition {
-  display: flex;
-  gap: 5px;
+
+  .arrayDefault {
+    display: flex;
+  }
+  .filterButtonsPosition {
+    display: flex;
+    gap: 5px;
+  }
 }

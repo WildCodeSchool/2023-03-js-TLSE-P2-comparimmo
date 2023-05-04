@@ -16,13 +16,7 @@ export default function Map({ propertyType }) {
   const [landArea, setlandArea] = useState([]);
 
   /* change code insee button */
-  const handleCodeInseeChange = (event) => {
-    setCodeInsee(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-  };
+  console.info(setCodeInsee);
   let filters = "";
   if (!propertyType.length) {
     filters = "21%2C111%2C121";
@@ -70,17 +64,6 @@ export default function Map({ propertyType }) {
   }, [codeInsee, propertyType]);
   return (
     <div className={`${styles.mapContent}`}>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Code INSEE :
-          <input
-            type="text"
-            value={codeInsee}
-            onChange={handleCodeInseeChange}
-          />
-        </label>
-        <button type="submit">Change</button>
-      </form>
       {/*  map settings */}
       <MapContainer
         className={`${styles.map}`}

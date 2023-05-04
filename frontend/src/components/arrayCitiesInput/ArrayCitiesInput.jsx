@@ -4,7 +4,7 @@ import axios from "axios";
 import "./arrayCitiesInput.scss";
 
 // create an array with data of 5 cities
-function ArrayCitiesInput({ cityDataSearch, setInseeZoomCity, cityDataAdd }) {
+function ArrayCitiesInput({ cityDataSearch, cityDataAdd }) {
   // This function fetch the DVF API with the code insee (arrayDataFiveCitiesGeoApi.code). Return the mean price of house for each city
   let propertyValue = 0;
   let builtArea = 0;
@@ -104,7 +104,7 @@ function ArrayCitiesInput({ cityDataSearch, setInseeZoomCity, cityDataAdd }) {
               </tr>
               {arrayOfCityObject.map((el) => {
                 return (
-                  <tr onClick={() => setInseeZoomCity(el.insee[0])}>
+                  <tr>
                     <th scope="row">{el.cityName}</th>
                     {!el.housePriceM2 ? (
                       <td>Pas de vente</td>
@@ -145,7 +145,6 @@ ArrayCitiesInput.propTypes = {
       population: PropTypes.number,
     })
   ),
-  setInseeZoomCity: PropTypes.func,
   cityDataAdd: PropTypes.arrayOf(
     PropTypes.shape({
       cityname: PropTypes.string,
@@ -162,6 +161,5 @@ ArrayCitiesInput.propTypes = {
 
 ArrayCitiesInput.defaultProps = {
   cityDataSearch: [],
-  setInseeZoomCity: () => {},
   cityDataAdd: [],
 };

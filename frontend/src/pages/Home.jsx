@@ -21,7 +21,6 @@ function Home() {
   const [communeSelectedAdd, setCommuneSelectedAdd] = useState([]);
   const [cityDataAdd, setCityDataAdd] = useState([]);
   const [cityDataSearch, setCityDataSearch] = useState([]);
-  const [inseeZoomCity, setInseeZoomCity] = useState("");
 
   const handleRemoveCodeInseeAdd = (index) => {
     const newCommuneSelectedAdd = [...communeSelectedAdd];
@@ -71,14 +70,9 @@ function Home() {
       <ArrayDataCities />
       <ArrayCitiesInput
         cityDataSearch={cityDataSearch}
-        setInseeZoomCity={setInseeZoomCity}
         cityDataAdd={cityDataAdd}
       />
-      <Map
-        propertyType={propertyType}
-        cityDataSearch={cityDataSearch}
-        inseeZoomCity={inseeZoomCity}
-      />
+      <Map propertyType={propertyType} cityDataSearch={cityDataSearch} />
       <div className="filterButtonsPosition">
         <FilterButton
           text="Appartement"

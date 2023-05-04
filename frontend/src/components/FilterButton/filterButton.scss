@@ -2,14 +2,21 @@
   border-radius: 5px;
   border: 0.5px solid;
 }
+.filterButtonsPosition {
+  display: flex;
+  justify-content: center;
+  margin: 8px;
+}
 .buttonSelected {
   background-color: var(--orange);
   color: var(--main-blue);
+  margin: 0px 15px;
 }
 
 .buttonNotSelected {
   background-color: var(--light-grey);
   color: var(--main-blue);
+  margin: 0px 15px;
 }
 
 @media screen and (min-width: 768px) {

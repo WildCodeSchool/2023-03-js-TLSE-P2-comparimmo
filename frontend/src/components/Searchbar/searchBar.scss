@@ -1,5 +1,6 @@
 .titleSearch {
-  margin-bottom: 30px;
+  margin-top: 10px;
+  margin-bottom: 12px;
   text-align: center;
   letter-spacing: 1px;
   font-size: 1.5rem;
@@ -17,7 +18,7 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 22px;
-  height: 200px;
+  height: auto;
 }
 .allSearchButton {
   display: flex;
@@ -44,4 +45,10 @@
   overflow-y: scroll;
   margin: 0.5rem 1rem;
   line-height: 1.5em;
+}
+.alertMaxCities {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--orange);
 }

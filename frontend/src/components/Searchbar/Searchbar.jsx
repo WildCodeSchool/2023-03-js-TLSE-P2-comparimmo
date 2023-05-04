@@ -18,6 +18,7 @@ function Searchbar({
   const [isLoaded, setIsLoaded] = useState(false);
   const [searchInputValue, setSearchInputValue] = useState("");
   const [valueInputOnClick, setValueInputOnClick] = useState("");
+  // const [deleteCarousel, setDeleteCarousel] = useState(false);
 
   const handleAddCodeInseeAdd = (code) => {
     setCodeInseeAdd((prevCodeInseeAdd) => [...prevCodeInseeAdd, code]); // Add Insee Code to the table
@@ -33,6 +34,8 @@ function Searchbar({
   const handleAddCityDataAdd = (code) => {
     setCityDataAdd((prevCityDataAdd) => [...prevCityDataAdd, code]); // Add commune name to the table
   };
+
+  // function RemoveCarousel() {}
 
   const handleReset = () => {
     setCodeInseeAdd([]);
@@ -130,19 +133,20 @@ function Searchbar({
             onChange={handleSearch}
             value={searchInputValue}
           />
-          {countSearchbar >= 5 && <p>Maximum 5 communes</p>}
+          {countSearchbar >= 5 && (
+            <p className="alertMaxCities">Maximum 5 communes</p>
+          )}
           <div className="allSearchButton">
             <button
               className="searchButton"
               type="button"
               onClick={() => {
-                setCodeInseeSearch(codeInseeAdd);
-                setCityDataSearch(cityDataAdd);
+                handleReset("");
+                setCountSearchbar(0);
               }}
             >
-              Rechercher
+              Réinitialiser
             </button>
-
             <button
               className="searchButton"
               type="button"
@@ -164,11 +168,11 @@ function Searchbar({
               className="searchButton"
               type="button"
               onClick={() => {
-                handleReset("");
-                setCountSearchbar(0);
+                setCodeInseeSearch(codeInseeAdd);
+                setCityDataSearch(cityDataAdd);
               }}
             >
-              Réinitialiser
+              Rechercher
             </button>
 
             <div />

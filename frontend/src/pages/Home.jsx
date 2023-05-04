@@ -44,47 +44,50 @@ function Home() {
 
   return (
     <div className="homeContent">
-      <section className="sectionIntroSearchArray">
-        <ShortIntroduction />
-        <div className="SearchBar">
-          <Searchbar
-            setCodeInseeAdd={setCodeInseeAdd}
-            setCountSearchbar={setCountSearchbar}
-            countSearchbar={countSearchbar}
-            setCommuneSelectedAdd={setCommuneSelectedAdd}
-            setCityDataAdd={setCityDataAdd}
-            setCodeInseeSearch={setCodeInseeSearch}
-            codeInseeAdd={codeInseeAdd}
-            communeSelectedAdd={communeSelectedAdd}
-            setCityDataSearch={setCityDataSearch}
-            cityDataAdd={cityDataAdd}
-          />
-          {codeInseeAdd.length > 0 && (
-            <div>
-              Communes sélectionnées :
-              <ul>
-                {communeSelectedAdd.map((name, index) => (
-                  <li key={name}>
-                    {name}
-                    <button
-                      type="button"
-                      onClick={() => handleRemoveCodeInseeAdd(index)}
-                    >
-                      X
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
-        <div className="arrayDefault">
-          <ArrayDataCities codeInsee={codeInseeSearch} />
-        </div>
-      </section>
-      <section className="carouselSection">
-        <Carousel />
-      </section>
+      <div className="reverseSection">
+        <section className="sectionIntroSearchArray">
+          <ShortIntroduction />
+          <div className="searchBarButtonArrayResults">
+            <Searchbar
+              setCodeInseeAdd={setCodeInseeAdd}
+              setCountSearchbar={setCountSearchbar}
+              countSearchbar={countSearchbar}
+              setCommuneSelectedAdd={setCommuneSelectedAdd}
+              setCityDataAdd={setCityDataAdd}
+              setCodeInseeSearch={setCodeInseeSearch}
+              codeInseeAdd={codeInseeAdd}
+              communeSelectedAdd={communeSelectedAdd}
+              setCityDataSearch={setCityDataSearch}
+              cityDataAdd={cityDataAdd}
+            />
+            {codeInseeAdd.length > 0 && (
+              <div className="selectedCities">
+                Communes sélectionnées :
+                <ul className="listCitiesSelected">
+                  {communeSelectedAdd.map((name, index) => (
+                    <li key={name}>
+                      {name}
+                      <button
+                        className="buttonSelectionned"
+                        type="button"
+                        onClick={() => handleRemoveCodeInseeAdd(index)}
+                      >
+                        X
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+          <div className="arrayDefault">
+            <ArrayDataCities codeInsee={codeInseeSearch} />
+          </div>
+        </section>
+        <section className="carouselSection">
+          <Carousel />
+        </section>
+      </div>
       <section className="sectionMap">
         <div className="filterButtonsPosition">
           <FilterButton

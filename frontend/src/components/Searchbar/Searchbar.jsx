@@ -18,7 +18,6 @@ function Searchbar({
   const [isLoaded, setIsLoaded] = useState(false);
   const [searchInputValue, setSearchInputValue] = useState("");
   const [valueInputOnClick, setValueInputOnClick] = useState("");
-  // const [deleteCarousel, setDeleteCarousel] = useState(false);
 
   const handleAddCodeInseeAdd = (code) => {
     setCodeInseeAdd((prevCodeInseeAdd) => [...prevCodeInseeAdd, code]); // Add Insee Code to the table
@@ -34,8 +33,6 @@ function Searchbar({
   const handleAddCityDataAdd = (code) => {
     setCityDataAdd((prevCityDataAdd) => [...prevCityDataAdd, code]); // Add commune name to the table
   };
-
-  // function RemoveCarousel() {}
 
   const handleReset = () => {
     setCodeInseeAdd([]);

@@ -10,6 +10,7 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 22px;
+  height: 200px;
 }
 .searchBar {
   height: 40px;
@@ -38,7 +39,9 @@
 .dropdown {
   font-size: 14px;
   max-height: 100px;
+  width: 200px;
   overflow-y: scroll;
-  margin: 0px 2rem;
+  margin: 0.5rem 1rem;
   line-height: 1.5em;
+  
 }

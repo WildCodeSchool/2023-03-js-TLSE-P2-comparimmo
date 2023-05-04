@@ -44,7 +44,6 @@ function Home() {
 
   return (
     <div className="homeContent">
-      <Carousel />
       <ShortIntroduction />
       <div className="SearchBar">
         <Searchbar
@@ -59,6 +58,7 @@ function Home() {
           setCityDataSearch={setCityDataSearch}
           cityDataAdd={cityDataAdd}
         />
+        {/* </div> */}
 
         {codeInseeAdd.length > 0 && (
           <div>
@@ -79,6 +79,7 @@ function Home() {
           </div>
         )}
       </div>
+      <Carousel />
       <div className="arrayDefault">
         <ArrayDataCities codeInsee={codeInseeSearch} />
       </div>

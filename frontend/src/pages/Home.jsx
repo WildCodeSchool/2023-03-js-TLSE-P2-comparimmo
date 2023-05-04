@@ -44,69 +44,73 @@ function Home() {
 
   return (
     <div className="homeContent">
-      <ShortIntroduction />
-      <div className="SearchBar">
-        <Searchbar
-          setCodeInseeAdd={setCodeInseeAdd}
-          setCountSearchbar={setCountSearchbar}
-          countSearchbar={countSearchbar}
-          setCommuneSelectedAdd={setCommuneSelectedAdd}
-          setCityDataAdd={setCityDataAdd}
-          setCodeInseeSearch={setCodeInseeSearch}
-          codeInseeAdd={codeInseeAdd}
-          communeSelectedAdd={communeSelectedAdd}
-          setCityDataSearch={setCityDataSearch}
-          cityDataAdd={cityDataAdd}
-        />
-        {/* </div> */}
-
-        {codeInseeAdd.length > 0 && (
-          <div>
-            Communes sélectionnées :
-            <ul>
-              {communeSelectedAdd.map((name, index) => (
-                <li key={name}>
-                  {name}
-                  <button
-                    type="button"
-                    onClick={() => handleRemoveCodeInseeAdd(index)}
-                  >
-                    X
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </div>
-      <Carousel />
-      <div className="arrayDefault">
-        <ArrayDataCities codeInsee={codeInseeSearch} />
-      </div>
-      <Map propertyType={propertyType} codeInsee={codeInseeSearch} />
-      <div className="filterButtonsPosition">
-        <FilterButton
-          text="Appartement"
-          codeBien={121}
-          selected
-          propertyType={propertyType}
-          setPropertyType={setPropertyType}
-        />
-        <FilterButton
-          text="Maison"
-          codeBien={111}
-          selected
-          propertyType={propertyType}
-          setPropertyType={setPropertyType}
-        />
-        <FilterButton
-          text="Terrain à construire"
-          codeBien={21}
-          selected
-          propertyType={propertyType}
-          setPropertyType={setPropertyType}
-        />
-      </div>
+      <section className="sectionIntroSearchArray">
+        <ShortIntroduction />
+        <div className="SearchBar">
+          <Searchbar
+            setCodeInseeAdd={setCodeInseeAdd}
+            setCountSearchbar={setCountSearchbar}
+            countSearchbar={countSearchbar}
+            setCommuneSelectedAdd={setCommuneSelectedAdd}
+            setCityDataAdd={setCityDataAdd}
+            setCodeInseeSearch={setCodeInseeSearch}
+            codeInseeAdd={codeInseeAdd}
+            communeSelectedAdd={communeSelectedAdd}
+            setCityDataSearch={setCityDataSearch}
+            cityDataAdd={cityDataAdd}
+          />
+          {codeInseeAdd.length > 0 && (
+            <div>
+              Communes sélectionnées :
+              <ul>
+                {communeSelectedAdd.map((name, index) => (
+                  <li key={name}>
+                    {name}
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveCodeInseeAdd(index)}
+                    >
+                      X
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+        <div className="arrayDefault">
+          <ArrayDataCities codeInsee={codeInseeSearch} />
+        </div>
+      </section>
+      <section className="carouselSection">
+        <Carousel />
+      </section>
+      <section className="sectionMap">
+        <div className="filterButtonsPosition">
+          <FilterButton
+            text="Appartement"
+            codeBien={121}
+            selected
+            propertyType={propertyType}
+            setPropertyType={setPropertyType}
+          />
+          <FilterButton
+            text="Maison"
+            codeBien={111}
+            selected
+            propertyType={propertyType}
+            setPropertyType={setPropertyType}
+          />
+          <FilterButton
+            text="Terrain à construire"
+            codeBien={21}
+            selected
+            propertyType={propertyType}
+            setPropertyType={setPropertyType}
+          />
+        </div>
+        <Map propertyType={propertyType} codeInsee={codeInseeSearch} />
+      </section>
     </div>
   );
 }

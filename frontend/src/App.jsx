@@ -12,16 +12,14 @@ import "./App.css";
 function App() {
   return (
     <Router>
+      <Navbar />
       <div>
-        <Navbar />
-        <div>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-          </Routes>
-        </div>
-        <Footer />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
       </div>
+      <Footer />
     </Router>
   );
 }

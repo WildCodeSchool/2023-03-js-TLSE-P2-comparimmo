@@ -135,6 +135,7 @@ function Searchbar({
                   setCodeInseeSearch(codeInseeAdd);
                   setCityDataSearch(cityDataAdd);
                 }}
+                disabled={countSearchbar === 0}
               >
                 Rechercher
               </button>
@@ -147,6 +148,7 @@ function Searchbar({
                   onSearchCodePostal(communeName, codePostal);
                   setSearchInputValue("");
                   setCountSearchbar(countSearchbar + 1);
+                  setCityDataSearch([]);
                 }}
                 disabled={
                   countSearchbar >= 5 ||
@@ -234,18 +236,29 @@ Allows you to display a pre-searche */}
 Searchbar.propTypes = {
   setCodeInseeAdd: PropTypes.func,
   setCountSearchbar: PropTypes.func,
-  countSearchbar: PropTypes.node,
+  countSearchbar: PropTypes.number,
   setCommuneSelectedAdd: PropTypes.func,
   setCityDataAdd: PropTypes.func,
   setCodeInseeSearch: PropTypes.func,
-  codeInseeAdd: PropTypes.node,
+  codeInseeAdd: PropTypes.arrayOf(PropTypes.string),
   setCityDataSearch: PropTypes.func,
-  cityDataAdd: PropTypes.node,
+  cityDataAdd: PropTypes.arrayOf(
+    PropTypes.shape({
+      cityname: PropTypes.string,
+      aptPriceM2: PropTypes.number,
+      coordinates: PropTypes.arrayOf(
+        PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))
+      ),
+      housePriceM2: PropTypes.number,
+      insee: PropTypes.arrayOf(PropTypes.string),
+      population: PropTypes.number,
+    })
+  ),
 };
 Searchbar.defaultProps = {
   setCodeInseeAdd: () => {},
   setCountSearchbar: () => {},
-  countSearchbar: [],
+  countSearchbar: 0,
   setCommuneSelectedAdd: () => {},
   setCityDataAdd: () => {},
   setCodeInseeSearch: () => {},

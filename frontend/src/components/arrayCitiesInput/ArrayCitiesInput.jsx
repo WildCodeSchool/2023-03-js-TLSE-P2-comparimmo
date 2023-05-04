@@ -4,7 +4,7 @@ import axios from "axios";
 import "./arrayCitiesInput.scss";
 
 // create an array with data of 5 cities
-function ArrayCitiesInput({ cityDataSearch, cityDataAdd }) {
+function ArrayCitiesInput({ cityDataSearch }) {
   // This function fetch the DVF API with the code insee (arrayDataFiveCitiesGeoApi.code). Return the mean price of house for each city
   let propertyValue = 0;
   let builtArea = 0;
@@ -91,42 +91,37 @@ function ArrayCitiesInput({ cityDataSearch, cityDataAdd }) {
 
   return (
     <div>
-      {cityDataAdd.length > 0 && (
-        <div>
-          <table>
-            <caption>Valeurs recherchées</caption>
-            <tbody>
-              <tr>
-                <th scope="col">Communes</th>
-                <th scope="col">Prix au m² (maison)</th>
-                <th scope="col">Prix au m² (appt)</th>
-                <th scope="col">Population</th>
-              </tr>
-              {arrayOfCityObject.map((el) => {
-                return (
-                  <tr>
-                    <th scope="row">{el.cityName}</th>
-                    {!el.housePriceM2 ? (
-                      <td>Pas de vente</td>
-                    ) : (
-                      <td>{el.housePriceM2.toLocaleString("fr-FR")} €</td>
-                    )}
-                    {!el.aptPriceM2 ? (
-                      <td>Pas de vente</td>
-                    ) : (
-                      <td>{el.aptPriceM2.toLocaleString("fr-FR")} €</td>
-                    )}
-                    <td>{el.population.toLocaleString("fr-FR")} hab</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-          {cityDataSearch.length === 0 && (
-            <p>Appuyer sur le bouton rechercher afin d'obtenir les valeurs</p>
-          )}
-        </div>
-      )}
+      <div>
+        <table>
+          <caption>Valeurs recherchées</caption>
+          <tbody>
+            <tr>
+              <th scope="col">Communes</th>
+              <th scope="col">Prix au m² (maison)</th>
+              <th scope="col">Prix au m² (appt)</th>
+              <th scope="col">Population</th>
+            </tr>
+            {arrayOfCityObject.map((el) => {
+              return (
+                <tr>
+                  <th scope="row">{el.cityName}</th>
+                  {!el.housePriceM2 ? (
+                    <td>Pas de vente</td>
+                  ) : (
+                    <td>{el.housePriceM2.toLocaleString("fr-FR")} €</td>
+                  )}
+                  {!el.aptPriceM2 ? (
+                    <td>Pas de vente</td>
+                  ) : (
+                    <td>{el.aptPriceM2.toLocaleString("fr-FR")} €</td>
+                  )}
+                  <td>{el.population.toLocaleString("fr-FR")} hab</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
@@ -145,21 +140,8 @@ ArrayCitiesInput.propTypes = {
       population: PropTypes.number,
     })
   ),
-  cityDataAdd: PropTypes.arrayOf(
-    PropTypes.shape({
-      cityname: PropTypes.string,
-      aptPriceM2: PropTypes.number,
-      coordinates: PropTypes.arrayOf(
-        PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))
-      ),
-      housePriceM2: PropTypes.number,
-      insee: PropTypes.arrayOf(PropTypes.string),
-      population: PropTypes.number,
-    })
-  ),
 };
 
 ArrayCitiesInput.defaultProps = {
   cityDataSearch: [],
-  cityDataAdd: [],
 };

@@ -143,7 +143,7 @@ export default function Carousel() {
             <SplideSlide
               className="carouselSplide"
               key={city.id}
-              data-splide-interval="3000"
+              data-splide-interval="4000"
             >
               <h2 className="cityCarousel">{city.cityName}</h2>
               <div className="cityList">

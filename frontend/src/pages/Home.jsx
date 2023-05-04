@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // eslint-disable-next-line import/extensions, import/no-unresolved
 import Carousel from "../components/carousel/Carousel";
 // eslint-disable-next-line import/extensions, import/no-unresolved
@@ -14,6 +14,8 @@ import ArrayDataCities from "../components/arrayDataCities/ArrayDataCities";
 import ArrayCitiesInput from "../components/arrayCitiesInput/ArrayCitiesInput";
 // eslint-disable-next-line import/no-unresolved
 import ShortIntroduction from "../components/shortIntroduction/ShortIntroduction";
+// eslint-disable-next-line import/no-unresolved
+import ToggleButton from "../components/togglebutton/togglebutton";
 
 function Home() {
   const [propertyType, setPropertyType] = useState([21, 111, 121]);
@@ -21,6 +23,22 @@ function Home() {
   const [communeSelectedAdd, setCommuneSelectedAdd] = useState([]);
   const [cityDataAdd, setCityDataAdd] = useState([]);
   const [cityDataSearch, setCityDataSearch] = useState([]);
+  const [showCarte, setShowCarte] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Utilisation de useEffect pour détecter si l'écran est inférieur à 769px
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth < 769) {
+        setIsMobile(true);
+      } else {
+        setIsMobile(false);
+      }
+    }
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleRemoveCodeInseeAdd = (index) => {
     const newCommuneSelectedAdd = [...communeSelectedAdd];
@@ -38,6 +56,7 @@ function Home() {
       <div className="reverseSection">
         <section className="sectionIntroSearchArray">
           <ShortIntroduction />
+
           <div className="searchBarButtonArrayResults">
             <Searchbar
               setCountSearchbar={setCountSearchbar}
@@ -68,19 +87,34 @@ function Home() {
               </div>
             )}
           </div>
-          <div className="arrayDefault">
-            <ArrayDataCities />
-          </div>
-          <div>
-            <ArrayCitiesInput
-              cityDataSearch={cityDataSearch}
-              cityDataAdd={cityDataAdd}
-            />
-          </div>
+          {cityDataAdd.length === 0 && (
+            <div className="arrayDefault">
+              <ArrayDataCities />
+            </div>
+          )}
+          {cityDataSearch.length > 0 && isMobile && (
+            <ToggleButton setShowCarte={setShowCarte} showCarte={showCarte} />
+          )}
+
+          {cityDataSearch.length > 0 &&
+            isMobile &&
+            (showCarte ? (
+              <ArrayCitiesInput
+                cityDataSearch={cityDataSearch}
+                cityDataAdd={cityDataAdd}
+              />
+            ) : (
+              <Map
+                propertyType={propertyType}
+                cityDataSearch={cityDataSearch}
+              />
+            ))}
         </section>
-        <section className="carouselSection">
-          <Carousel />
-        </section>
+        {cityDataAdd.length === 0 && (
+          <section className="carouselSection">
+            <Carousel />
+          </section>
+        )}
       </div>
       <section className="sectionMap">
         <div className="filterButtonsPosition">
@@ -106,7 +140,9 @@ function Home() {
             setPropertyType={setPropertyType}
           />
         </div>
-        <Map propertyType={propertyType} cityDataSearch={cityDataSearch} />
+        {!isMobile && (
+          <Map propertyType={propertyType} cityDataSearch={cityDataSearch} />
+        )}
       </section>
     </div>
   );

@@ -6,7 +6,7 @@ import axios from "axios";
 import styles from "./Map.module.scss";
 import { color1, color2, color3, color4, color5 } from "../../utils";
 
-export default function Map({ propertyType, cityData }) {
+export default function Map({ propertyType, cityDataSearch }) {
   const [polygonGps, setPolygonGps] = useState([]);
   const [typeOfEstate, setTypeOfEstate] = useState([]);
   const [estateValue, setEstateValue] = useState([]);
@@ -19,26 +19,11 @@ export default function Map({ propertyType, cityData }) {
   const [arrayOfInseeAddedDatas, setArrayOfInseeAddedDatas] = useState([]);
   let shapeFillColor = "";
   let shapeStrokeColor = "";
+  let inseeToAdd = ["31555"];
 
-  const inseeToAdd = cityData.map((el) => el.insee);
-
-  // const getCenterOfCity = (inseeToZoom) => {
-  //   const geomForCityToZoom = cityData.filter((el) => el.insee === inseeToZoom);
-  //   geomForCityToZoom.forEach((a) => a.forEach((b) => b.reverse()));
-  //   const allXValue = [];
-  //   const allYValue = [];
-  //   for (let i = 0; i < geomForCityToZoom.length; i += 1) {
-  //     allXValue.push(geomForCityToZoom[i][0]);
-  //     allYValue.push(geomForCityToZoom[i][1]);
-  //   }
-  //   const minX = Math.min(...allXValue);
-  //   const maxX = Math.max(...allXValue);
-  //   const minY = Math.min(...allYValue);
-  //   const maxY = Math.max(...allYValue);
-  //   const middleX = (maxX + minX) / 2;
-  //   const middleY = (maxY + minY) / 2;
-  //   return [middleX, middleY];
-  // };
+  if (cityDataSearch.length > 0) {
+    inseeToAdd = cityDataSearch.map((el) => el.insee[0]);
+  }
 
   let filters = "";
   if (!propertyType.length) {
@@ -67,7 +52,7 @@ export default function Map({ propertyType, cityData }) {
       .catch((error) => {
         console.error(error);
       });
-  }, [propertyType, cityData]);
+  }, [propertyType, cityDataSearch]);
 
   // reverse geographic coordinates //
   useEffect(() => {
@@ -160,17 +145,13 @@ export default function Map({ propertyType, cityData }) {
     return shapeStrokeColor;
   };
 
-  let colorToUseToFill = "";
-  let colorToUseForStroke = "";
-
   return (
     <div className={`${styles.mapContent}`}>
       {/*  map settings */}
       <MapContainer
         className={`${styles.map}`}
-        // center={() => getCenterOfCity(inseeZoomCity)}
-        center={[43.6, 1.433333]}
-        zoom={12}
+        center={[46.3622, 1.5231]}
+        zoom={6}
         maxZoom={18}
       >
         <TileLayer
@@ -179,8 +160,8 @@ export default function Map({ propertyType, cityData }) {
         />
         {/* display of object content on the map: object position and characteristics */}
         {polygonGps.map((polygon, index) => {
-          colorToUseToFill = handleColorShape(index);
-          colorToUseForStroke = handleColorStroke(index);
+          const colorToUseToFill = handleColorShape(index);
+          const colorToUseForStroke = handleColorStroke(index);
           return (
             <Polygon
               key={idMutations[index]}
@@ -254,11 +235,20 @@ export default function Map({ propertyType, cityData }) {
 
 Map.propTypes = {
   propertyType: PropTypes.arrayOf(PropTypes.number),
-  // inseeZoomCity: PropTypes.string,
-  cityData: PropTypes.arrayOf(PropTypes.shape),
+  cityDataSearch: PropTypes.arrayOf(
+    PropTypes.shape({
+      cityname: PropTypes.string,
+      aptPriceM2: PropTypes.number,
+      coordinates: PropTypes.arrayOf(
+        PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))
+      ),
+      housePriceM2: PropTypes.number,
+      insee: PropTypes.arrayOf(PropTypes.string),
+      population: PropTypes.number,
+    })
+  ),
 };
 Map.defaultProps = {
   propertyType: [],
-  // inseeZoomCity: "",
-  cityData: [],
+  cityDataSearch: [],
 };

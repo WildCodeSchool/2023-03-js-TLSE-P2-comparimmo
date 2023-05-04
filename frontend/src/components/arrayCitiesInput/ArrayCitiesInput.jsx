@@ -4,11 +4,11 @@ import axios from "axios";
 import "./arrayCitiesInput.scss";
 
 // create an array with data of 5 cities
-function ArrayCitiesInput({ cityData, setInseeZoomCity }) {
+function ArrayCitiesInput({ cityDataSearch, setInseeZoomCity }) {
   // This function fetch the DVF API with the code insee (arrayDataFiveCitiesGeoApi.code). Return the mean price of house for each city
   let propertyValue = 0;
   let builtArea = 0;
-  const arrayOfCityObject = cityData;
+  const arrayOfCityObject = cityDataSearch;
 
   const getDataCityDvfApiHouse = (insee) => {
     const [dataCitiesApiDvfHouse, setDataCitiesApiDvfHouse] = useState([]);
@@ -82,44 +82,60 @@ function ArrayCitiesInput({ cityData, setInseeZoomCity }) {
 
   for (let i = 0; i < arrayOfCityObject.length; i += 1) {
     arrayOfCityObject[i].housePriceM2 = getDataCityDvfApiHouse(
-      arrayOfCityObject[i].insee
+      arrayOfCityObject[i].insee[0]
     );
     arrayOfCityObject[i].aptPriceM2 = getDataCityDvfApiApartment(
-      arrayOfCityObject[i].insee
+      arrayOfCityObject[i].insee[0]
     );
   }
 
   return (
-    <table>
-      <caption>Valeurs recherchées</caption>
-      <tbody>
-        <tr>
-          <th scope="col">Communes</th>
-          <th scope="col">Prix au m² (maison)</th>
-          <th scope="col">Prix au m² (appt)</th>
-          <th scope="col">Population</th>
-        </tr>
-        {arrayOfCityObject.map((el) => {
-          return (
-            <tr onClick={() => setInseeZoomCity(el.insee)}>
-              <th scope="row">{el[0].cityName}</th>
-              <td>{el[0].housePriceM2.toLocaleString("fr-FR")} €</td>
-              <td>{el[0].aptPriceM2.toLocaleString("fr-FR")} €</td>
-              <td>{el[0].population.toLocaleString("fr-FR")} hab</td>
+    <div>
+      {arrayOfCityObject.length > 0 && (
+        <table>
+          <caption>Valeurs recherchées</caption>
+          <tbody>
+            <tr>
+              <th scope="col">Communes</th>
+              <th scope="col">Prix au m² (maison)</th>
+              <th scope="col">Prix au m² (appt)</th>
+              <th scope="col">Population</th>
             </tr>
-          );
-        })}
-      </tbody>
-    </table>
+            {arrayOfCityObject.map((el) => {
+              return (
+                <tr onClick={() => setInseeZoomCity(el.insee[0])}>
+                  <th scope="row">{el.cityName}</th>
+                  <td>{el.housePriceM2.toLocaleString("fr-FR")} €</td>
+                  <td>{el.aptPriceM2.toLocaleString("fr-FR")} €</td>
+                  <td>{el.population.toLocaleString("fr-FR")} hab</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      )}
+    </div>
   );
 }
 export default ArrayCitiesInput;
 
 ArrayCitiesInput.propTypes = {
-  cityData: PropTypes.arrayOf(PropTypes.shape),
+  cityDataSearch: PropTypes.arrayOf(
+    PropTypes.shape({
+      cityname: PropTypes.string,
+      aptPriceM2: PropTypes.number,
+      coordinates: PropTypes.arrayOf(
+        PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))
+      ),
+      housePriceM2: PropTypes.number,
+      insee: PropTypes.arrayOf(PropTypes.string),
+      population: PropTypes.number,
+    })
+  ),
   setInseeZoomCity: PropTypes.func,
 };
+
 ArrayCitiesInput.defaultProps = {
-  cityData: [],
+  cityDataSearch: [],
   setInseeZoomCity: () => {},
 };

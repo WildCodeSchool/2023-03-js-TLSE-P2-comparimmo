@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./arrayDataCities.scss";
 import { topSixToTenCities } from "../../utils";
-
 // create an array with data of 5 cities
 function ArrayDataCities() {
   let cityPopulation = 0;
@@ -51,7 +50,9 @@ function ArrayDataCities() {
           console.error(err.message);
         });
     }, []);
+
     let meanPriceHouse = 0;
+
     if (!isLoading) {
       let sumOfPriceHouse = 0;
       let count = 0;

@@ -94,6 +94,12 @@ const cities = [
   },
 ];
 
+export const color1 = "rgba(252, 121, 0, 1)";
+export const color2 = "rgba(252, 184, 13, 1)";
+export const color3 = "rgba(25, 252, 171, 1)";
+export const color4 = "rgba(25, 86, 252, 1)";
+export const color5 = "rgba(252, 59, 13, 1)";
+
 export default cities;
 
 export const topSixToTenCities = [

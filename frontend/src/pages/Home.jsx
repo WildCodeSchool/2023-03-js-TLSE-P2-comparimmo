@@ -11,35 +11,26 @@ import FilterButton from "../components/FilterButton/FilterButton";
 import Searchbar from "../components/Searchbar/Searchbar";
 // eslint-disable-next-line import/no-unresolved
 import ArrayDataCities from "../components/arrayDataCities/ArrayDataCities";
+import ArrayCitiesInput from "../components/arrayCitiesInput/ArrayCitiesInput";
 // eslint-disable-next-line import/no-unresolved
 import ShortIntroduction from "../components/shortIntroduction/ShortIntroduction";
 
 function Home() {
   const [propertyType, setPropertyType] = useState([21, 111, 121]);
-  const [codeInseeAdd, setCodeInseeAdd] = useState([]);
   const [countSearchbar, setCountSearchbar] = useState(0);
-  const [communeSelectedAdd, setCommuneSelectedAdd] = useState("");
-  const [cityDataAdd, setCityDataAdd] = useState("");
-  const [codeInseeSearch, setCodeInseeSearch] = useState([]);
-  const [cityDataSearch, setCityDataSearch] = useState("");
+  const [communeSelectedAdd, setCommuneSelectedAdd] = useState([]);
+  const [cityDataAdd, setCityDataAdd] = useState([]);
+  const [cityDataSearch, setCityDataSearch] = useState([]);
 
   const handleRemoveCodeInseeAdd = (index) => {
-    const newCodeInseeAdd = [...codeInseeAdd];
     const newCommuneSelectedAdd = [...communeSelectedAdd];
     const newCityDataAdd = [...cityDataAdd];
-    const newCodeInseeSearch = [...codeInseeSearch];
-    const newCityDataSearch = [...cityDataSearch];
-    newCodeInseeAdd.splice(index, 1);
     newCommuneSelectedAdd.splice(index, 1);
     newCityDataAdd.splice(index, 1);
-    newCodeInseeSearch.splice(index, 1);
-    newCityDataSearch.splice(index, 1);
-    setCodeInseeAdd(newCodeInseeAdd);
     setCommuneSelectedAdd(newCommuneSelectedAdd);
     setCityDataAdd(newCityDataAdd);
     setCountSearchbar(countSearchbar - 1);
-    setCodeInseeSearch(newCodeInseeSearch);
-    setCityDataSearch(newCityDataSearch);
+    setCityDataSearch([]);
   };
 
   return (
@@ -49,18 +40,15 @@ function Home() {
           <ShortIntroduction />
           <div className="searchBarButtonArrayResults">
             <Searchbar
-              setCodeInseeAdd={setCodeInseeAdd}
               setCountSearchbar={setCountSearchbar}
               countSearchbar={countSearchbar}
               setCommuneSelectedAdd={setCommuneSelectedAdd}
               setCityDataAdd={setCityDataAdd}
-              setCodeInseeSearch={setCodeInseeSearch}
-              codeInseeAdd={codeInseeAdd}
               communeSelectedAdd={communeSelectedAdd}
               setCityDataSearch={setCityDataSearch}
               cityDataAdd={cityDataAdd}
             />
-            {codeInseeAdd.length > 0 && (
+            {cityDataAdd.length > 0 && (
               <div className="selectedCities">
                 Communes sélectionnées :
                 <ul className="listCitiesSelected">
@@ -81,7 +69,13 @@ function Home() {
             )}
           </div>
           <div className="arrayDefault">
-            <ArrayDataCities codeInsee={codeInseeSearch} />
+            <ArrayDataCities />
+          </div>
+          <div>
+            <ArrayCitiesInput
+              cityDataSearch={cityDataSearch}
+              cityDataAdd={cityDataAdd}
+            />
           </div>
         </section>
         <section className="carouselSection">
@@ -112,7 +106,7 @@ function Home() {
             setPropertyType={setPropertyType}
           />
         </div>
-        <Map propertyType={propertyType} codeInsee={codeInseeSearch} />
+        <Map propertyType={propertyType} cityDataSearch={cityDataSearch} />
       </section>
     </div>
   );

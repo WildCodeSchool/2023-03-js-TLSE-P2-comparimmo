@@ -19,7 +19,7 @@ export default function Map({ propertyType, cityDataSearch }) {
   const [arrayOfInseeAddedDatas, setArrayOfInseeAddedDatas] = useState([]);
   let shapeFillColor = "";
   let shapeStrokeColor = "";
-  let inseeToAdd = ["31555"];
+  let inseeToAdd = ["54310"];
 
   if (cityDataSearch.length > 0) {
     inseeToAdd = cityDataSearch.map((el) => el.insee[0]);

@@ -17,28 +17,20 @@ import ShortIntroduction from "../components/shortIntroduction/ShortIntroduction
 
 function Home() {
   const [propertyType, setPropertyType] = useState([21, 111, 121]);
-  const [codeInseeAdd, setCodeInseeAdd] = useState([]);
   const [countSearchbar, setCountSearchbar] = useState(0);
   const [communeSelectedAdd, setCommuneSelectedAdd] = useState([]);
   const [cityDataAdd, setCityDataAdd] = useState([]);
-  const [codeInseeSearch, setCodeInseeSearch] = useState([]);
   const [cityDataSearch, setCityDataSearch] = useState([]);
   const [inseeZoomCity, setInseeZoomCity] = useState("");
 
   const handleRemoveCodeInseeAdd = (index) => {
-    const newCodeInseeAdd = [...codeInseeAdd];
     const newCommuneSelectedAdd = [...communeSelectedAdd];
     const newCityDataAdd = [...cityDataAdd];
-    const newCodeInseeSearch = [...codeInseeSearch];
-    newCodeInseeAdd.splice(index, 1);
     newCommuneSelectedAdd.splice(index, 1);
     newCityDataAdd.splice(index, 1);
-    newCodeInseeSearch.splice(index, 1);
-    setCodeInseeAdd(newCodeInseeAdd);
     setCommuneSelectedAdd(newCommuneSelectedAdd);
     setCityDataAdd(newCityDataAdd);
     setCountSearchbar(countSearchbar - 1);
-    setCodeInseeSearch(newCodeInseeSearch);
     setCityDataSearch([]);
   };
 
@@ -48,19 +40,16 @@ function Home() {
       <ShortIntroduction />
       <div className="SearchBar">
         <Searchbar
-          setCodeInseeAdd={setCodeInseeAdd}
           setCountSearchbar={setCountSearchbar}
           countSearchbar={countSearchbar}
           setCommuneSelectedAdd={setCommuneSelectedAdd}
           setCityDataAdd={setCityDataAdd}
-          setCodeInseeSearch={setCodeInseeSearch}
-          codeInseeAdd={codeInseeAdd}
           communeSelectedAdd={communeSelectedAdd}
           setCityDataSearch={setCityDataSearch}
           cityDataAdd={cityDataAdd}
         />
 
-        {codeInseeAdd.length > 0 && (
+        {cityDataAdd.length > 0 && (
           <div>
             Communes sélectionnées :
             <ul>
@@ -83,6 +72,7 @@ function Home() {
       <ArrayCitiesInput
         cityDataSearch={cityDataSearch}
         setInseeZoomCity={setInseeZoomCity}
+        cityDataAdd={cityDataAdd}
       />
       <Map
         propertyType={propertyType}

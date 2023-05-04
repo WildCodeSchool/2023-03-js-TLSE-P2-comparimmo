@@ -3,13 +3,10 @@ import axios from "axios";
 import PropTypes from "prop-types";
 
 function Searchbar({
-  setCodeInseeAdd,
   setCountSearchbar,
   countSearchbar,
   setCommuneSelectedAdd,
   setCityDataAdd,
-  setCodeInseeSearch,
-  codeInseeAdd,
   setCityDataSearch,
   cityDataAdd,
 }) {
@@ -17,10 +14,6 @@ function Searchbar({
   const [isLoaded, setIsLoaded] = useState(false);
   const [searchInputValue, setSearchInputValue] = useState("");
   const [valueInputOnClick, setValueInputOnClick] = useState("");
-
-  const handleAddCodeInseeAdd = (code) => {
-    setCodeInseeAdd((prevCodeInseeAdd) => [...prevCodeInseeAdd, code]); // Add Insee Code to the table
-  };
 
   const handleAddCommuneSelectedAdd = (code) => {
     setCommuneSelectedAdd((prevCommuneSelectedAdd) => [
@@ -34,10 +27,8 @@ function Searchbar({
   };
 
   const handleReset = () => {
-    setCodeInseeAdd([]);
     setCommuneSelectedAdd([]);
     setCityDataAdd([]);
-    setCodeInseeSearch([]);
     setCityDataSearch([]);
     setSearchInputValue("");
     setValueInputOnClick("");
@@ -61,19 +52,14 @@ function Searchbar({
         const codesInsee = filteredResults.map((result) => result.code);
         let insee = [];
         if (codePostal.startsWith(750)) {
-          handleAddCodeInseeAdd((parseInt(codePostal, 10) + 100).toString());
           insee.push((parseInt(codePostal, 10) + 100).toString());
         } else if (codePostal.startsWith(130) || codePostal.startsWith(1301)) {
-          handleAddCodeInseeAdd((parseInt(codePostal, 10) + 200).toString());
           insee.push((parseInt(codePostal, 10) + 200).toString());
         } else if (codePostal.startsWith(690)) {
-          handleAddCodeInseeAdd((parseInt(codePostal, 10) + 380).toString());
           insee.push((parseInt(codePostal, 10) + 380).toString());
         } else if (codePostal.startsWith(75116)) {
-          handleAddCodeInseeAdd(parseInt(codePostal, 10).toString());
           insee.push(parseInt(codePostal, 10).toString());
         } else {
-          codesInsee.forEach((codeInsee) => handleAddCodeInseeAdd(codeInsee));
           insee = codesInsee;
         }
 
@@ -132,7 +118,6 @@ function Searchbar({
               <button
                 type="button"
                 onClick={() => {
-                  setCodeInseeSearch(codeInseeAdd);
                   setCityDataSearch(cityDataAdd);
                 }}
                 disabled={countSearchbar === 0}
@@ -234,13 +219,10 @@ Allows you to display a pre-searche */}
 }
 
 Searchbar.propTypes = {
-  setCodeInseeAdd: PropTypes.func,
   setCountSearchbar: PropTypes.func,
   countSearchbar: PropTypes.number,
   setCommuneSelectedAdd: PropTypes.func,
   setCityDataAdd: PropTypes.func,
-  setCodeInseeSearch: PropTypes.func,
-  codeInseeAdd: PropTypes.arrayOf(PropTypes.string),
   setCityDataSearch: PropTypes.func,
   cityDataAdd: PropTypes.arrayOf(
     PropTypes.shape({
@@ -256,13 +238,10 @@ Searchbar.propTypes = {
   ),
 };
 Searchbar.defaultProps = {
-  setCodeInseeAdd: () => {},
   setCountSearchbar: () => {},
   countSearchbar: 0,
   setCommuneSelectedAdd: () => {},
   setCityDataAdd: () => {},
-  setCodeInseeSearch: () => {},
-  codeInseeAdd: [],
   setCityDataSearch: () => {},
   cityDataAdd: [],
 };

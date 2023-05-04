@@ -4,7 +4,7 @@ import axios from "axios";
 import "./arrayCitiesInput.scss";
 
 // create an array with data of 5 cities
-function ArrayCitiesInput({ cityDataSearch, setInseeZoomCity }) {
+function ArrayCitiesInput({ cityDataSearch, cityDataAdd }) {
   // This function fetch the DVF API with the code insee (arrayDataFiveCitiesGeoApi.code). Return the mean price of house for each city
   let propertyValue = 0;
   let builtArea = 0;
@@ -91,28 +91,41 @@ function ArrayCitiesInput({ cityDataSearch, setInseeZoomCity }) {
 
   return (
     <div>
-      {arrayOfCityObject.length > 0 && (
-        <table>
-          <caption>Valeurs recherchées</caption>
-          <tbody>
-            <tr>
-              <th scope="col">Communes</th>
-              <th scope="col">Prix au m² (maison)</th>
-              <th scope="col">Prix au m² (appt)</th>
-              <th scope="col">Population</th>
-            </tr>
-            {arrayOfCityObject.map((el) => {
-              return (
-                <tr onClick={() => setInseeZoomCity(el.insee[0])}>
-                  <th scope="row">{el.cityName}</th>
-                  <td>{el.housePriceM2.toLocaleString("fr-FR")} €</td>
-                  <td>{el.aptPriceM2.toLocaleString("fr-FR")} €</td>
-                  <td>{el.population.toLocaleString("fr-FR")} hab</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+      {cityDataAdd.length > 0 && (
+        <div>
+          <table>
+            <caption>Valeurs recherchées</caption>
+            <tbody>
+              <tr>
+                <th scope="col">Communes</th>
+                <th scope="col">Prix au m² (maison)</th>
+                <th scope="col">Prix au m² (appt)</th>
+                <th scope="col">Population</th>
+              </tr>
+              {arrayOfCityObject.map((el) => {
+                return (
+                  <tr>
+                    <th scope="row">{el.cityName}</th>
+                    {!el.housePriceM2 ? (
+                      <td>Pas de vente</td>
+                    ) : (
+                      <td>{el.housePriceM2.toLocaleString("fr-FR")} €</td>
+                    )}
+                    {!el.aptPriceM2 ? (
+                      <td>Pas de vente</td>
+                    ) : (
+                      <td>{el.aptPriceM2.toLocaleString("fr-FR")} €</td>
+                    )}
+                    <td>{el.population.toLocaleString("fr-FR")} hab</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          {cityDataSearch.length === 0 && (
+            <p>Appuyer sur le bouton rechercher afin d'obtenir les valeurs</p>
+          )}
+        </div>
       )}
     </div>
   );
@@ -132,10 +145,21 @@ ArrayCitiesInput.propTypes = {
       population: PropTypes.number,
     })
   ),
-  setInseeZoomCity: PropTypes.func,
+  cityDataAdd: PropTypes.arrayOf(
+    PropTypes.shape({
+      cityname: PropTypes.string,
+      aptPriceM2: PropTypes.number,
+      coordinates: PropTypes.arrayOf(
+        PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))
+      ),
+      housePriceM2: PropTypes.number,
+      insee: PropTypes.arrayOf(PropTypes.string),
+      population: PropTypes.number,
+    })
+  ),
 };
 
 ArrayCitiesInput.defaultProps = {
   cityDataSearch: [],
-  setInseeZoomCity: () => {},
+  cityDataAdd: [],
 };

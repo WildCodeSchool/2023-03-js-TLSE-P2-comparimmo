@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
+import "./searchBar.scss";
 
 function Searchbar({
   setCountSearchbar,
@@ -105,110 +106,116 @@ function Searchbar({
 
   return (
     <div>
+      {cityDataAdd.length < 5 && (
+        <h2 className="titleSearch">VOTRE RECHERCHE</h2>
+      )}
       {isLoaded ? (
-        <div>
-          <div className="search-container">
-            <div className="search-inner">
-              <input
-                type="text"
-                placeholder="Commune / Code Postal"
-                onChange={handleSearch}
-                value={searchInputValue}
-              />
-              <button
-                type="button"
-                onClick={() => {
-                  setCityDataSearch(cityDataAdd);
-                }}
-                disabled={countSearchbar === 0}
-              >
-                Rechercher
-              </button>
-              {countSearchbar >= 5 && <p>Maximum 5 communes</p>}
-              <button
-                type="button"
-                onClick={() => {
-                  const [communeName, codePostal] =
-                    searchInputValue.split(" - ");
-                  onSearchCodePostal(communeName, codePostal);
-                  setSearchInputValue("");
-                  setCountSearchbar(countSearchbar + 1);
-                  setCityDataSearch([]);
-                }}
-                disabled={
-                  countSearchbar >= 5 ||
-                  searchInputValue !== valueInputOnClick ||
-                  searchInputValue === ""
-                }
-              >
-                Ajouter
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  handleReset("");
-                  setCountSearchbar(0);
-                }}
-              >
-                Réinitialiser
-              </button>
-            </div>
-            <div className="dropdown">
-              {/* 
-Allows you to display a pre-searche */}
-              {commune
-                .filter((item) => {
-                  const communeName = item.nom.toLowerCase();
-                  const searchInputValueLower = searchInputValue.toLowerCase();
-                  const matchName = communeName.startsWith(
-                    searchInputValueLower
-                  );
-                  // Search if one of element correspond to code postal
-                  const matchCodePostal = item.codesPostaux.some((postal) =>
-                    postal.startsWith(searchInputValueLower)
-                  );
-                  return (
-                    searchInputValueLower && (matchName || matchCodePostal)
-                  );
-                })
-                .map((item) => (
-                  <div className="dropdown-row" key={item.code}>
-                    {regEx.test(searchInputValue)
-                      ? item.codesPostaux
-                          .filter((postal) =>
-                            postal.startsWith(searchInputValue.toLowerCase())
-                          )
-                          .map((postal) => (
-                            <div
-                              key={postal}
-                              onClick={() => {
-                                onSearchInputValue(`${item.nom} - ${postal}`);
-                              }}
-                              onKeyDown={() => {}}
-                              role="button"
-                              tabIndex="0"
-                            >
-                              {`${item.nom} - ${postal}`}
-                            </div>
-                          ))
-                      : item.codesPostaux.map((postal, index) => (
+        <div className="search-inner">
+          {cityDataAdd.length < 5 && (
+            <input
+              className="searchBar"
+              type="text"
+              placeholder="Commune OU code postal"
+              onChange={handleSearch}
+              value={searchInputValue}
+            />
+          )}
+          {countSearchbar >= 5 && (
+            <p className="alertMaxCities">Maximum 5 communes</p>
+          )}
+          <div className="allSearchButton">
+            <button
+              className="searchButton"
+              type="button"
+              onClick={() => {
+                handleReset("");
+                setCountSearchbar(0);
+              }}
+            >
+              Réinitialiser
+            </button>
+            <button
+              className="searchButton"
+              type="button"
+              onClick={() => {
+                const [communeName, codePostal] = searchInputValue.split(" - ");
+                onSearchCodePostal(communeName, codePostal);
+                setSearchInputValue("");
+                setCountSearchbar(countSearchbar + 1);
+                setCityDataSearch([]);
+              }}
+              disabled={
+                countSearchbar >= 5 ||
+                searchInputValue !== valueInputOnClick ||
+                searchInputValue === ""
+              }
+            >
+              Ajouter
+            </button>
+            <button
+              className="searchButton"
+              type="button"
+              onClick={() => {
+                setCityDataSearch(cityDataAdd);
+              }}
+              disabled={countSearchbar === 0}
+            >
+              Rechercher
+            </button>
+
+            <div />
+          </div>
+          <div className="dropdown">
+            {/* 
+                  Allows you to display a pre-searche */}
+            {commune
+              .filter((item) => {
+                const communeName = item.nom.toLowerCase();
+                const searchInputValueLower = searchInputValue.toLowerCase();
+                const matchName = communeName.startsWith(searchInputValueLower);
+                // Search if one of element correspond to code postal
+                const matchCodePostal = item.codesPostaux.some((postal) =>
+                  postal.startsWith(searchInputValueLower)
+                );
+                return searchInputValueLower && (matchName || matchCodePostal);
+              })
+              .map((item) => (
+                <div className="dropdown-row" key={item.code}>
+                  {regEx.test(searchInputValue)
+                    ? item.codesPostaux
+                        .filter((postal) =>
+                          postal.startsWith(searchInputValue.toLowerCase())
+                        )
+                        .map((postal) => (
                           <div
-                            key={item.codesPostaux[index]}
+                            key={postal}
                             onClick={() => {
-                              onSearchInputValue(
-                                `${item.nom} - ${item.codesPostaux[index]}`
-                              );
+                              onSearchInputValue(`${item.nom} - ${postal}`);
                             }}
                             onKeyDown={() => {}}
                             role="button"
                             tabIndex="0"
                           >
-                            {`${item.nom} - ${item.codesPostaux[index]}`}
+                            {`${item.nom} - ${postal}`}
                           </div>
-                        ))}
-                  </div>
-                ))}
-            </div>
+                        ))
+                    : item.codesPostaux.map((postal, index) => (
+                        <div
+                          key={item.codesPostaux[index]}
+                          onClick={() => {
+                            onSearchInputValue(
+                              `${item.nom} - ${item.codesPostaux[index]}`
+                            );
+                          }}
+                          onKeyDown={() => {}}
+                          role="button"
+                          tabIndex="0"
+                        >
+                          {`${item.nom} - ${item.codesPostaux[index]}`}
+                        </div>
+                      ))}
+                </div>
+              ))}
           </div>
         </div>
       ) : (

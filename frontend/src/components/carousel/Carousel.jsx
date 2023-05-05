@@ -130,7 +130,7 @@ export default function Carousel() {
   const optionSplide = {
     type: "loop",
     gap: "1rem",
-    autoplay: true,
+    autoplay: false,
     pauseOnHover: true,
     resetProgress: false,
   };
@@ -143,7 +143,7 @@ export default function Carousel() {
             <SplideSlide
               className="carouselSplide"
               key={city.id}
-              data-splide-interval="3000"
+              data-splide-interval="4000"
             >
               <h2 className="cityCarousel">{city.cityName}</h2>
               <div className="cityList">

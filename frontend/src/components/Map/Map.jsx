@@ -172,7 +172,7 @@ export default function Map({ propertyType, cityDataSearch }) {
               <Popup>
                 {dateMutation[index] ? (
                   <p>
-                    <strong>Date de mutation:</strong>
+                    <strong>Date de vente:</strong>
                     <br />
                     {new Date(dateMutation[index]).toLocaleDateString("fr-FR")}
                   </p>

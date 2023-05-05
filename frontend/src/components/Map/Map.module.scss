@@ -3,6 +3,7 @@
   width: 100vw;
   display: flex;
   justify-content: flex-end;
+  position: sticky;
 }
 
 .leaflet-container {
@@ -24,9 +25,16 @@ form {
 
 @media screen and (min-width: 769px) {
   .map {
+    display: flex;
     width: 100%;
   }
   .mapContent {
+    display: flex;
+    height: 100%;
     width: 40vw;
+    overflow: hidden;
+  }
+  .leaflet-container {
+    height: 100%;
   }
 }

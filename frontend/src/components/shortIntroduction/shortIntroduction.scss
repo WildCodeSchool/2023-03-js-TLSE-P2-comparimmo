@@ -1,8 +1,14 @@
 .shortIntroductionCss {
-  font-size: clamp(16px, 1.2rem, 30px);
+  font-size: 16px;
   text-align: center;
-  padding: 15px 7px;
+  padding: 15px 10px;
   height: auto;
   width: 100%;
-  line-height: 1.2em;
+  line-height: 1.3em;
+}
+@media screen and (min-width: 769px) {
+  .shortIntroductionCss {
+    font-size: 14px;
+    padding: 10px 10px;
+  }
 }

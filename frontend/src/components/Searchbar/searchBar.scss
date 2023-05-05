@@ -1,0 +1,61 @@
+.titleSearch {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+  letter-spacing: 1px;
+  font-size: 1.4rem;
+}
+
+.searchBar {
+  height: 40px;
+  width: 300px;
+  border-radius: 10px;
+  border-color: 2px var(--main-blue);
+}
+
+.search-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+}
+.allSearchButton {
+  display: flex;
+  margin-top: 10px;
+  margin-left: 20px;
+  gap: 20px;
+}
+
+.searchButton {
+  height: auto;
+  width: 80px;
+  border-radius: 10px;
+  background-color: var(--main-blue);
+  color: var(--white);
+  padding: 5px;
+  border: 0;
+  outline: 0;
+}
+
+.dropdown {
+  font-size: 14px;
+  max-height: 100px;
+  width: 300px;
+  overflow-y: scroll;
+  margin: 0.5rem 1rem;
+  line-height: 1.5em;
+}
+.alertMaxCities {
+  margin-top: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--orange);
+}
+
+button:disabled {
+  background-color: var(--light-grey);
+}
+
+button {
+  cursor: pointer;
+}

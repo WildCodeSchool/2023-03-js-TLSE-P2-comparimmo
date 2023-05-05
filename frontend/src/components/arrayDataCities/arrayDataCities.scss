@@ -1,7 +1,7 @@
 td,
 th {
   border: 1px solid var(--main-blue);
-  padding: 10px;
+  padding: 7px;
 }
 
 td {
@@ -16,11 +16,13 @@ tr:nth-child(even) {
 th[scope="col"] {
   background-color: var(--main-blue);
   color: #fff;
+  vertical-align: middle;
 }
 
 th[scope="row"] {
   background-color: var(--light-gray);
   color: var(--text-color);
+  vertical-align: middle;
 }
 
 caption {

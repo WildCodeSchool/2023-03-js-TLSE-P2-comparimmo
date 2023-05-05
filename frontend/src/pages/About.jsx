@@ -18,18 +18,19 @@ function About() {
       <section>
         <div className="aboutComparimmo">
           <div className="d-flex">
-            <img src={minilogo} alt="" />
-            <h2>COMPAR'IMMO</h2>
+            <img className="logoChip" src={minilogo} alt="" />
+            <h2 className="titleAPropos">COMPAR'IMMO</h2>
           </div>
           <p>
             Bienvenue sur notre site internet dédié à la comparaison des valeurs
             foncières des maisons et appartements sur les différentes communes
-            de France. Grâce à notre outil de comparaison, nous facilitons la
-            recherche de lieu pour acheter dans l’immobilier ou pour prendre
-            connaissance des tendances du marché. Vous pouvez sélectionner une
-            commune pour afficher ses informations principales, ou en
-            sélectionner plusieurs pour comparer les prix moyens au m². Grâce à
-            notre carte interractive, vous pouvez également séléctionner
+            de France. <br />
+            Grâce à notre outil de comparaison, nous facilitons la recherche de
+            lieu pour investir dans l’immobilier ou pour prendre connaissance
+            des tendances du marché. Vous pouvez sélectionner une commune pour
+            afficher ses informations principales, ou en sélectionner plusieurs
+            pour comparer les prix moyens au m². <br />
+            Via la carte interactive, vous pouvez également séléctionner
             directement une commune et regarder les dernières ventes effectuées
             sur les appartements, maisons ou terrains dans la rue de votre
             choix.
@@ -37,8 +38,8 @@ function About() {
         </div>
         <div className="aboutAPi">
           <div className="d-flex">
-            <img src={minilogo} alt="" />
-            <h2> Ressources utilisées </h2>
+            <img className="logoChip" src={minilogo} alt="" />
+            <h2 className="titleAPropos"> Ressources utilisées </h2>
           </div>
           <p>
             Pour réaliser ce site internet, plusieurs API ont été utilisées pour
@@ -78,8 +79,8 @@ function About() {
 
         <div className="aboutDev">
           <div className="teamDev">
-            <img src={minilogo} alt="Logo Compar'Immo" />
-            <h2>L'équipe de développeurs</h2>
+            <img className="logoChip" src={minilogo} alt="Logo Compar'Immo" />
+            <h2 className="titleAPropos">L'équipe de développeurs</h2>
             <br />
           </div>
           <div className="trombi">
@@ -104,7 +105,7 @@ function About() {
               <h2>Cédric PALACIO-VIDAL</h2>
             </div>
           </div>
-          <p>
+          <p className="no-justify">
             Ce site Web a été réalisé dans le cadre du projet 2 de la formation
             “Développeur Web” à la Wild Code School.
           </p>{" "}

@@ -21,7 +21,7 @@ body {
 
     div {
       div#nav_links {
-        background-color: var(--main-blue);
+        background-color: var(--main-blue-opacified);
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -29,6 +29,8 @@ body {
         position: absolute;
         top: 60px;
         right: 0px;
+        backdrop-filter: blur(4px);
+        z-index: 2;
 
         ul {
           list-style: none;
@@ -137,6 +139,8 @@ body {
 @media screen and (min-width: 769px) {
   body {
     section.navbar {
+      display: flex;
+      justify-content: space-between;
       padding: 0 2rem;
       height: 75px;
 
@@ -186,6 +190,7 @@ body {
 
                 p {
                   align-items: center;
+                  padding-bottom: 5px;
                 }
               }
 

@@ -1,0 +1,139 @@
+.aboutContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: justify;
+  height: 100%;
+  margin: 1rem;
+
+  font-size: 1rem;
+
+  h2 {
+    font-size: 1rem;
+    align-self: center;
+
+    vertical-align: middle;
+  }
+
+  p {
+    margin: 1rem;
+    line-height: 1.3;
+  }
+  
+  p.no-justify {
+    text-align: start;
+  }
+
+  img {
+    height: 25px;
+    width: 30px;
+  }
+  .logoChip {
+    margin-right: 1rem;
+    height: 25px;
+    width: 30px;
+  }
+  .titleAPropos {
+    padding-top: 2px;
+  }
+  .aboutComparimmo {
+    margin: 1rem;
+  }
+
+  .aboutAPi {
+    margin: 2rem 1rem;
+
+    ul {
+      padding-left: 40px;
+    }
+
+    li {
+      margin: 10px;
+      list-style: square;
+      color: var(--orange);
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--main-blue);
+    }
+  }
+
+  .aboutDev {
+    margin: 2rem 1rem;
+
+    .aboutContent .aboutDev img {
+      height: 25px;
+      width: 30px;
+    }
+
+    .dev {
+      display: flex;
+      flex-direction: column;
+      margin: 1rem;
+      align-items: center;
+    }
+
+    img.photo {
+      height: 100px;
+      width: 100px;
+    }
+  }
+
+  .teamDev {
+    display: flex;
+  }
+
+  @media screen and (min-width: 769px) {
+    section {
+      width: 80%;
+
+      margin-bottom: 0;
+    }
+    .aboutComparimmo {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 2rem;
+    }
+
+    .aboutAPi {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      ul {
+        display: flex;
+        gap: 100px;
+        margin-top: 1rem;
+      }
+    }
+
+    .aboutDev {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 2rem;
+
+      .trombi {
+        display: flex;
+        flex-direction: row;
+      }
+    }
+
+    p {
+      justify-content: center;
+    }
+  }
+
+  .aboutDev img {
+    .photo {
+      height: 150px;
+      width: 150px;
+    }
+    h2 {
+      margin: 0;
+      align-self: center;
+    }
+  }
+}

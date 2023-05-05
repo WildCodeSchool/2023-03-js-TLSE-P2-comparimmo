@@ -12,7 +12,9 @@ function Navbar() {
   return (
     <section className="navbar">
       <img className="logo-mobile" src={logomobile} alt="logo-mobile" />
+
       <img className="logo-desktop" src={logodesktop} alt="logo-desktop" />
+
       <div>
         <span
           id="burger_icon"
@@ -35,14 +37,20 @@ function Navbar() {
           className={showMenu ? "burger_open" : "burger_close"}
         >
           <ul>
-            <NavLink exact to="/" activeClassName="active">
+            <NavLink
+              to="/"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               <li>
-                <p>Home</p>
+                <p>Accueil</p>
               </li>
             </NavLink>
-            <NavLink to="/about" activeClassName="active">
+            <NavLink
+              to="/about"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
               <li>
-                <p>About Us</p>
+                <p>A propos</p>
               </li>
             </NavLink>
           </ul>

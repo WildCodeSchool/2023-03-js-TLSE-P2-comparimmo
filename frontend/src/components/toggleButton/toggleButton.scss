@@ -1,0 +1,49 @@
+div.toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  h2 {
+    padding: 0 5vw;
+  }
+
+  .toggle-button {
+    position: relative;
+    display: inline-block;
+    width: 75px;
+    height: 25px;
+    border: 1px solid var(--main-blue);
+    border-radius: 10px;
+    box-sizing: border-box;
+    background-color: white;
+
+    .toggle-button-slider:before {
+      position: absolute;
+      cursor: pointer;
+      content: "";
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 100%;
+      width: 50%;
+      background-color: var(--main-blue);
+      -webkit-transition: 0.4s;
+      transition: 0.4s;
+      border-radius: 7px;
+    }
+  }
+
+  .toggle-button input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .toggle-button input:checked + .toggle-button-slider:before {
+    -webkit-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    transform: translateX(100%);
+  }
+}

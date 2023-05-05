@@ -63,6 +63,7 @@ export default function Carousel() {
     }, []);
 
     let meanFlatPriceM2 = 0;
+    let cpt = 0;
     if (isLoaded) {
       const concatenedDistrictsDatas = arrayOfDistrictsDatas.flat();
       let sumPriceM2 = 0;
@@ -71,11 +72,10 @@ export default function Carousel() {
         const surfaceValue = parseInt(concatenedDistrictsDatas[i].sbati, 10);
         if (landValue && surfaceValue) {
           sumPriceM2 += landValue / surfaceValue;
+          cpt += 1;
         }
       }
-      meanFlatPriceM2 = Math.ceil(
-        sumPriceM2 / parseInt(concatenedDistrictsDatas.length, 10)
-      );
+      meanFlatPriceM2 = Math.ceil(sumPriceM2 / cpt);
     }
     return meanFlatPriceM2;
   };
@@ -104,6 +104,7 @@ export default function Carousel() {
     }, []);
 
     let meanHousePriceM2 = 0;
+    let cpt = 0;
     if (isLoaded) {
       const concatenedDistrictsDatas = arrayOfDistrictsDatas.flat();
       let sumPriceM2 = 0;
@@ -112,11 +113,10 @@ export default function Carousel() {
         const surfaceValue = parseInt(concatenedDistrictsDatas[i].sbati, 10);
         if (landValue && surfaceValue) {
           sumPriceM2 += landValue / surfaceValue;
+          cpt += 1;
         }
       }
-      meanHousePriceM2 = Math.ceil(
-        sumPriceM2 / parseInt(concatenedDistrictsDatas.length, 10)
-      );
+      meanHousePriceM2 = Math.ceil(sumPriceM2 / cpt);
     }
     return meanHousePriceM2;
   };
@@ -130,7 +130,7 @@ export default function Carousel() {
   const optionSplide = {
     type: "loop",
     gap: "1rem",
-    autoplay: true,
+    autoplay: false,
     pauseOnHover: true,
     resetProgress: false,
   };
@@ -143,7 +143,7 @@ export default function Carousel() {
             <SplideSlide
               className="carouselSplide"
               key={city.id}
-              data-splide-interval="3000"
+              data-splide-interval="4000"
             >
               <h2 className="cityCarousel">{city.cityName}</h2>
               <div className="cityList">

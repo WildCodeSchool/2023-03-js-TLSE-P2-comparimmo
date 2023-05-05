@@ -14,6 +14,7 @@ import ArrayDataCities from "../components/arrayDataCities/ArrayDataCities";
 import ArrayCitiesInput from "../components/arrayCitiesInput/ArrayCitiesInput";
 // eslint-disable-next-line import/no-unresolved
 import ShortIntroduction from "../components/shortIntroduction/ShortIntroduction";
+// eslint-disable-next-line import/no-unresolved
 import ToggleButton from "../components/togglebutton/Togglebutton";
 
 function Home() {

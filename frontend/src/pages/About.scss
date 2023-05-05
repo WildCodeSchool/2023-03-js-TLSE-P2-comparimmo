@@ -22,12 +22,16 @@
 
   img {
     height: 25px;
-    width: 25px;
+    width: 30px;
   }
   .logoChip {
     margin-right: 1rem;
+    height: 25px;
+    width: 30px;
   }
-
+  .titleAPropos {
+    padding-top: 2px;
+  }
   .aboutComparimmo {
     margin: 1rem;
   }
@@ -56,7 +60,7 @@
 
     .aboutContent .aboutDev img {
       height: 25px;
-      width: 25px;
+      width: 30px;
     }
 
     .dev {
@@ -66,7 +70,7 @@
       align-items: center;
     }
 
-    img {
+    img.photo {
       height: 100px;
       width: 100px;
     }
@@ -74,10 +78,6 @@
 
   .teamDev {
     display: flex;
-    img {
-      height: 25px;
-      width: 25px;
-    }
   }
 
   @media screen and (min-width: 769px) {

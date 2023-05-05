@@ -11,12 +11,10 @@ function Navbar() {
 
   return (
     <section className="navbar">
-      {/* <NavLink to="/"> */}
       <img className="logo-mobile" src={logomobile} alt="logo-mobile" />
-      {/* </NavLink> */}
-      {/* <NavLink to="/"> */}
+
       <img className="logo-desktop" src={logodesktop} alt="logo-desktop" />
-      {/* </NavLink> */}
+
       <div>
         <span
           id="burger_icon"

@@ -93,7 +93,6 @@ function ArrayCitiesInput({ cityDataSearch }) {
     <div>
       <div className="arrayInput">
         <table>
-          <caption>Valeurs recherchées</caption>
           <tbody>
             <tr>
               <th scope="col">Communes</th>

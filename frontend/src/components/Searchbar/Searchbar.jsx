@@ -106,7 +106,9 @@ function Searchbar({
 
   return (
     <div>
-      <h2 className="titleSearch">VOTRE RECHERCHE</h2>
+      {cityDataAdd.length < 5 && (
+        <h2 className="titleSearch">VOTRE RECHERCHE</h2>
+      )}
       {isLoaded ? (
         <div className="search-inner">
           <input

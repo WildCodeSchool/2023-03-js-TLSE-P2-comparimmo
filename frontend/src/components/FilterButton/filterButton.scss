@@ -9,10 +9,9 @@
 }
 .buttonSelected {
   background-color: var(--orange);
-  color: var(--main-blue);
   margin: 0px 15px;
-  padding: 5px;
-  color: var(--white);
+  padding: 5px 8px;
+  color: var(--main);
 }
 
 .buttonNotSelected {
@@ -24,10 +23,6 @@
 
 @media screen and (min-width: 768px) {
   .filterButtons:hover {
-    // color: var(--orange);
     cursor: pointer;
-  }
-  .buttonSelected:hover {
-    color: var(--white);
   }
 }

@@ -19,7 +19,7 @@ function About() {
         <div className="aboutComparimmo">
           <div className="d-flex">
             <img className="logoChip" src={minilogo} alt="" />
-            <h2>COMPAR'IMMO</h2>
+            <h2 className="titleAPropos">COMPAR'IMMO</h2>
           </div>
           <p>
             Bienvenue sur notre site internet dédié à la comparaison des valeurs
@@ -30,7 +30,7 @@ function About() {
             des tendances du marché. Vous pouvez sélectionner une commune pour
             afficher ses informations principales, ou en sélectionner plusieurs
             pour comparer les prix moyens au m². <br />
-            Via la carte interractive, vous pouvez également séléctionner
+            Via la carte interactive, vous pouvez également séléctionner
             directement une commune et regarder les dernières ventes effectuées
             sur les appartements, maisons ou terrains dans la rue de votre
             choix.
@@ -39,7 +39,7 @@ function About() {
         <div className="aboutAPi">
           <div className="d-flex">
             <img className="logoChip" src={minilogo} alt="" />
-            <h2> Ressources utilisées </h2>
+            <h2 className="titleAPropos"> Ressources utilisées </h2>
           </div>
           <p>
             Pour réaliser ce site internet, plusieurs API ont été utilisées pour
@@ -80,7 +80,7 @@ function About() {
         <div className="aboutDev">
           <div className="teamDev">
             <img className="logoChip" src={minilogo} alt="Logo Compar'Immo" />
-            <h2>L'équipe de développeurs</h2>
+            <h2 className="titleAPropos">L'équipe de développeurs</h2>
             <br />
           </div>
           <div className="trombi">

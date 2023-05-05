@@ -51,3 +51,11 @@
   font-weight: bold;
   color: var(--orange);
 }
+
+button:disabled {
+  background-color: var(--light-grey);
+}
+
+button {
+  cursor: pointer;
+}

@@ -105,7 +105,7 @@ function About() {
               <h2>Cédric PALACIO-VIDAL</h2>
             </div>
           </div>
-          <p>
+          <p className="no-justify">
             Ce site Web a été réalisé dans le cadre du projet 2 de la formation
             “Développeur Web” à la Wild Code School.
           </p>{" "}

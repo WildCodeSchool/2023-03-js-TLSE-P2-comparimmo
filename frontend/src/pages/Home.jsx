@@ -15,7 +15,7 @@ import ArrayCitiesInput from "../components/arrayCitiesInput/ArrayCitiesInput";
 // eslint-disable-next-line import/no-unresolved
 import ShortIntroduction from "../components/shortIntroduction/ShortIntroduction";
 // eslint-disable-next-line import/no-unresolved
-import ToggleButton from "../components/togglebutton/Togglebutton";
+import ToggleButton from "../components/togglebutton/Togglebutton.jsx";
 
 function Home() {
   const [propertyType, setPropertyType] = useState([21, 111, 121]);

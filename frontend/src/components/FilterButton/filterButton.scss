@@ -11,20 +11,23 @@
   background-color: var(--orange);
   color: var(--main-blue);
   margin: 0px 15px;
+  padding: 5px;
+  color: var(--white);
 }
 
 .buttonNotSelected {
   background-color: var(--light-grey);
   color: var(--main-blue);
   margin: 0px 15px;
+  padding: 5px;
 }
 
 @media screen and (min-width: 768px) {
   .filterButtons:hover {
-    color: var(--orange);
+    // color: var(--orange);
     cursor: pointer;
   }
   .buttonSelected:hover {
-    color: var(--main-blue);
+    color: var(--white);
   }
 }

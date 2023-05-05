@@ -1,9 +1,9 @@
 .titleSearch {
-  margin-top: 10px;
-  margin-bottom: 12px;
+  margin-top: 20px;
+  margin-bottom: 10px;
   text-align: center;
   letter-spacing: 1px;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 
 .searchBar {
@@ -17,12 +17,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 22px;
   height: auto;
 }
 .allSearchButton {
   display: flex;
-  margin-top: 15px;
+  margin-top: 10px;
   margin-left: 20px;
   gap: 20px;
 }
@@ -47,7 +46,7 @@
   line-height: 1.5em;
 }
 .alertMaxCities {
-  margin-top: 10px;
+  margin-top: 5px;
   font-size: 16px;
   font-weight: bold;
   color: var(--orange);

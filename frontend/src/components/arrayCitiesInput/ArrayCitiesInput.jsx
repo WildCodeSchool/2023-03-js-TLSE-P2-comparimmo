@@ -91,7 +91,7 @@ function ArrayCitiesInput({ cityDataSearch }) {
 
   return (
     <div>
-      <div>
+      <div className="arrayInput">
         <table>
           <caption>Valeurs recherchées</caption>
           <tbody>

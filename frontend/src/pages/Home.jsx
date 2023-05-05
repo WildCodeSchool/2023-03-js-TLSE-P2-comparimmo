@@ -55,8 +55,7 @@ function Home() {
     <div className="homeContent">
       <div className="reverseSection">
         <section className="sectionIntroSearchArray">
-          <ShortIntroduction />
-
+          {cityDataSearch.length === 0 && <ShortIntroduction />}
           <div className="searchBarButtonArrayResults">
             <Searchbar
               setCountSearchbar={setCountSearchbar}
@@ -97,7 +96,6 @@ function Home() {
           )}
 
           {cityDataSearch.length > 0 &&
-            isMobile &&
             (showCarte ? (
               <ArrayCitiesInput
                 cityDataSearch={cityDataSearch}

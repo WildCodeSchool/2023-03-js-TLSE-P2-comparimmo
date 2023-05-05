@@ -11,8 +11,12 @@ function Navbar() {
 
   return (
     <section className="navbar">
+      {/* <NavLink to="/"> */}
       <img className="logo-mobile" src={logomobile} alt="logo-mobile" />
+      {/* </NavLink> */}
+      {/* <NavLink to="/"> */}
       <img className="logo-desktop" src={logodesktop} alt="logo-desktop" />
+      {/* </NavLink> */}
       <div>
         <span
           id="burger_icon"
@@ -40,7 +44,7 @@ function Navbar() {
               className={({ isActive }) => (isActive ? "active" : "")}
             >
               <li>
-                <p>Home</p>
+                <p>Accueil</p>
               </li>
             </NavLink>
             <NavLink
@@ -48,7 +52,7 @@ function Navbar() {
               className={({ isActive }) => (isActive ? "active" : "")}
             >
               <li>
-                <p>About Us</p>
+                <p>A propos</p>
               </li>
             </NavLink>
           </ul>

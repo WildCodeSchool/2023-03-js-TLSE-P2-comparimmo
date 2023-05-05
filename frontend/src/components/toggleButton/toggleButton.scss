@@ -2,6 +2,8 @@ div.toggle {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 15px;
+  padding-bottom: 10px;
   h2 {
     padding: 0 5vw;
   }
@@ -9,8 +11,8 @@ div.toggle {
   .toggle-button {
     position: relative;
     display: inline-block;
-    width: 80px;
-    height: 34px;
+    width: 75px;
+    height: 25px;
     border: 1px solid var(--main-blue);
     border-radius: 10px;
     box-sizing: border-box;

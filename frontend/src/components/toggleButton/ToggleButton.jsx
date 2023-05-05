@@ -9,14 +9,14 @@ function ToggleButton({ setShowCarte, showCarte }) {
 
   return (
     <div className="toggle">
-      <h2>Carte</h2>
+      <h2>Tableau</h2>
       <div className="toggle-button">
         <label className="toggle-button-switch">
           <input type="checkbox" onClick={handleClick} />
           <span className="toggle-button-slider" />
         </label>
       </div>
-      <h2>Tableau</h2>
+      <h2>Carte</h2>
     </div>
   );
 }

@@ -111,13 +111,15 @@ function Searchbar({
       )}
       {isLoaded ? (
         <div className="search-inner">
-          <input
-            className="searchBar"
-            type="text"
-            placeholder="Commune OU code postal"
-            onChange={handleSearch}
-            value={searchInputValue}
-          />
+          {cityDataAdd.length < 5 && (
+            <input
+              className="searchBar"
+              type="text"
+              placeholder="Commune OU code postal"
+              onChange={handleSearch}
+              value={searchInputValue}
+            />
+          )}
           {countSearchbar >= 5 && (
             <p className="alertMaxCities">Maximum 5 communes</p>
           )}
